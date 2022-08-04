@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap");
+
+$base-color: #231942;
+$font-color: $base-color;
+$app-name-color: #5e548e;
+$border-Color: #9f86c0;
+$background-color: #be95c4;
+$left-over: #fff9fc;
+
+body {
+  box-sizing: border-box;
+  font-family: "Quicksand", sans-serif;
+  background-color: $left-over;
+  color: $font-color;
+}
+p {
+  margin: 0;
+}
+a {
+  color: $base-color;
+}
+a:visited {
+  color: $base-color;
+}
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+* {
+  box-sizing: border-box;
+}
+input {
+  width: 21em;
+  height: 2em;
+  border-radius: 0.5em;
+  border: 1px solid $border-Color;
+  padding: 0.8em;
+}
+button {
+  width: 6em;
+  height: 2em;
+  background-color: $base-color;
+  color: $left-over;
+  border-radius: 0.5em;
+  border: 1px solid $border-Color;
+}
+.navbar{
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    padding: 0.5em;
+}
+.app-name{
+    margin: 0;
+    font-family: 'Pacifico', cursive;
+    color: $app-name-color;
+    font-size: 2em;
+}
+.grid-container {
+  padding: 0.8em;
+  .item-2 {
+    .app-name {
+      font-size: 1em;
+    }
+
+    .login-container {
+      .input-group {
+        margin-top: 0.8em;
+      }
+      button {
+        margin-top: 0.8em;
+      }
+    }
+    .login-extra-text{
+      margin-top: 1em;
+    }
+  }
+}
