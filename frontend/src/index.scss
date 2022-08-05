@@ -62,7 +62,7 @@ button {
     .app-name {
       font-size: 1em;
     }
-
+//login page
     .login-container {
       .input-group {
         margin-top: 0.8em;
@@ -74,5 +74,25 @@ button {
     .login-extra-text{
       margin-top: 1em;
     }
+  }
+}
+//sign up page
+
+.signup-container {
+  padding: 0.8em;
+  display: flex;
+  flex-direction: column;
+
+  .input-group {
+    margin-top: 0.8em;
+  }
+
+  button {
+    margin-top: 0.8em;
+  }
+
+  .login-extra-text {
+    margin-top: 1em;
+
   }
 }
