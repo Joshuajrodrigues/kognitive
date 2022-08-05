@@ -7,7 +7,7 @@ const Signup: FunctionComponent<{}> = () => {
     return (
         <>
             <div>
-                <SideBanner loop={false} src={lottieSrc} />
+                <SideBanner style={{ height: '300px', width: '300px' }} loop={false} src={lottieSrc} />
             </div>
             <div className="signup-container" >
                 <form >

@@ -9,7 +9,7 @@ const Home: FunctionComponent<{}> = () => {
   return (
     <div className="grid-container">
       <div className="item-1">
-        <SideBanner loop={true} src={lottieSrc} />
+        <SideBanner style={{ height: '300px', width: '100vw' }} loop={true} src={lottieSrc} />
       </div>
       <div className="item-2">
         <h2>Welcome to <span className="app-name">Kognitive</span> , <br /> your cbt journal.🤍 </h2>
