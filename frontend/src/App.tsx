@@ -12,7 +12,7 @@ function App() {
 
 
   return (
-    <div>
+    <div style={{ "padding": "2em" }} >
       <Navbar/>
 
       
