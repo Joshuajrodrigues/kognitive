@@ -12,16 +12,18 @@ function App() {
 
 
   return (
-    <div style={{ "padding": "2em" }} >
+    <div>
       <Navbar/>
 
-      
+      <div style={{ "padding": "0 2em 0 2em" }}>
+
       <Routes>
         <Route path={appRoutes.root} element={<Home/>} />
         <Route path={appRoutes.signup} element={<Signup/>} />
         <Route path={appRoutes.login} element={<Login/>} />
         <Route path={appRoutes.about} element={<About/>}/>
       </Routes>
+      </div>
     </div>
   )
 }
