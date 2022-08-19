@@ -57,27 +57,7 @@ button {
     font-size: 2em;
     text-decoration: none;
 }
-.grid-container {
-  padding: 0.8em;
 
-  .item-2 {
-    .app-name {
-      font-size: 1em;
-    }
-//login page
-    .login-container {
-      .input-group {
-        margin-top: 0.8em;
-      }
-      button {
-        margin-top: 0.8em;
-      }
-    }
-    .login-extra-text{
-      margin-top: 1em;
-    }
-  }
-}
 //sign up page
 
 .signup-container {

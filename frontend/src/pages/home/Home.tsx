@@ -12,7 +12,7 @@ const Home: FunctionComponent<{}> = () => {
 
       <div className="home-hero-image" >
         <LottieCreator
-          style={{ height: '300px', width: '300px', borderRadius: "0.5em" }}
+          style={{ height: '200px', width: '300px' }}
           loop={true} src={lottieSrc}
         />
       </div>
