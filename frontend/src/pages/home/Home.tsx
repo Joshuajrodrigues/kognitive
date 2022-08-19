@@ -9,15 +9,11 @@ import Footer from "../../components/footer/Footer";
 const Home: FunctionComponent<{}> = () => {
   return (
     <div className="grid-container">
-
-      <div className="home-hero-image" >
+      <div className="home-login-container">
         <LottieCreator
-          style={{ height: '200px', width: '300px' }}
+          style={{ height: '250px', width: '300px' }}
           loop={true} src={lottieSrc}
         />
-      </div>
-
-      <div className="home-login-container">
         <span>
           <h2>Welcome to <span >Kognitive</span> , <br /> your cbt journal.🤍 </h2>
         </span>
