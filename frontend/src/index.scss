@@ -52,10 +52,11 @@ button {
 }
 .app-name{
     margin: 0;
-    font-family: 'Pacifico', cursive;
-    color: $app-name-color;
+    font-family: 'Pacifico',
+    cursive;
     font-size: 2em;
     text-decoration: none;
+    color: $app-name-color !important;
 }
 
 //sign up page
