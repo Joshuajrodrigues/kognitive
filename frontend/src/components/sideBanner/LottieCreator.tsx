@@ -2,7 +2,7 @@ import { Player } from "@lottiefiles/react-lottie-player";
 import { FunctionComponent } from "react";
 
 
-const SideBanner: FunctionComponent<{ src: string | object, loop: boolean, style?: React.CSSProperties | undefined }> = ({ src, loop, style }) => {
+const LottieCreator: FunctionComponent<{ src: string | object, loop: boolean, style?: React.CSSProperties | undefined }> = ({ src, loop, style }) => {
 
   return (
     <>
@@ -18,4 +18,4 @@ const SideBanner: FunctionComponent<{ src: string | object, loop: boolean, style
   );
 };
 
-export default SideBanner;
+export default LottieCreator;

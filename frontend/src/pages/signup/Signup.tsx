@@ -1,13 +1,13 @@
 import { FunctionComponent } from "react";
 import BackButton from "../../components/backButton/BackButton";
-import SideBanner from "../home/sideBanner/SideBanner";
+import LottieCreator from "../../components/sideBanner/LottieCreator";
 import lottieSrc from '../../lotties/hero-signup.json'
 
 const Signup: FunctionComponent<{}> = () => {
     return (
         <>
             <div>
-                <SideBanner style={{ height: '300px', width: '300px' }} loop={false} src={lottieSrc} />
+                <LottieCreator style={{ height: '300px', width: '300px' }} loop={false} src={lottieSrc} />
             </div>
             <div className="signup-container" >
                 <form >

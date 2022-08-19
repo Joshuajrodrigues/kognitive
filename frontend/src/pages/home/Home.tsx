@@ -1,24 +1,37 @@
 import { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
 import { appRoutes } from "../../AppConstants";
-import Login from "../login/Login";
-
+import Login from "../../components/login/Login";
+import './Home.scss'
 import lottieSrc from '../../lotties/hero-signin.json'
-import SideBanner from "./sideBanner/SideBanner";
+import LottieCreator from "../../components/sideBanner/LottieCreator";
+import Footer from "../../components/footer/Footer";
 const Home: FunctionComponent<{}> = () => {
   return (
     <div className="grid-container">
-      <div className="item-1">
-        <SideBanner style={{ height: '300px', width: '300px', borderRadius: "0.5em" }} loop={true} src={lottieSrc} />
+
+      <div className="home-hero-image" >
+        <LottieCreator
+          style={{ height: '300px', width: '300px', borderRadius: "0.5em" }}
+          loop={true} src={lottieSrc}
+        />
       </div>
-      <div className="item-2">
-        <h2>Welcome to <span className="app-name">Kognitive</span> , <br /> your cbt journal.🤍 </h2>
-        <Login/>
-        <div className="login-extra-text">
-        <p>New here? <Link to={appRoutes.signup}> Sign Up</Link></p>
+
+      <div className="home-login-container">
+        <span>
+          <h2>Welcome to <span >Kognitive</span> , <br /> your cbt journal.🤍 </h2>
+        </span>
+        <Login />
+        <div className="home-login-extra" >
+          <p>New here? <Link to={appRoutes.signup}> Sign Up</Link></p>
         </div>
         <Link to={appRoutes.about}>About</Link>
       </div>
+
+      <div className="home-footer">
+        <Footer />
+      </div>
+
     </div>
   );
 };

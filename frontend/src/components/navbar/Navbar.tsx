@@ -1,14 +1,16 @@
 import { FunctionComponent } from "react";
+import { Link } from "react-router-dom";
+import { appRoutes } from "../../AppConstants";
 
 
 const Navbar:FunctionComponent<{}> =()=>{
     return(
         <nav className="navbar" >
-            <h1 className="app-name">
+            <Link to={appRoutes.root} className="app-name">
                 Kognitive
-            </h1>
+            </Link>
 
-            <a href="#"></a>
+
         </nav>
     )
 }
