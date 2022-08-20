@@ -1,20 +1,38 @@
 import { FunctionComponent } from "react";
 import BackButton from "../../components/backButton/BackButton";
-
+import LottieCreator from "../../components/sideBanner/LottieCreator";
+import lottieSrc from '../../lotties/hero-signup.json'
 
 const Signup: FunctionComponent<{}> = () => {
     return (
         <>
-            <form>
-                <label htmlFor="email">Email Id</label>
-                <input name="email" placeholder="Email" type="text" />
-                <label htmlFor="password">Password</label>
-                <input name="password" placeholder="Password" type="password" />
-                <label htmlFor="confirmpassword">Confirm Password</label>
-                <input name="confirmpassword" placeholder="Password" type="password" />
+            <div>
+                <LottieCreator style={{ height: '300px', width: '300px' }} loop={false} src={lottieSrc} />
+            </div>
+            <div className="signup-container" >
+                <form >
+                    <div className="input-group">
+                        <label htmlFor="email">Email Id</label><br />
+                        <input name="email" placeholder="example@blabla.com" type="text" />
+                    </div>
+
+                    <div className="input-group">
+                        <label htmlFor="password">Password</label> <br />
+                        <input name="password" placeholder="Password" type="password" />
+
+                    </div>
+                    <div className="input-group">
+                        <label htmlFor="confirmpassword">Confirm Password</label> <br />
+                        <input name="confirmpassword" placeholder="Password" type="password" />
+
+                    </div>
                 <button type="submit">Sign up</button>
+
             </form>
-            <BackButton/>
+                <div className="div login-extra-text">
+                    <BackButton />
+                </div>
+            </div>
         </>
     )
 }

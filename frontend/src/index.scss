@@ -47,32 +47,35 @@ button {
   border: 1px solid $border-Color;
 }
 .navbar{
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
     padding: 0.5em;
 }
 .app-name{
     margin: 0;
-    font-family: 'Pacifico', cursive;
-    color: $app-name-color;
+    font-family: 'Pacifico',
+    cursive;
     font-size: 2em;
+    text-decoration: none;
+    color: $app-name-color !important;
 }
-.grid-container {
-  padding: 0.8em;
-  .item-2 {
-    .app-name {
-      font-size: 1em;
-    }
 
-    .login-container {
-      .input-group {
-        margin-top: 0.8em;
-      }
-      button {
-        margin-top: 0.8em;
-      }
-    }
-    .login-extra-text{
-      margin-top: 1em;
-    }
+//sign up page
+
+.signup-container {
+  padding: 0.8em;
+  display: flex;
+  flex-direction: column;
+
+  .input-group {
+    margin-top: 0.8em;
+  }
+
+  button {
+    margin-top: 0.8em;
+  }
+
+  .login-extra-text {
+    margin-top: 1em;
+
   }
 }
