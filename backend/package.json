@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "tsnd --respawn --transpile-only --exit-child src/app.ts"
+    "dev": "tsnd --respawn --transpile-only --exit-child src/app.ts",
+    "formatPrisma":"npx prisma format",
+    "runDevMigration":"npx prisma migrate dev --name init",
+    "runProdMigration":"npx prisma migrate dev --name init",
+    "prismaStudio":"npx prisma studio"
   },
   "keywords": [],
   "author": "",

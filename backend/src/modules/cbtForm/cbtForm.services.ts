@@ -9,3 +9,11 @@ export async function createCbtForm(data:CbtFormInput & {userId:string}){
         data
     })
 }
+
+export async function getUsersForms(userID:string){
+    return prisma.cbtForm.findMany({
+       where:{
+        userId:userID
+       }
+    })
+}

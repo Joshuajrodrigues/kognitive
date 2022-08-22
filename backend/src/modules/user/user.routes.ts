@@ -1,5 +1,5 @@
 import { FastifyInstance } from "fastify";
-import { loginHandler, registerUserHandler } from "./user.controlers";
+import {  loginHandler, registerUserHandler } from "./user.controlers";
 import { $ref } from "./user.schemas";
 
 async function userRoutes(server:FastifyInstance) {
@@ -20,6 +20,9 @@ async function userRoutes(server:FastifyInstance) {
             }
         }
     },loginHandler)
+
+
+
 
 }
 

@@ -1,5 +1,6 @@
 import {z} from 'zod'
 import { buildJsonSchemas} from 'fastify-zod'
+
 const userCore = {
     email: z
       .string({
@@ -37,6 +38,8 @@ const loginSchema = z.object({
 const loginResponseSchema = z.object({
   accessToken: z.string()
 })
+
+
 export type loginRequest = z.infer<typeof loginSchema>
 export type createUserInput = z.infer<typeof createUserSchema>;
 export const {
@@ -45,5 +48,5 @@ export const {
     createUserSchema,
     createUserSchemaResponse,
     loginSchema,
-    loginResponseSchema
+    loginResponseSchema,
 })

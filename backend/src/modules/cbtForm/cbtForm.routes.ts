@@ -1,6 +1,6 @@
 import { FastifyInstance } from "fastify";
 import { $ref } from "./cbtForm.schemas";
-import { createCbtFormHandler } from "./cbtForms.controlers";
+import { createCbtFormHandler, getUsersFormsHandler } from "./cbtForms.controlers";
 
 
 
@@ -16,6 +16,15 @@ async function cbtFormRoutes(server:FastifyInstance){
 
     },createCbtFormHandler)
 
+    server.post('/cbtforms',{
+        preHandler:[server.auth],
+        schema:{
+            body:$ref("getUserCbtForms"),
+            response:{
+                200:$ref("getUserCbtFormsResponse")
+            }
+        }
+    },getUsersFormsHandler)
     
 }
 

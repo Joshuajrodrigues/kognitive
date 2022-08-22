@@ -28,9 +28,17 @@ const createCbtFormResponse = z.object({
     id:string()
 })
 
-export type CbtFormInput = z.infer<typeof createCbtForm >
+const getUserCbtForms = z.object({
+    userId:z.string()
+})
 
+const getUserCbtFormsResponse = z.array(createCbtFormResponse)
+
+export type CbtFormInput = z.infer<typeof createCbtForm >
+export type userCbtFormTypeInput = z.infer<typeof getUserCbtForms>
 export const {schemas:cbtFormSchemas,$ref}= buildJsonSchemas({
     createCbtForm,
-    createCbtFormResponse
+    createCbtFormResponse,
+    getUserCbtForms,
+    getUserCbtFormsResponse
 },{$id:'cbtForm'})
