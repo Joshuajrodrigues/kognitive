@@ -1,7 +1,6 @@
 import { FunctionComponent } from "react";
 import BackButton from "../../components/backButton/BackButton";
 import Navbar from "../../components/navbar/Navbar";
-import './about.scss'
 const About: FunctionComponent<{}> = () => {
     return (
         <div className="about-container">
