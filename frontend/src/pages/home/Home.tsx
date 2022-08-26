@@ -1,34 +1,76 @@
+import {
+  Box,
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+  SimpleGrid,
+  Spacer,
+  Text,
+} from "@chakra-ui/react";
 import { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
 import { appRoutes } from "../../AppConstants";
-import Login from "../../components/login/Login";
-import './Home.scss'
-import lottieSrc from '../../lotties/hero-signin.json'
 import LottieCreator from "../../components/sideBanner/LottieCreator";
-import Footer from "../../components/footer/Footer";
+import lottieSrc from "../../lotties/hero-signin.json";
 const Home: FunctionComponent<{}> = () => {
   return (
-    <div className="grid-container">
-      <div className="home-login-container">
+    <SimpleGrid
+      marginTop={{ md: "10%" }}
+      spacing="8"
+      textAlign="center"
+      columns={{ base: 1, sm: 1, md: 2 }}
+    >
+      <Box width={"100%"} height={"100%"}>
         <LottieCreator
-          style={{ height: '250px', width: '300px' }}
-          loop={true} src={lottieSrc}
+          style={{ height: "300px", width: "400px" }}
+          loop={true}
+          src={lottieSrc}
         />
-        <span>
-          <h2>Welcome to <span >Kognitive</span> , <br /> your cbt journal.🤍 </h2>
-        </span>
-        <Login />
-        <div className="home-login-extra" >
-          <p>New here? <Link to={appRoutes.signup}> Sign Up</Link></p>
-        </div>
-        <Link to={appRoutes.about}>About</Link>
-      </div>
+      </Box>
 
-      <div className="home-footer">
-        <Footer />
-      </div>
-
-    </div>
+      <Box
+        borderWidth="1px"
+        borderRadius="md"
+        margin={{ base: "auto", sm: "auto" }}
+        padding={{ base: "4", sm: "4" }}
+        width={{ base: "80%", sm: "80%", md: "80%" }}
+      >
+        <Text>
+          Welcome to <span>Kognitive</span> , <br /> your cbt journal.🤍
+        </Text>
+        <FormControl>
+          <FormLabel>Email</FormLabel>
+          <Input type={"email"} />
+          <FormLabel>Password</FormLabel>
+          <Input type={"password"} />
+          <Button mt={4} colorScheme={"purple"} type="submit">
+            Login
+          </Button>
+        </FormControl>
+        <Text>
+          <p>
+            New here?{" "}
+            <Link to={appRoutes.signup}>
+              <Button
+                variant={"link"}
+                mt={4}
+                colorScheme={"purple"}
+                type="submit"
+              >
+                {" "}
+                Sign Up
+              </Button>
+            </Link>
+          </p>
+        </Text>
+        <Link to={appRoutes.about}>
+          <Button variant={"link"} mt={4} colorScheme={"purple"} type="submit">
+            About
+          </Button>
+        </Link>
+      </Box>
+    </SimpleGrid>
   );
 };
 
