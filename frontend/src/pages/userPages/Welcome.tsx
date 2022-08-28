@@ -1,11 +1,16 @@
 import React, { FunctionComponent } from 'react'
 import { Session } from '@supabase/supabase-js'
+import useUser from '../../hooks/useUser';
+import { Text } from '@chakra-ui/react';
 const Welcome:FunctionComponent<{
-    key:string,
-    session:Session
+
 }> = () => {
+  const user = useUser((state) => state.user);
   return (
-    <div>Welcome</div>
+
+      <Text ml={4} mt={4}>
+         Welcome,{user.user?.user_metadata.name ||"Anon"}
+      </Text>
   )
 }
 

@@ -14,16 +14,18 @@ import {
 import { Field, Form, Formik } from "formik";
 
 import { FunctionComponent, MouseEventHandler, useState } from "react";
-import { Link, Navigate, unstable_HistoryRouter } from "react-router-dom";
+import { Link, Navigate, unstable_HistoryRouter, useNavigate } from "react-router-dom";
 import { appRoutes } from "../../AppConstants";
 import LottieCreator from "../../components/sideBanner/LottieCreator";
 import { supabase } from "../../helper/supabaseClient";
 import lottieSrc from "../../lotties/hero-signin.json";
 import * as Yup from "yup";
+import useUser from "../../hooks/useUser";
 const Home: FunctionComponent<{}> = () => {
 
   const toast = useToast();
-
+  const addUser = useUser((state)=>state.addUser)
+  let navigate = useNavigate();
   const SignupSchema = Yup.object().shape({
     email: Yup.string()
       .email("Invalid email")
@@ -81,6 +83,9 @@ const Home: FunctionComponent<{}> = () => {
                   isClosable: true,
                 });
                 console.log(data);
+                addUser(data)
+                if(data.user?.id)
+                navigate(appRoutes.user.replace(":id",data.user.id),{replace:true})
               } else {
                 toast({
                   title: "An error occured.",

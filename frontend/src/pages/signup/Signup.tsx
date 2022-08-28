@@ -16,9 +16,13 @@ import LottieCreator from "../../components/sideBanner/LottieCreator";
 import { supabase } from "../../helper/supabaseClient";
 import lottieSrc from "../../lotties/hero-signup.json";
 import * as Yup from "yup";
+import useUser from "../../hooks/useUser";
+import { useNavigate } from "react-router-dom";
+import { appRoutes } from "../../AppConstants";
 const Signup: FunctionComponent<{}> = () => {
   const toast = useToast();
-
+  const addUser = useUser((state)=>state.addUser)
+  let navigate = useNavigate();
   const SignupSchema = Yup.object().shape({
     name: Yup.string().required("Do tell us what to call you."),
     email: Yup.string()
@@ -82,7 +86,10 @@ const Signup: FunctionComponent<{}> = () => {
                 duration: 5000,
                 isClosable: true,
               });
-              console.log(data);
+              console.log({data});
+              addUser(data)
+              if(data.user?.id)
+              navigate(appRoutes.user.replace(":id",data.user.id),{replace:true})
             } else {
               toast({
                 title: "An error occured.",
