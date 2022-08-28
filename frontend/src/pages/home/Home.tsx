@@ -10,6 +10,7 @@ import {
   Text,
   useToast,
 } from "@chakra-ui/react";
+//@ts-ignore
 import { Field, Form, Formik } from "formik";
 
 import { FunctionComponent, MouseEventHandler, useState } from "react";
@@ -95,6 +96,7 @@ const Home: FunctionComponent<{}> = () => {
 
             <Form>
             <Field name="email">
+                    {/* @ts-ignore */}
                 {({ field, form }) => (
                   <FormControl isRequired
                     isInvalid={form.errors.email && form.touched.email}
@@ -106,6 +108,7 @@ const Home: FunctionComponent<{}> = () => {
                 )}
               </Field>
               <Field name="password">
+              {/* @ts-ignore */}
                 {({ field, form }) => (
                   <FormControl isRequired
                     isInvalid={form.errors.password && form.touched.password}
