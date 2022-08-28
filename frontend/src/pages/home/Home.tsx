@@ -2,13 +2,15 @@ import {
   Box,
   Button,
   FormControl,
+  FormErrorMessage,
   FormLabel,
   Input,
   SimpleGrid,
   Spacer,
   Text,
+  useToast,
 } from "@chakra-ui/react";
-
+import { Field, Form, Formik } from "formik";
 
 import { FunctionComponent, MouseEventHandler, useState } from "react";
 import { Link, Navigate, unstable_HistoryRouter } from "react-router-dom";
@@ -16,26 +18,24 @@ import { appRoutes } from "../../AppConstants";
 import LottieCreator from "../../components/sideBanner/LottieCreator";
 import { supabase } from "../../helper/supabaseClient";
 import lottieSrc from "../../lotties/hero-signin.json";
+import * as Yup from "yup";
 const Home: FunctionComponent<{}> = () => {
-  const [loading, setLoading] = useState(false)
-  const [email, setEmail] = useState('')
-  const [password,setPassword] = useState("")
 
-  const handleOnClick = async(event?:React.MouseEvent<HTMLButtonElement>) => {
-    event?.preventDefault()
-    let { data, error } = await supabase.auth.signInWithPassword({
-      email:email,
-      password: password
-    })
-    console.log({
-      data,error
-    });
-    
-  };
+  const toast = useToast();
+
+  const SignupSchema = Yup.object().shape({
+    email: Yup.string()
+      .email("Invalid email")
+      .required("You need this to log in."),
+    password: Yup.string()
+      .min(6, "Too Short!")
+      .max(50, "Too Long!")
+      .required("You need this to log in."),
+  });
+
 
   return (
     <>
-    
       <SimpleGrid
         marginTop={{ md: "10%" }}
         spacing="8"
@@ -60,34 +60,88 @@ const Home: FunctionComponent<{}> = () => {
           <Text>
             Welcome to <span>Kognitive</span> , <br /> your cbt journal.🤍
           </Text>
-          <FormControl>
-            <FormLabel>Email</FormLabel>
-            <Input onChange={(event)=>setEmail(event.target.value)} type={"email"} />
-            <FormLabel>Password</FormLabel>
-            <Input  onChange={(event)=>setPassword(event.target.value)} type={"password"} />
+          <Formik
+            validationSchema={SignupSchema}
+            initialValues={{
+              email: "",
+              password: "",
+            }}
+            onSubmit={async (values) => {
+              let { data, error } = await supabase.auth.signInWithPassword({
+                email: values.email,
+                password: values.password,
+              });
+
+              if (!error) {
+                toast({
+                  title: "Login Successfull.",
+                  status: "success",
+                  duration: 5000,
+                  isClosable: true,
+                });
+                console.log(data);
+              } else {
+                toast({
+                  title: "An error occured.",
+                  description: error.message,
+                  status: "error",
+                  duration: 5000,
+                  isClosable: true,
+                });
+                console.log(error);
+              }
+            }}
+          >
+
+            <Form>
+            <Field name="email">
+                {({ field, form }) => (
+                  <FormControl isRequired
+                    isInvalid={form.errors.email && form.touched.email}
+                  >
+                    <FormLabel aria-required>Email</FormLabel>
+                    <Input {...field} name="email" type={"email"} />
+                    <FormErrorMessage>{form.errors.email}</FormErrorMessage>
+                  </FormControl>
+                )}
+              </Field>
+              <Field name="password">
+                {({ field, form }) => (
+                  <FormControl isRequired
+                    isInvalid={form.errors.password && form.touched.password}
+                  >
+                    <FormLabel aria-required>Password</FormLabel>
+                    <Input {...field} name="password" type={"password"} />
+                    <FormErrorMessage>{form.errors.password}</FormErrorMessage>
+                  </FormControl>
+                )}
+              </Field>
+              
             <Button
-              onClick={handleOnClick}
               mt={4}
               colorScheme={"purple"}
               type="submit"
             >
               Login
             </Button>
-          </FormControl>
+            </Form>
+          </Formik>
+         
+       
+       
           <Text>
-              New here?{" "}
-              <Link to={appRoutes.signup}>
-                <Button
-                  variant={"link"}
-                  mt={4}
-                  colorScheme={"purple"}
-                  type="submit"
-                >
-                  {" "}
-                  Sign Up
-                </Button>
-              </Link>
-            
+            New here?{" "}
+            <Link to={appRoutes.signup}>
+              <Button
+                variant={"link"}
+                mt={4}
+                colorScheme={"purple"}
+                type="submit"
+              >
+                {" "}
+                Sign Up
+              </Button>
+            </Link>
           </Text>
           <Link to={appRoutes.about}>
             <Button
