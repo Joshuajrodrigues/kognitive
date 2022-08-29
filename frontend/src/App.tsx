@@ -1,24 +1,25 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { appRoutes } from "./AppConstants";
 import Navbar from "./components/navbar/Navbar";
+import useUser from "./hooks/useUser";
 import About from "./pages/about/About";
 import Home from "./pages/home/Home";
-import Login from "./components/login/Login";
 import Signup from "./pages/signup/Signup";
-import { useState } from "react";
-import UnAuthRoutes from "./routes/UnAuthRoutes";
-import AuthRoutes from "./routes/AuthRoutes";
-import useUser from "./hooks/useUser";
+import Welcome from "./pages/userPages/Welcome";
+
 
 function App() {
   const user = useUser((state) => state.user);
   return (
     <div>
       <Navbar />
-      {/* unauth routes */}
-      {!user.user ? <UnAuthRoutes /> : <AuthRoutes />}
 
-      {/* auth routes */}
+      <Routes>
+        <Route path={appRoutes.root} element={!user.user ? <Home /> : <Navigate to={appRoutes.user} />} />
+        <Route path={appRoutes.signup} element={!user.user ? <Signup /> : <Navigate to={appRoutes.user} />} />
+        <Route path={appRoutes.about} element={<About />} />
+        <Route path={appRoutes.user} element={<Welcome />} />
+      </Routes>
     </div>
   );
 }

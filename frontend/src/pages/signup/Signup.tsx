@@ -22,6 +22,7 @@ import { appRoutes } from "../../AppConstants";
 const Signup: FunctionComponent<{}> = () => {
   const toast = useToast();
   const addUser = useUser((state)=>state.addUser)
+
   let navigate = useNavigate();
   const SignupSchema = Yup.object().shape({
     name: Yup.string().required("Do tell us what to call you."),
@@ -90,6 +91,7 @@ const Signup: FunctionComponent<{}> = () => {
               addUser(data)
               if(data.user?.id)
               navigate(appRoutes.user.replace(":id",data.user.id),{replace:true})
+              localStorage.setItem('user', JSON.stringify(data))
             } else {
               toast({
                 title: "An error occured.",

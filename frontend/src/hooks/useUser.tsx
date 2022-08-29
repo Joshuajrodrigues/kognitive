@@ -20,6 +20,8 @@ interface UserInstanceType{
 }
 
 const useUser =  create<UserInstanceType>((set) => ({
+
+
     user:{user:null,session:null},
     addUser: (userData) => set(() => ({ user: userData })),
     removeUser: () => set({ user: {user:null,session:null} }),

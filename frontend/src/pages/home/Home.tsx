@@ -5,22 +5,20 @@ import {
   FormErrorMessage,
   FormLabel,
   Input,
-  SimpleGrid,
-  Spacer,
-  Text,
-  useToast,
+  SimpleGrid, Text,
+  useToast
 } from "@chakra-ui/react";
 //@ts-ignore
 import { Field, Form, Formik } from "formik";
-
-import { FunctionComponent, MouseEventHandler, useState } from "react";
-import { Link, Navigate, unstable_HistoryRouter, useNavigate } from "react-router-dom";
+import { FunctionComponent } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import * as Yup from "yup";
 import { appRoutes } from "../../AppConstants";
 import LottieCreator from "../../components/sideBanner/LottieCreator";
 import { supabase } from "../../helper/supabaseClient";
-import lottieSrc from "../../lotties/hero-signin.json";
-import * as Yup from "yup";
 import useUser from "../../hooks/useUser";
+import lottieSrc from "../../lotties/hero-signin.json";
+
 const Home: FunctionComponent<{}> = () => {
 
   const toast = useToast();
@@ -86,6 +84,8 @@ const Home: FunctionComponent<{}> = () => {
                 addUser(data)
                 if(data.user?.id)
                 navigate(appRoutes.user.replace(":id",data.user.id),{replace:true})
+                localStorage.setItem('user', JSON.stringify(data))
+
               } else {
                 toast({
                   title: "An error occured.",
