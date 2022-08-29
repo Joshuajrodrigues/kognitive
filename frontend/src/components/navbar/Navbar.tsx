@@ -39,7 +39,7 @@ const Navbar: FunctionComponent<{}> = () => {
     }
   };
   return (
-    <Flex minWidth="max-content" alignItems="center" gap="2">
+    <Flex  minWidth="max-content" alignItems="center" gap="2">
       <Box p="2">
         <Heading color={"#805ad5"} size="xl">
           Kognitive
