@@ -90,7 +90,7 @@ const Signup: FunctionComponent<{}> = () => {
               console.log({data});
               addUser(data)
               if(data.user?.id)
-              navigate(appRoutes.user.replace(":id",data.user.id),{replace:true})
+              navigate(appRoutes.root)
               localStorage.setItem('user', JSON.stringify(data))
             } else {
               toast({

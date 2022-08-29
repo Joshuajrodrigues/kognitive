@@ -15,10 +15,10 @@ function App() {
       <Navbar />
 
       <Routes>
-        <Route path={appRoutes.root} element={!user.user ? <Home /> : <Navigate to={appRoutes.user} />} />
-        <Route path={appRoutes.signup} element={!user.user ? <Signup /> : <Navigate to={appRoutes.user} />} />
+        <Route path={appRoutes.login} element={!user.user ? <Home /> : <Navigate to={appRoutes.root} />} />
+        <Route path={appRoutes.signup} element={!user.user ? <Signup /> : <Navigate to={appRoutes.root} />} />
         <Route path={appRoutes.about} element={<About />} />
-        <Route path={appRoutes.user} element={<Welcome />} />
+        <Route path={appRoutes.root} element={!user.user ?<Navigate to={appRoutes.login} /> :<Welcome />} />
       </Routes>
     </div>
   );
