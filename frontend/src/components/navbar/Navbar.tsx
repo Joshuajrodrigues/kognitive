@@ -1,35 +1,60 @@
-import { Heading } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  ButtonGroup,
+  Flex,
+  Heading,
+  SimpleGrid,
+  Spacer,
+} from "@chakra-ui/react";
 import { FunctionComponent, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { appRoutes } from "../../AppConstants";
+import { supabase } from "../../helper/supabaseClient";
 import useUser, { UserDataType } from "../../hooks/useUser";
 
-
 const Navbar: FunctionComponent<{}> = () => {
-    const addUser = useUser((state) => state.addUser)
-    const user = useUser((state) => state.user);
-    useEffect(() => {
-        const data = localStorage.getItem('user')
-        if (data) {
+  const user = useUser((state) => state.user);
+  const addUser = useUser((state) => state.addUser);
+  const removeUser = useUser((state) => state.removeUser);
+  let navigate = useNavigate();
 
-            const user: UserDataType = JSON.parse(localStorage.getItem('user') || "")
-            if (user) {
-                addUser(user)
-            }
-        }
-    }, [])
-    return (
-        <nav  >
-            <Link to={appRoutes.root} className="app-name">
-                <Heading mt={2} ml={4} color={"#805ad5"}>
-                    Kognitive
-                </Heading>
+  useEffect(() => {
+    const data = localStorage.getItem("user");
+    if (data) {
+      const user: UserDataType = JSON.parse(localStorage.getItem("user") || "");
+      if (user) {
+        addUser(user);
+      }
+    }
+  }, []);
+  const handleLogOut = async () => {
+    let { error } = await supabase.auth.signOut();
+    if (!error) {
+      removeUser();
+      navigate(appRoutes.root);
+      localStorage.removeItem("user");
+    } else {
+      console.log(error);
+    }
+  };
+  return (
+    <Flex minWidth="max-content" alignItems="center" gap="2">
+      <Box p="2">
+        <Heading color={"#805ad5"} size="xl">
+          Kognitive
+        </Heading>
+      </Box>
+      <Spacer />
+      <ButtonGroup p="2" gap="2">
+        {user.user && (
+          <Button onClick={handleLogOut} colorScheme={"purple"}>
+            Log Out
+          </Button>
+        )}
+      </ButtonGroup>
+    </Flex>
+  );
+};
 
-            </Link>
-
-
-        </nav>
-    )
-}
-
-export default Navbar
+export default Navbar;
