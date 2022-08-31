@@ -1,38 +1,66 @@
-import React, { FunctionComponent } from "react";
-import { Session } from "@supabase/supabase-js";
-import useUser from "../../hooks/useUser";
-import { Box, Button, SimpleGrid, Text } from "@chakra-ui/react";
-import { supabase } from "../../helper/supabaseClient";
-import { useNavigate } from "react-router-dom";
-import { appRoutes } from "../../AppConstants";
+import {
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  CalendarIcon,
+  AddIcon,
+  TimeIcon,
+} from "@chakra-ui/icons";
+import { Box, Button, Center, Flex, Icon, IconButton, SimpleGrid, Text } from "@chakra-ui/react";
+import { FunctionComponent, useEffect, useState } from "react";
 import LottieCreator from "../../components/sideBanner/LottieCreator";
-
-import angry from "../../lotties/feels/allfeels.json"
-import sad from "../../lotties/feels/sad.json"
-import meh from "../../lotties/feels/meh.json"
-import happy from "../../lotties/feels/happy.json"
-import yay from "../../lotties/feels/yay.json"
+import useUser from "../../hooks/useUser";
+import hellocat from '../../lotties/hellocat.json'
 const Welcome: FunctionComponent<{}> = () => {
   const user = useUser((state) => state.user);
-
+  const [dateTime, setDateTime] = useState(new Date());
+  useEffect(() => {
+    setInterval(() => setDateTime(new Date()), 30000);
+  }, []);
   return (
-    <SimpleGrid mt={"2"} p={4} >
-      <Box bg={"purple.100"} borderWidth="1px"
-        borderRadius="md">
-        <Text fontSize={"lg"} ml={4} mt={4}>
-          Welcome {user.user?.user_metadata.name || "Anon"}, how are you feeling
-          ?
-        </Text>
+    <Center p={4}>
+      <Box
+        w={"md"}
+        h={"100%"}
+        bg={"purple.100"}
+        borderWidth="1px"
+        borderRadius="md"
+      >
+        <Flex alignItems={"center"} pl={"4"} pr={4} pt={4}>
+          <CalendarIcon color={"purple.400"} mr={2} />
+          <Text color={"purple.500"} mr={2} >
+            {dateTime.toLocaleDateString("en-IN", {
+              day: "numeric",
+              month: "short",
+              year: "numeric",
+            })}
+          </Text>
 
-        <SimpleGrid columns={5} >
-          <LottieCreator style={{ height: "300px", width: "350px" }} loop src={angry}/>
-          {/* <LottieCreator style={{ height: "300px", width: "200px" }} loop src={sad}/>
-          <LottieCreator style={{ height: "300px", width: "200px" }} loop src={meh}/>
-          <LottieCreator style={{ height: "300px", width: "200px" }} loop src={happy}/>
-          <LottieCreator style={{ height: "300px", width: "200px" }} loop src={yay}/> */}
+          <TimeIcon color={"purple.400"}   mr={2}  />
+          <Text color={"purple.500"}>
+            {dateTime.toLocaleTimeString("en-IN", {
+              hour: "numeric",
+              minute: "numeric",
+              hour12: true,
+            })}
+          </Text>
+        </Flex>
+
+        <Text
+          fontWeight={"semibold"}
+          color={"purple.500"}
+          fontSize={"lg"}
+          m={4}
+        >
+          Welcome {user.user?.user_metadata.name || "Anon"},
+          how are you feeling ?
+        </Text>
+        <SimpleGrid  columns={2} >
+            <LottieCreator loop src={hellocat} />
+            <Button alignItems={"center"} alignSelf={"center"} w={"150px"} colorScheme="purple" aria-label="Make a cbt entry"><AddIcon w={3} mr={1} />New cbt entry</Button>
         </SimpleGrid>
       </Box>
-    </SimpleGrid>
+
+    </Center>
   );
 };
 
