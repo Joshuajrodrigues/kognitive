@@ -48,7 +48,7 @@ const Navbar: FunctionComponent<{}> = () => {
       <Spacer />
       <ButtonGroup p="2" gap="2">
         {user.user && (
-          <Button onClick={handleLogOut} colorScheme={"purple"}>
+          <Button variant={"outline"} onClick={handleLogOut} colorScheme={"purple"}>
             Log Out
           </Button>
         )}

@@ -54,11 +54,13 @@ const Signup: FunctionComponent<{}> = () => {
       <Box
         borderWidth="1px"
         borderRadius="md"
+        bgColor={"purple.50"}
+        borderColor={"purple.500"}
         margin={{ base: "auto", sm: "auto" }}
         padding={{ base: "4", sm: "4" }}
         width={{ base: "80%", sm: "80%", md: "80%" }}
       >
-        <Text>
+        <Text fontWeight={"semibold"} color={"purple.500"}>
           Welcome to <span>Kognitive</span> , <br /> your cbt journal.🤍
         </Text>
         <Formik
@@ -112,8 +114,8 @@ const Signup: FunctionComponent<{}> = () => {
                   isRequired
                   isInvalid={form.errors.name && form.touched.name}
                 >
-                  <FormLabel aria-required>Name</FormLabel>
-                  <Input {...field} name="name" type={"text"} />
+                  <FormLabel color={"purple.500"} aria-required>Name</FormLabel>
+                  <Input color={"purple.800"}  bgColor={"white"}   borderColor={"purple.500"} {...field} name="name" type={"text"} />
                   <FormErrorMessage>{form.errors.name}</FormErrorMessage>
                 </FormControl>
               )}
@@ -125,8 +127,8 @@ const Signup: FunctionComponent<{}> = () => {
                   isRequired
                   isInvalid={form.errors.email && form.touched.email}
                 >
-                  <FormLabel aria-required>Email</FormLabel>
-                  <Input {...field} name="email" type={"email"} />
+                  <FormLabel color={"purple.500"} aria-required>Email</FormLabel>
+                  <Input color={"purple.800"}  bgColor={"white"}   borderColor={"purple.500"} {...field} name="email" type={"email"} />
                   <FormErrorMessage>{form.errors.email}</FormErrorMessage>
                 </FormControl>
               )}
@@ -139,8 +141,8 @@ const Signup: FunctionComponent<{}> = () => {
                   isRequired
                   isInvalid={form.errors.password && form.touched.password}
                 >
-                  <FormLabel aria-required>Password</FormLabel>
-                  <Input {...field} name="password" type={"password"} />
+                  <FormLabel color={"purple.500"} aria-required>Password</FormLabel>
+                  <Input color={"purple.800"}  bgColor={"white"}   borderColor={"purple.500"} {...field} name="password" type={"password"} />
                   <FormErrorMessage>{form.errors.password}</FormErrorMessage>
                 </FormControl>
               )}
@@ -152,8 +154,8 @@ const Signup: FunctionComponent<{}> = () => {
                   isRequired
                   isInvalid={form.errors.confirm && form.touched.confirm}
                 >
-                  <FormLabel aria-required>Confirm Password</FormLabel>
-                  <Input {...field} name="confirm" type={"password"} />
+                  <FormLabel color={"purple.500"} aria-required>Confirm Password</FormLabel>
+                  <Input color={"purple.800"} bgColor={"white"}  borderColor={"purple.500"} {...field} name="confirm" type={"password"} />
                   <FormErrorMessage>{form.errors.confirm}</FormErrorMessage>
                 </FormControl>
               )}

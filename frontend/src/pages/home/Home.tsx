@@ -5,8 +5,9 @@ import {
   FormErrorMessage,
   FormLabel,
   Input,
-  SimpleGrid, Text,
-  useToast
+  SimpleGrid,
+  Text,
+  useToast,
 } from "@chakra-ui/react";
 //@ts-ignore
 import { Field, Form, Formik } from "formik";
@@ -20,9 +21,8 @@ import useUser from "../../hooks/useUser";
 import lottieSrc from "../../lotties/hero-signin.json";
 
 const Home: FunctionComponent<{}> = () => {
-
   const toast = useToast();
-  const addUser = useUser((state)=>state.addUser)
+  const addUser = useUser((state) => state.addUser);
   let navigate = useNavigate();
   const SignupSchema = Yup.object().shape({
     email: Yup.string()
@@ -33,7 +33,6 @@ const Home: FunctionComponent<{}> = () => {
       .max(50, "Too Long!")
       .required("You need this to log in."),
   });
-
 
   return (
     <>
@@ -54,12 +53,14 @@ const Home: FunctionComponent<{}> = () => {
         <Box
           borderWidth="1px"
           borderRadius="md"
+          bg={"purple.50"}
+          borderColor={"purple.500"}
           margin={{ base: "auto", sm: "auto" }}
           padding={{ base: "4", sm: "4" }}
           width={{ base: "80%", sm: "80%", md: "80%" }}
         >
-          <Text>
-            Welcome to <span>Kognitive</span> , <br /> your cbt journal.🤍
+          <Text fontWeight={"semibold"} color={"purple.500"}>
+            Welcome to <span>Kognitive</span>, <br /> your cbt journal.
           </Text>
           <Formik
             validationSchema={SignupSchema}
@@ -81,11 +82,9 @@ const Home: FunctionComponent<{}> = () => {
                   isClosable: true,
                 });
                 console.log(data);
-                addUser(data)
-                if(data.user?.id)
-                navigate(appRoutes.root)
-                localStorage.setItem('user', JSON.stringify(data))
-
+                addUser(data);
+                if (data.user?.id) navigate(appRoutes.root);
+                localStorage.setItem("user", JSON.stringify(data));
               } else {
                 toast({
                   title: "An error occured.",
@@ -98,46 +97,41 @@ const Home: FunctionComponent<{}> = () => {
               }
             }}
           >
-
             <Form>
-            <Field name="email">
-                    {/* @ts-ignore */}
+              <Field name="email">
+                {/* @ts-ignore */}
                 {({ field, form }) => (
-                  <FormControl isRequired
+                  <FormControl
+                    isRequired
                     isInvalid={form.errors.email && form.touched.email}
                   >
-                    <FormLabel aria-required>Email</FormLabel>
-                    <Input {...field} name="email" type={"email"} />
+                    <FormLabel color={"purple.500"} aria-required>Email</FormLabel>
+                    <Input  bgColor={"white"}  color={"purple.800"}   borderColor={"purple.500"} {...field} name="email" type={"email"} />
                     <FormErrorMessage>{form.errors.email}</FormErrorMessage>
                   </FormControl>
                 )}
               </Field>
               <Field name="password">
-              {/* @ts-ignore */}
+                {/* @ts-ignore */}
                 {({ field, form }) => (
-                  <FormControl isRequired
+                  <FormControl
+                    isRequired
                     isInvalid={form.errors.password && form.touched.password}
                   >
-                    <FormLabel aria-required>Password</FormLabel>
-                    <Input {...field} name="password" type={"password"} />
+                    <FormLabel  color={"purple.500"} aria-required>Password</FormLabel>
+                    <Input  bgColor={"white"}  color={"purple.800"}  borderColor={"purple.500"} {...field} name="password" type={"password"} />
                     <FormErrorMessage>{form.errors.password}</FormErrorMessage>
                   </FormControl>
                 )}
               </Field>
-              
-            <Button
-              mt={4}
-              colorScheme={"purple"}
-              type="submit"
-            >
-              Login
-            </Button>
+
+              <Button mt={4} colorScheme={"purple"} type="submit">
+                Login
+              </Button>
             </Form>
           </Formik>
-         
-       
-       
-          <Text>
+
+          <Text color={"purple.500"}>
             New here?{" "}
             <Link to={appRoutes.signup}>
               <Button

@@ -23,11 +23,13 @@ const About: FunctionComponent<{}> = () => {
       <Box
         borderWidth="1px"
         borderRadius="md"
+        bgColor={"purple.50"}
+        borderColor={"purple.500"}
         margin={{ base: "auto", sm: "auto" }}
         padding={{ base: "4", sm: "4" }}
         width={{ base: "80%", sm: "80%", md: "80%" }}
       >
-        <Text>
+        <Text color={"purple.500"}>
           Cognitive behavioral therapy (CBT) is a psycho-social intervention
           that aims to reduce symptoms of various mental health conditions,
           primarily depression and anxiety disorders. CBT focuses on challenging
