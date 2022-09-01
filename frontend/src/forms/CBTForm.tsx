@@ -11,6 +11,7 @@ import {
   SliderTrack,
   Stack,
   Text,
+  Textarea,
   useRadio,
   useRadioGroup,
   UseRadioProps,
@@ -80,11 +81,11 @@ function RadioCard(props) {
   );
 }
 const Step1 = () => {
-  const options = ["Depressed", "Sad", "Meh", "Happy", "Top of the world!"];
+  const options = ["Depressed", "Sad", "Meh", "Ok Ok", "Happy", "Top of the world!"];
 
   const { getRootProps, getRadioProps } = useRadioGroup({
     name: "emotions",
-    defaultValue: "Meh",
+    defaultValue: "Ok Ok",
     onChange: console.log,
   });
 
@@ -107,3 +108,14 @@ const Step1 = () => {
     </>
   );
 };
+
+const Step2=()=>{
+    return(
+        <>
+        <Text color={"purple.500"} fontWeight={"semibold"}>
+            What's the situation ?
+        </Text>
+        <Textarea borderRadius={4} height={"md"} size={"xl"} resize={"none"} />
+        </>
+    )
+}
