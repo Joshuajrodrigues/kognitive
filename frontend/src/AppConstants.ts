@@ -3,5 +3,6 @@ export const appRoutes ={
     login:'/login',
     signup:'/signup',
     about:'/about',
-
+    cbtForm:'/cbtform',
+    historicalSubmites:'/history'
 }

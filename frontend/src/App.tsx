@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { appRoutes } from "./AppConstants";
 import Navbar from "./components/navbar/Navbar";
+import CBTForm from "./forms/CBTForm";
 import useUser from "./hooks/useUser";
 import About from "./pages/about/About";
 import Home from "./pages/home/Home";
@@ -17,6 +18,7 @@ function App() {
       <Routes>
         <Route path={appRoutes.login} element={!user.user ? <Home /> : <Navigate to={appRoutes.root} />} />
         <Route path={appRoutes.signup} element={!user.user ? <Signup /> : <Navigate to={appRoutes.root} />} />
+        <Route path={appRoutes.cbtForm} element={!user.user ? <Home /> :<CBTForm />} />
         <Route path={appRoutes.about} element={<About />} />
         <Route path={appRoutes.root} element={!user.user ?<Navigate to={appRoutes.login} /> :<Welcome />} />
         {/* <Route path={appRoutes.root} element={<Welcome />} /> */}
