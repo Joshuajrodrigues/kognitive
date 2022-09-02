@@ -5,6 +5,9 @@ interface CbtFormType {
   feelBefore: string;
   emotions: (string | number)[];
   elaboration: string;
+  formType:string;
+  negativeThoughts?:string;
+  gratitudeThoughts?:string
 }
 interface CbtStoreType {
   cbtForm: CbtFormType,
@@ -15,7 +18,10 @@ const useCbtForm = create<CbtStoreType>((set) => ({
   cbtForm: {
     feelBefore: "",
     emotions: [],
-    elaboration: ""
+    elaboration: "",
+    formType:"",
+    negativeThoughts:"",
+    gratitudeThoughts:""
   },
   setCbtForm: (field, formData) => set((state) => ({ cbtForm: { ...state.cbtForm, [field]: formData } }))
 }))
