@@ -9,7 +9,7 @@ const useCbtForm =  create((set) => ({
         feelBefore:"",
         situation:""
     },
-    addToForm:(formField:string,value:string|object)=>set(()=>{['cbtForm'][formField]=value})
+    //addToForm:(formField:string,value:string|object)=>set(()=>{['cbtForm'][formField]=value})
   }))
 
 export default useCbtForm
