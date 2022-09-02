@@ -10,10 +10,17 @@ import {
   Tabs,
   Text, useCheckboxGroup, useRadioGroup
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
 import CustomCheckbox from "../components/CustomCheckbox";
 import RadioCard from "../components/RadioCard";
 const CBTForm = () => {
+  const [step, setstep] = useState(1);
+  const nextStep = () => {
+    setstep(step + 1);
+  };
+  const prevStep = () => {
+    setstep(step - 1);
+  };
   return (
     <div>
       <Box
@@ -25,16 +32,21 @@ const CBTForm = () => {
         m={8}
         className="form"
       >
-        <Step2 />
+        {
+          step === 1 ? <Step1 /> : step === 2 ? <Step2 /> : ""
+        }
+
       </Box>
 
       <Flex justifyContent={"space-around"} className="navigation">
         <IconButton
+          disabled={step === 1}
+          onClick={prevStep}
           colorScheme={"purple"}
           icon={<ArrowLeftIcon />}
           aria-label={"go previous button"}
         />
-        <IconButton colorScheme={"purple"} icon={<ArrowRightIcon />} aria-label={"go next button"} />
+        <IconButton onClick={nextStep} colorScheme={"purple"} icon={<ArrowRightIcon />} aria-label={"go next button"} />
       </Flex>
     </div>
   );
