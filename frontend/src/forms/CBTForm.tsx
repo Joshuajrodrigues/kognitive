@@ -1,30 +1,18 @@
-import { ArrowRightIcon, ArrowLeftIcon } from "@chakra-ui/icons";
+import { ArrowLeftIcon, ArrowRightIcon } from "@chakra-ui/icons";
 import {
-  Box,
-  Button,
-  Flex,
+  Box, Flex,
   IconButton,
-  SimpleGrid,
-  Slider,
-  SliderFilledTrack,
-  SliderThumb,
-  SliderTrack,
-  Stack,
+  SimpleGrid, Stack,
   Tab,
   TabList,
   TabPanel,
   TabPanels,
   Tabs,
-  Text,
-  Textarea,
-  useRadio,
-  useRadioGroup,
-  UseRadioProps,
+  Text, useCheckboxGroup, useRadioGroup
 } from "@chakra-ui/react";
 import React from "react";
+import CustomCheckbox from "../components/CustomCheckbox";
 import RadioCard from "../components/RadioCard";
-import LottieCreator from "../components/sideBanner/LottieCreator";
-import angry from "../lotties/feels/angry.json";
 const CBTForm = () => {
   return (
     <div>
@@ -42,10 +30,11 @@ const CBTForm = () => {
 
       <Flex justifyContent={"space-around"} className="navigation">
         <IconButton
+          colorScheme={"purple"}
           icon={<ArrowLeftIcon />}
           aria-label={"go previous button"}
         />
-        <IconButton icon={<ArrowRightIcon />} aria-label={"go next button"} />
+        <IconButton colorScheme={"purple"} icon={<ArrowRightIcon />} aria-label={"go next button"} />
       </Flex>
     </div>
   );
@@ -89,6 +78,7 @@ const Step1 = () => {
   );
 };
 
+
 const Step2 = () => {
   const positive = [
     "Calm",
@@ -122,12 +112,13 @@ const Step2 = () => {
     "Tired",
     "Worried",
   ];
-  const { getRootProps, getRadioProps } = useRadioGroup({
-    name: "feels",
-    onChange: (am) => console.log("what", am),
-  });
 
-  const group = getRootProps();
+
+  const { value, getCheckboxProps } = useCheckboxGroup({
+    onChange: (val) => console.log(val)
+
+  })
+
   return (
     <>
       <Text color={"purple.500"} fontWeight={"semibold"}>
@@ -147,25 +138,21 @@ const Step2 = () => {
 
         <TabPanels>
           <TabPanel>
-            <SimpleGrid gap={4} {...group} columns={3}>
+            <SimpleGrid gap={2} columns={2}>
               {negative.map((value) => {
-                const radio = getRadioProps({ value });
+
                 return (
-                  <RadioCard key={value} {...radio}>
-                    {value}
-                  </RadioCard>
+                  <CustomCheckbox {...getCheckboxProps({ value })} />
+
                 );
               })}
             </SimpleGrid>
           </TabPanel>
           <TabPanel>
-          <SimpleGrid gap={4} {...group} columns={3}>
+            <SimpleGrid gap={2} columns={2}>
               {positive.map((value) => {
-                const radio = getRadioProps({ value });
                 return (
-                  <RadioCard key={value} {...radio}>
-                    {value}
-                  </RadioCard>
+                  <CustomCheckbox {...getCheckboxProps({ value })} />
                 );
               })}
             </SimpleGrid>
@@ -173,5 +160,5 @@ const Step2 = () => {
         </TabPanels>
       </Tabs>
     </>
-  );
-};
+  )
+}
