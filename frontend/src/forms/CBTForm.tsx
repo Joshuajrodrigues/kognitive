@@ -8,7 +8,7 @@ import {
   TabPanel,
   TabPanels,
   Tabs,
-  Text, useCheckboxGroup, useRadioGroup
+  Text, Textarea, useCheckboxGroup, useRadioGroup
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import CustomCheckbox from "../components/CustomCheckbox";
@@ -33,7 +33,7 @@ const CBTForm = () => {
         className="form"
       >
         {
-          step === 1 ? <Step1 /> : step === 2 ? <Step2 /> : ""
+          step === 1 ? <Step1 /> : step === 2 ? <Step2 /> : step === 3 ? <Step3 /> : step === 4 ? <Step4 /> : ""
         }
 
       </Box>
@@ -46,7 +46,11 @@ const CBTForm = () => {
           icon={<ArrowLeftIcon />}
           aria-label={"go previous button"}
         />
-        <IconButton onClick={nextStep} colorScheme={"purple"} icon={<ArrowRightIcon />} aria-label={"go next button"} />
+        <IconButton
+          onClick={nextStep}
+          colorScheme={"purple"}
+          icon={<ArrowRightIcon />}
+          aria-label={"go next button"} />
       </Flex>
     </div>
   );
@@ -171,6 +175,57 @@ const Step2 = () => {
           </TabPanel>
         </TabPanels>
       </Tabs>
+    </>
+  )
+}
+
+const Step3 = () => {
+
+  return (
+    <>
+      <Text color={"purple.500"} fontWeight={"semibold"}>
+        What to elaborate ?
+      </Text>
+      <Textarea color={"purple.600"} height={"lg"} />
+
+    </>
+  )
+}
+
+const Step4 = () => {
+  return (
+    <>
+      <Text color={"purple.500"} fontWeight={"semibold"}>
+        What would you like to work on ?
+      </Text>
+      <Box
+        bgColor={"purple.100"}
+        borderColor={"purple.500"}
+        h={"40"}
+        p={4}
+        borderRadius={4}
+        m={8}
+        className="form"
+      >
+        <Text color={"purple.800"}>
+          Analyze Thought
+        </Text>
+
+      </Box>
+      <Box
+        bgColor={"purple.100"}
+        borderColor={"purple.500"}
+        h={"40"}
+        p={4}
+        borderRadius={4}
+        m={8}
+        className="form"
+      >
+        <Text color={"purple.800"}>
+          Pracice Gratitude
+        </Text>
+
+      </Box>
     </>
   )
 }
