@@ -19,7 +19,10 @@ import {
 import React, { useState } from "react";
 import CustomCheckbox from "../components/CustomCheckbox";
 import RadioCard from "../components/RadioCard";
+import LottieCreator from "../components/sideBanner/LottieCreator";
 import useCbtForm from "../hooks/useCbtForm";
+import gratitude from "../lotties/gradtitudeHero.json";
+import analyze from "../lotties/analyzeHero.json";
 const CBTForm = () => {
   const [step, setstep] = useState(1);
   const nextStep = () => {
@@ -74,14 +77,7 @@ const CBTForm = () => {
 export default CBTForm;
 
 const Step1 = () => {
-  const options = [
-    "Depressed",
-    "Sad",
-    "Meh",
-    "Ok Ok",
-    "Happy",
-    "Top of the world!",
-  ];
+  const options = ["Terrible", "Bad", "Meh", "Ok Ok", "Good", "Terrific!"];
   const stepValue = useCbtForm((state) => state.cbtForm.feelBefore);
   const setCbtForm = useCbtForm((state) => state.setCbtForm);
   const { getRootProps, getRadioProps } = useRadioGroup({
@@ -160,7 +156,7 @@ const Step2 = () => {
       <Tabs
         mt={8}
         align="center"
-        defaultIndex={["Meh", "Sad", "Depressed"].includes(feel) ? 0 : 1}
+        defaultIndex={["Meh", "Bad", "Terrible"].includes(feel) ? 0 : 1}
         isFitted
         variant="soft-rounded"
         colorScheme={"purple"}
@@ -211,66 +207,80 @@ const Step3 = () => {
 
 const Step4 = () => {
   const feel = useCbtForm((state) => state.cbtForm.feelBefore);
+  const forms = ["Analyze Thoughts", "Practise Gratitude"];
+  const { getRootProps, getRadioProps } = useRadioGroup({
+    name: "choose form",
+    //value: stepValue,
+     defaultValue:["Meh", "Bad", "Terrible"].includes(feel) ? forms[0]:forms[1],
+    onChange: (am) => console.log("feelBefore", am),
+  });
+  const group = getRootProps();
   return (
     <>
       <Text color={"purple.500"} fontWeight={"semibold"}>
         What would you like to work on ?
       </Text>
-      <Text mt={4} color={"purple.400"} >
-       Recomended:
+      <Text mt={4} color={"purple.400"}>
+        Recomended:
       </Text>
-      {["Meh", "Sad", "Depressed"].includes(feel) ? (
-        <>
-          <Box
-            bgColor={"purple.100"}
-            borderColor={"purple.500"}
-            h={"40"}
-            p={4}
-            borderRadius={4}
-            m={8}
-            className="form"
-          >
-            <Text color={"purple.800"}>Analyze Thought</Text>
-          </Box>
-          <Divider/>
-          <Box
-            bgColor={"purple.100"}
-            borderColor={"purple.500"}
-            h={"40"}
-            p={4}
-            borderRadius={4}
-            m={8}
-            className="form"
-          >
-            <Text color={"purple.800"}>Pracice Gratitude</Text>
-          </Box>
-        </>
+      {["Meh", "Bad", "Terrible"].includes(feel) ? (
+        <Stack {...group} mt={8} spacing={4} direction={"column"}>
+          {forms.map((value) => {
+            const radio = getRadioProps({ value });
+            return (
+              <RadioCard key={value} {...radio}>
+                {value === "Analyze Thoughts" ? (
+                  <>
+                    Analyze Thought
+                    <LottieCreator
+                      src={analyze}
+                      style={{ width: "150px", height: "100px" }}
+                      loop
+                    />
+                  </>
+                ) : (
+                  <>
+                  Pracice Gratitude
+                    <LottieCreator
+                      src={gratitude}
+                      style={{ width: "150px", height: "100px" }}
+                      loop
+                    />
+                  </>
+                )}
+              </RadioCard>
+            );
+          })}
+        </Stack>
       ) : (
-        <>
-          <Box
-            bgColor={"purple.100"}
-            borderColor={"purple.500"}
-            h={"40"}
-            p={4}
-            borderRadius={4}
-            m={8}
-            className="form"
-          >
-            <Text color={"purple.800"}>Pracice Gratitude</Text>
-          </Box>
-          <Divider/>
-          <Box
-            bgColor={"purple.100"}
-            borderColor={"purple.500"}
-            h={"40"}
-            p={4}
-            borderRadius={4}
-            m={8}
-            className="form"
-          >
-            <Text color={"purple.800"}>Analyze Thought</Text>
-          </Box>
-        </>
+        <Stack {...group} mt={8} spacing={4} direction={"column"}>
+          {forms.reverse().map((value) => {
+            const radio = getRadioProps({ value });
+            return (
+              <RadioCard key={value} {...radio}>
+                {value === "Analyze Thoughts" ? (
+                  <>
+                 Analyze Thought
+                    <LottieCreator
+                      src={analyze}
+                      style={{ width: "150px", height: "100px" }}
+                      loop
+                    />
+                  </>
+                ) : (
+                  <>
+                   Pracice Gratitude
+                    <LottieCreator
+                      src={gratitude}
+                      style={{ width: "150px", height: "100px" }}
+                      loop
+                    />
+                  </>
+                )}
+              </RadioCard>
+            );
+          })}
+        </Stack>
       )}
     </>
   );
