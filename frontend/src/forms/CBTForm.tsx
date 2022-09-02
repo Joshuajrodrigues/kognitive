@@ -1,21 +1,26 @@
 import { ArrowLeftIcon, ArrowRightIcon } from "@chakra-ui/icons";
 import {
-  Box, Flex,
+  Box,
+  Divider,
+  Flex,
   IconButton,
-  SimpleGrid, Stack,
+  SimpleGrid,
+  Stack,
   Tab,
   TabList,
   TabPanel,
   TabPanels,
   Tabs,
-  Text, Textarea, useCheckboxGroup, useRadioGroup
+  Text,
+  Textarea,
+  useCheckboxGroup,
+  useRadioGroup,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import CustomCheckbox from "../components/CustomCheckbox";
 import RadioCard from "../components/RadioCard";
 import useCbtForm from "../hooks/useCbtForm";
 const CBTForm = () => {
-
   const [step, setstep] = useState(1);
   const nextStep = () => {
     setstep(step + 1);
@@ -34,10 +39,17 @@ const CBTForm = () => {
         m={8}
         className="form"
       >
-        {
-          step === 1 ? <Step1 /> : step === 2 ? <Step2 /> : step === 3 ? <Step3 /> : step === 4 ? <Step4 /> : ""
-        }
-
+        {step === 1 ? (
+          <Step1 />
+        ) : step === 2 ? (
+          <Step2 />
+        ) : step === 3 ? (
+          <Step3 />
+        ) : step === 4 ? (
+          <Step4 />
+        ) : (
+          ""
+        )}
       </Box>
 
       <Flex justifyContent={"space-around"} className="navigation">
@@ -52,7 +64,8 @@ const CBTForm = () => {
           onClick={nextStep}
           colorScheme={"purple"}
           icon={<ArrowRightIcon />}
-          aria-label={"go next button"} />
+          aria-label={"go next button"}
+        />
       </Flex>
     </div>
   );
@@ -69,8 +82,8 @@ const Step1 = () => {
     "Happy",
     "Top of the world!",
   ];
-  const stepValue = useCbtForm((state) => state.cbtForm.feelBefore)
-  const setCbtForm = useCbtForm((state) => state.setCbtForm)
+  const stepValue = useCbtForm((state) => state.cbtForm.feelBefore);
+  const setCbtForm = useCbtForm((state) => state.setCbtForm);
   const { getRootProps, getRadioProps } = useRadioGroup({
     name: "emotions",
     value: stepValue,
@@ -97,7 +110,6 @@ const Step1 = () => {
     </>
   );
 };
-
 
 const Step2 = () => {
   const positive = [
@@ -132,12 +144,13 @@ const Step2 = () => {
     "Tired",
     "Worried",
   ];
-  const setCbtForm = useCbtForm((state) => state.setCbtForm)
-  const stepValue = useCbtForm((state) => state.cbtForm.emotions)
+  const setCbtForm = useCbtForm((state) => state.setCbtForm);
+  const feel = useCbtForm((state) => state.cbtForm.feelBefore);
+  const stepValue = useCbtForm((state) => state.cbtForm.emotions);
   const { value, getCheckboxProps } = useCheckboxGroup({
     onChange: (val) => setCbtForm("emotions", val),
-    value: stepValue
-  })
+    value: stepValue,
+  });
 
   return (
     <>
@@ -147,6 +160,7 @@ const Step2 = () => {
       <Tabs
         mt={8}
         align="center"
+        defaultIndex={["Meh", "Sad", "Depressed"].includes(feel) ? 0 : 1}
         isFitted
         variant="soft-rounded"
         colorScheme={"purple"}
@@ -160,77 +174,104 @@ const Step2 = () => {
           <TabPanel>
             <SimpleGrid gap={2} columns={2}>
               {negative.map((value) => {
-
-                return (
-                  <CustomCheckbox {...getCheckboxProps({ value })} />
-
-                );
+                return <CustomCheckbox {...getCheckboxProps({ value })} />;
               })}
             </SimpleGrid>
           </TabPanel>
           <TabPanel>
             <SimpleGrid gap={2} columns={2}>
               {positive.map((value) => {
-                return (
-                  <CustomCheckbox {...getCheckboxProps({ value })} />
-                );
+                return <CustomCheckbox {...getCheckboxProps({ value })} />;
               })}
             </SimpleGrid>
           </TabPanel>
         </TabPanels>
       </Tabs>
     </>
-  )
-}
+  );
+};
 
 const Step3 = () => {
-  const setCbtForm = useCbtForm((state) => state.setCbtForm)
-  const stepValue = useCbtForm((state) => state.cbtForm.elaboration)
+  const setCbtForm = useCbtForm((state) => state.setCbtForm);
+  const stepValue = useCbtForm((state) => state.cbtForm.elaboration);
   return (
     <>
       <Text color={"purple.500"} fontWeight={"semibold"}>
         What to elaborate ?
       </Text>
-      <Textarea value={stepValue} onChange={(e) => setCbtForm("elaboration", e.target.value)} color={"purple.600"} height={"lg"} />
-
+      <Textarea
+        value={stepValue}
+        onChange={(e) => setCbtForm("elaboration", e.target.value)}
+        color={"purple.600"}
+        height={"lg"}
+      />
     </>
-  )
-}
+  );
+};
 
 const Step4 = () => {
+  const feel = useCbtForm((state) => state.cbtForm.feelBefore);
   return (
     <>
       <Text color={"purple.500"} fontWeight={"semibold"}>
         What would you like to work on ?
       </Text>
-      <Box
-        bgColor={"purple.100"}
-        borderColor={"purple.500"}
-        h={"40"}
-        p={4}
-        borderRadius={4}
-        m={8}
-        className="form"
-      >
-        <Text color={"purple.800"}>
-          Analyze Thought
-        </Text>
-
-      </Box>
-      <Box
-        bgColor={"purple.100"}
-        borderColor={"purple.500"}
-        h={"40"}
-        p={4}
-        borderRadius={4}
-        m={8}
-        className="form"
-      >
-        <Text color={"purple.800"}>
-          Pracice Gratitude
-        </Text>
-
-      </Box>
+      <Text mt={4} color={"purple.400"} >
+       Recomended:
+      </Text>
+      {["Meh", "Sad", "Depressed"].includes(feel) ? (
+        <>
+          <Box
+            bgColor={"purple.100"}
+            borderColor={"purple.500"}
+            h={"40"}
+            p={4}
+            borderRadius={4}
+            m={8}
+            className="form"
+          >
+            <Text color={"purple.800"}>Analyze Thought</Text>
+          </Box>
+          <Divider/>
+          <Box
+            bgColor={"purple.100"}
+            borderColor={"purple.500"}
+            h={"40"}
+            p={4}
+            borderRadius={4}
+            m={8}
+            className="form"
+          >
+            <Text color={"purple.800"}>Pracice Gratitude</Text>
+          </Box>
+        </>
+      ) : (
+        <>
+          <Box
+            bgColor={"purple.100"}
+            borderColor={"purple.500"}
+            h={"40"}
+            p={4}
+            borderRadius={4}
+            m={8}
+            className="form"
+          >
+            <Text color={"purple.800"}>Pracice Gratitude</Text>
+          </Box>
+          <Divider/>
+          <Box
+            bgColor={"purple.100"}
+            borderColor={"purple.500"}
+            h={"40"}
+            p={4}
+            borderRadius={4}
+            m={8}
+            className="form"
+          >
+            <Text color={"purple.800"}>Analyze Thought</Text>
+          </Box>
+        </>
+      )}
     </>
-  )
-}
+  );
+};
