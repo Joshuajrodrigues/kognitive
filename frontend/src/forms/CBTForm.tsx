@@ -13,7 +13,9 @@ import {
 import React, { useState } from "react";
 import CustomCheckbox from "../components/CustomCheckbox";
 import RadioCard from "../components/RadioCard";
+import useCbtForm from "../hooks/useCbtForm";
 const CBTForm = () => {
+
   const [step, setstep] = useState(1);
   const nextStep = () => {
     setstep(step + 1);
@@ -67,11 +69,13 @@ const Step1 = () => {
     "Happy",
     "Top of the world!",
   ];
-
+  const stepValue = useCbtForm((state) => state.cbtForm.feelBefore)
+  const setCbtForm = useCbtForm((state) => state.setCbtForm)
   const { getRootProps, getRadioProps } = useRadioGroup({
     name: "emotions",
+    value: stepValue,
     defaultValue: "Ok Ok",
-    onChange: (am) => console.log("what", am),
+    onChange: (am) => setCbtForm("feelBefore", am),
   });
 
   const group = getRootProps();
@@ -128,11 +132,11 @@ const Step2 = () => {
     "Tired",
     "Worried",
   ];
-
-
+  const setCbtForm = useCbtForm((state) => state.setCbtForm)
+  const stepValue = useCbtForm((state) => state.cbtForm.emotions)
   const { value, getCheckboxProps } = useCheckboxGroup({
-    onChange: (val) => console.log(val)
-
+    onChange: (val) => setCbtForm("emotions", val),
+    value: stepValue
   })
 
   return (
@@ -180,13 +184,14 @@ const Step2 = () => {
 }
 
 const Step3 = () => {
-
+  const setCbtForm = useCbtForm((state) => state.setCbtForm)
+  const stepValue = useCbtForm((state) => state.cbtForm.elaboration)
   return (
     <>
       <Text color={"purple.500"} fontWeight={"semibold"}>
         What to elaborate ?
       </Text>
-      <Textarea color={"purple.600"} height={"lg"} />
+      <Textarea value={stepValue} onChange={(e) => setCbtForm("elaboration", e.target.value)} color={"purple.600"} height={"lg"} />
 
     </>
   )
