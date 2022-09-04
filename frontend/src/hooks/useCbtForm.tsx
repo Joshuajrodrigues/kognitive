@@ -8,14 +8,14 @@ interface CbtFormType {
   formType:string;
   negativeThoughts?:string;
   gratitudeThoughts?:string;
-  thoughtDistortions:string[];
+  thoughtDistortions:(string | number)[];
   challengeNegative:string;
   reinterpretNegative:string;
   feelAfter:string
 }
 interface CbtStoreType {
   cbtForm: CbtFormType,
-  setCbtForm: (field: string, formData: string | (string | number)[]) => void
+  setCbtForm:< k extends keyof CbtFormType > (field: k, formData: CbtFormType[k]) => void
 }
 const useCbtForm = create<CbtStoreType>((set) => ({
   cbtForm: {

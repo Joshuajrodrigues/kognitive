@@ -76,9 +76,11 @@ const CBTForm = () => {
           icon={<ArrowLeftIcon />}
           aria-label={"go previous button"}
         />
-        {formType === "Practise Gratitude" && step === 6 ? (
+        {(formType === "Practise Gratitude" && step === 6 || formType === "Analyze Thoughts" && step === 9 ) ? (
           <Button colorScheme={"purple"}>Submit</Button>
-        ) : (
+        ) :
+        
+        (
           <IconButton
             onClick={nextStep}
             colorScheme={"purple"}
@@ -483,9 +485,12 @@ const Done = () => {
   const { getRootProps, getRadioProps } = useRadioGroup({
     name: "emotions after",
     value: stepValue,
-    //defaultValue: "Ok Ok",
+    defaultValue:feelNows[1],
     onChange: (am) => setCbtForm("feelAfter", am),
   });
+  useEffect(()=>{
+    setCbtForm("feelAfter", feelNows[1])
+  },[])
   const group = getRootProps();
   return (
     <>
