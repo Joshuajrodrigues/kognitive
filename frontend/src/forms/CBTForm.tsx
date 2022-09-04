@@ -193,7 +193,7 @@ const Step3 = () => {
   return (
     <>
       <Text color={"purple.500"} fontWeight={"semibold"}>
-        What to elaborate ?
+        Would you like to elaborate ?
       </Text>
       <Textarea
         value={stepValue}
@@ -212,7 +212,7 @@ const Step4 = () => {
   const forms = ["Analyze Thoughts", "Practise Gratitude"];
   const { getRootProps, getRadioProps } = useRadioGroup({
     name: "choose form",
-    value: stepValue,
+    value: stepValue||undefined,
     defaultValue: ["Meh", "Bad", "Terrible"].includes(feel)
       ? forms[0]
       : forms[1],
@@ -224,64 +224,45 @@ const Step4 = () => {
       <Text color={"purple.500"} fontWeight={"semibold"}>
         What would you like to work on ?
       </Text>
-      <Text mt={4} color={"purple.400"}>
-        Recomended:
-      </Text>
       {["Meh", "Bad", "Terrible"].includes(feel) ? (
         <Stack {...group} mt={8} spacing={4} direction={"column"}>
-          {forms.map((value) => {
+          {forms.map((value,index) => {
             const radio = getRadioProps({ value });
             return (
-              <RadioCard key={value} {...radio}>
-                {value === "Analyze Thoughts" ? (
+              <>
+                <RadioCard key={value} {...radio}>
                   <>
-                    Analyze Thought
+                    {value} { index === 0 ? "(Recomended)":""}
                     <LottieCreator
-                      src={analyze}
+                      src={value === forms[0] ? analyze : gratitude}
                       style={{ width: "150px", height: "100px" }}
                       loop
                     />
                   </>
-                ) : (
-                  <>
-                    Pracice Gratitude
-                    <LottieCreator
-                      src={gratitude}
-                      style={{ width: "150px", height: "100px" }}
-                      loop
-                    />
-                  </>
-                )}
-              </RadioCard>
+                </RadioCard>
+                <Divider />
+              </>
             );
           })}
         </Stack>
       ) : (
         <Stack {...group} mt={8} spacing={4} direction={"column"}>
-          {forms.reverse().map((value) => {
+          {forms.reverse().map((value,index) => {
             const radio = getRadioProps({ value });
             return (
-              <RadioCard key={value} {...radio}>
-                {value === "Analyze Thoughts" ? (
+              <>
+                <RadioCard key={value} {...radio}>
                   <>
-                    Analyze Thought
+                    {value} { index === 0 ? "(Recomended)":""}
                     <LottieCreator
-                      src={analyze}
+                      src={value === forms[1] ? analyze : gratitude}
                       style={{ width: "150px", height: "100px" }}
                       loop
                     />
                   </>
-                ) : (
-                  <>
-                    Pracice Gratitude
-                    <LottieCreator
-                      src={gratitude}
-                      style={{ width: "150px", height: "100px" }}
-                      loop
-                    />
-                  </>
-                )}
-              </RadioCard>
+                </RadioCard>
+                <Divider />
+              </>
             );
           })}
         </Stack>
@@ -330,81 +311,78 @@ const Step5 = () => {
   );
 };
 
-const Step6=()=>{
-  const thoughtDistortions=[
+const Step6 = () => {
+  const thoughtDistortions = [
     {
-      id:1,
-      name:"Catastrophizing",
-      desc:"What if the worst happens ?"
+      id: 1,
+      name: "Catastrophizing",
+      desc: "What if the worst happens ?",
     },
     {
-      id:2,
-      name:"All-or-nothing thinking",
-      desc:"I am a total failure."
+      id: 2,
+      name: "All-or-nothing thinking",
+      desc: "I am a total failure.",
     },
     {
-      id:3,
-      name:"Emotional Reasoning",
-      desc:"I feel this way so it must be true."
+      id: 3,
+      name: "Emotional Reasoning",
+      desc: "I feel this way so it must be true.",
     },
     {
-      id:4,
-      name:"Magnification of the Negative",
-      desc:"I totally ruined everything."
+      id: 4,
+      name: "Magnification of the Negative",
+      desc: "I totally ruined everything.",
     },
     {
-      id:5,
-      name:"Minimization of the Positive",
-      desc:"They didnt really mean that."
+      id: 5,
+      name: "Minimization of the Positive",
+      desc: "They didnt really mean that.",
     },
     {
-      id:6,
-      name:"Jumping to conclusions",
-      desc:"She didnt say hi so she hates me."
+      id: 6,
+      name: "Jumping to conclusions",
+      desc: "She didnt say hi so she hates me.",
     },
     {
-      id:7,
-      name:"Fortune telling",
-      desc:"I will fail my exam."
+      id: 7,
+      name: "Fortune telling",
+      desc: "I will fail my exam.",
     },
     {
-      id:8,
-      name:"Mind Reading",
-      desc:"He doesnt want to talk to me."
+      id: 8,
+      name: "Mind Reading",
+      desc: "He doesnt want to talk to me.",
     },
     {
-      id:9,
-      name:"Self Blaming",
-      desc:"This is my fault."
+      id: 9,
+      name: "Self Blaming",
+      desc: "This is my fault.",
     },
     {
-      id:10,
-      name:"Other blaming",
-      desc:"This is thier fault."
+      id: 10,
+      name: "Other blaming",
+      desc: "This is thier fault.",
     },
     {
-      id:11,
-      name:"Filtering out Positive",
-      desc:"Nothing good happened today."
+      id: 11,
+      name: "Filtering out Positive",
+      desc: "Nothing good happened today.",
     },
     {
-      id:12,
-      name:"Overgeneralizing",
-      desc:"Everyone dislikes me."
+      id: 12,
+      name: "Overgeneralizing",
+      desc: "Everyone dislikes me.",
     },
     {
-      id:13,
-      name:"Labelig",
-      desc:"I am a loser."
+      id: 13,
+      name: "Labelig",
+      desc: "I am a loser.",
     },
     {
-      id:14,
-      name:"Should/Must Comments",
-      desc:"I should have done this."
+      id: 14,
+      name: "Should/Must Comments",
+      desc: "I should have done this.",
     },
-  ]
-  return(
-    <>
-    </>
-  )
-}
+  ];
+  return <></>;
+};
