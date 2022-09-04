@@ -1,6 +1,7 @@
 import { ArrowLeftIcon, ArrowRightIcon } from "@chakra-ui/icons";
 import {
   Box,
+  Button,
   Divider,
   Flex,
   IconButton,
@@ -24,6 +25,7 @@ import useCbtForm from "../hooks/useCbtForm";
 import gratitude from "../lotties/gradtitudeHero.json";
 import analyze from "../lotties/analyzeHero.json";
 const CBTForm = () => {
+  const formType = useCbtForm((state) => state.cbtForm.formType);
   const [step, setstep] = useState(1);
   const nextStep = () => {
     setstep(step + 1);
@@ -53,7 +55,9 @@ const CBTForm = () => {
           <Step4 />
         ) : step === 5 ? (
           <Step5 />
-        ) : step === 6 ? (
+        ) : step === 6 && formType === "Practise Gratitude" ? (
+          <Done />
+        ) : step === 6 && formType === "Analyze Thoughts" ? (
           <Step6 />
         ) : step === 7 ? (
           <Step7 />
@@ -72,12 +76,16 @@ const CBTForm = () => {
           icon={<ArrowLeftIcon />}
           aria-label={"go previous button"}
         />
-        <IconButton
-          onClick={nextStep}
-          colorScheme={"purple"}
-          icon={<ArrowRightIcon />}
-          aria-label={"go next button"}
-        />
+        {formType === "Practise Gratitude" && step === 6 ? (
+          <Button colorScheme={"purple"}>Submit</Button>
+        ) : (
+          <IconButton
+            onClick={nextStep}
+            colorScheme={"purple"}
+            icon={<ArrowRightIcon />}
+            aria-label={"go next button"}
+          />
+        )}
       </Flex>
     </div>
   );
@@ -95,7 +103,9 @@ const Step1 = () => {
     defaultValue: "Ok Ok",
     onChange: (am) => setCbtForm("feelBefore", am),
   });
-
+  useEffect(() => {
+    setCbtForm("feelBefore", options[3]);
+  }, []);
   const group = getRootProps();
   return (
     <>
