@@ -287,7 +287,7 @@ const Step5 = () => {
       ]
   );
   const setCbtForm = useCbtForm((state) => state.setCbtForm);
-  console.log("form", form);
+  
 
   return (
     <>
@@ -322,6 +322,8 @@ const Step5 = () => {
 };
 
 const Step6 = () => {
+  const setCbtForm = useCbtForm((state) => state.setCbtForm);
+  const stepValue = useCbtForm((state)=>state.cbtForm.thoughtDistortions)
   const thoughtDistortions = [
     {
       id: 1,
@@ -395,8 +397,8 @@ const Step6 = () => {
     },
   ];
     const { value, getCheckboxProps } = useCheckboxGroup({
-    //onChange: (val) => setCbtForm("emotions", val),
-   // value: stepValue,
+    onChange: (val) => setCbtForm("thoughtDistortions", val),
+    value: stepValue,
   });
   return (
     <>
