@@ -53,8 +53,14 @@ const CBTForm = () => {
           <Step4 />
         ) : step === 5 ? (
           <Step5 />
-        ) : (
+        ) : step === 6 ? (
           <Step6 />
+        ) : step === 7 ? (
+          <Step7 />
+        ) : step === 8 ? (
+          <Step8 />
+        ) : (
+          <Done />
         )}
       </Box>
 
@@ -287,7 +293,6 @@ const Step5 = () => {
       ]
   );
   const setCbtForm = useCbtForm((state) => state.setCbtForm);
-  
 
   return (
     <>
@@ -297,7 +302,7 @@ const Step5 = () => {
             What are you grateful for ?
           </Text>
           <Textarea
-          mt={8}
+            mt={8}
             value={stepValue}
             onChange={(e) => setCbtForm("gratitudeThoughts", e.target.value)}
             color={"purple.600"}
@@ -323,7 +328,7 @@ const Step5 = () => {
 
 const Step6 = () => {
   const setCbtForm = useCbtForm((state) => state.setCbtForm);
-  const stepValue = useCbtForm((state)=>state.cbtForm.thoughtDistortions)
+  const stepValue = useCbtForm((state) => state.cbtForm.thoughtDistortions);
   const thoughtDistortions = [
     {
       id: 1,
@@ -396,7 +401,7 @@ const Step6 = () => {
       desc: "I should have done this.",
     },
   ];
-    const { value, getCheckboxProps } = useCheckboxGroup({
+  const { value, getCheckboxProps } = useCheckboxGroup({
     onChange: (val) => setCbtForm("thoughtDistortions", val),
     value: stepValue,
   });
@@ -407,9 +412,86 @@ const Step6 = () => {
       </Text>
       <SimpleGrid mt={8} gap={2} columns={1}>
         {thoughtDistortions.map((value) => {
-          return <CustomCheckbox desc={value.desc} {...getCheckboxProps({ value:value.name })} />;
+          return (
+            <CustomCheckbox
+              desc={value.desc}
+              {...getCheckboxProps({ value: value.name })}
+            />
+          );
         })}
       </SimpleGrid>
+    </>
+  );
+};
+
+const Step7 = () => {
+  const setCbtForm = useCbtForm((state) => state.setCbtForm);
+  const stepValue = useCbtForm((state) => state.cbtForm.challengeNegative);
+  return (
+    <>
+      <Text color={"purple.500"} fontWeight={"semibold"}>
+        How can you challenge your negative thought/s ?
+      </Text>
+      <Textarea
+        value={stepValue}
+        onChange={(e) => setCbtForm("negativeThoughts", e.target.value)}
+        color={"purple.600"}
+        mt={4}
+        height={"lg"}
+      />
+    </>
+  );
+};
+
+const Step8 = () => {
+  const setCbtForm = useCbtForm((state) => state.setCbtForm);
+  const stepValue = useCbtForm((state) => state.cbtForm.reinterpretNegative);
+  return (
+    <>
+      <Text color={"purple.500"} fontWeight={"semibold"}>
+        What is another way of interpreting the situation ?
+      </Text>
+      <Textarea
+        value={stepValue}
+        onChange={(e) => setCbtForm("reinterpretNegative", e.target.value)}
+        color={"purple.600"}
+        mt={4}
+        height={"lg"}
+      />
+    </>
+  );
+};
+
+const Done = () => {
+  const feelNows = [
+    "Better than before",
+    "About the same",
+    "Worse than before",
+  ];
+  const setCbtForm = useCbtForm((state) => state.setCbtForm);
+  const stepValue = useCbtForm((state) => state.cbtForm.feelAfter);
+  const { getRootProps, getRadioProps } = useRadioGroup({
+    name: "emotions after",
+    value: stepValue,
+    //defaultValue: "Ok Ok",
+    onChange: (am) => setCbtForm("feelAfter", am),
+  });
+  const group = getRootProps();
+  return (
+    <>
+      <Text color={"purple.500"} fontWeight={"semibold"}>
+        How are you feeling now ?
+      </Text>
+      <Stack {...group} mt={8} spacing={4} direction={"column"}>
+        {feelNows.map((value) => {
+          const radio = getRadioProps({ value });
+          return (
+            <RadioCard key={value} {...radio}>
+              {value}
+            </RadioCard>
+          );
+        })}
+      </Stack>
     </>
   );
 };
