@@ -16,7 +16,7 @@ import {
   useCheckboxGroup,
   useRadioGroup,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CustomCheckbox from "../components/CustomCheckbox";
 import RadioCard from "../components/RadioCard";
 import LottieCreator from "../components/sideBanner/LottieCreator";
@@ -210,14 +210,18 @@ const Step4 = () => {
   const stepValue = useCbtForm((state) => state.cbtForm.formType);
   const setCbtForm = useCbtForm((state) => state.setCbtForm);
   const forms = ["Analyze Thoughts", "Practise Gratitude"];
+  const defaultForm:string = ["Meh", "Bad", "Terrible"].includes(feel)
+  ?  forms[0]
+  : forms[1]
   const { getRootProps, getRadioProps } = useRadioGroup({
     name: "choose form",
     value: stepValue||undefined,
-    defaultValue: ["Meh", "Bad", "Terrible"].includes(feel)
-      ? forms[0]
-      : forms[1],
+    defaultValue:defaultForm,
     onChange: (am) => setCbtForm("formType", am),
   });
+  useEffect(()=>{
+    setCbtForm("formType", defaultForm)
+  },[defaultForm])
   const group = getRootProps();
   return (
     <>
@@ -280,6 +284,8 @@ const Step5 = () => {
       ]
   );
   const setCbtForm = useCbtForm((state) => state.setCbtForm);
+  console.log("form",form);
+  
   return (
     <>
       {form === "Practise Gratitude" ? (
