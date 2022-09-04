@@ -41,6 +41,7 @@ const CBTForm = () => {
         borderRadius={4}
         m={8}
         className="form"
+        overflow={"scroll"}
       >
         {step === 1 ? (
           <Step1 />
@@ -50,8 +51,10 @@ const CBTForm = () => {
           <Step3 />
         ) : step === 4 ? (
           <Step4 />
-        ) : (
+        ) : step === 5 ? (
           <Step5 />
+        ) : (
+          <Step6 />
         )}
       </Box>
 
@@ -210,18 +213,18 @@ const Step4 = () => {
   const stepValue = useCbtForm((state) => state.cbtForm.formType);
   const setCbtForm = useCbtForm((state) => state.setCbtForm);
   const forms = ["Analyze Thoughts", "Practise Gratitude"];
-  const defaultForm:string = ["Meh", "Bad", "Terrible"].includes(feel)
-  ?  forms[0]
-  : forms[1]
+  const defaultForm: string = ["Meh", "Bad", "Terrible"].includes(feel)
+    ? forms[0]
+    : forms[1];
   const { getRootProps, getRadioProps } = useRadioGroup({
     name: "choose form",
-    value: stepValue||undefined,
-    defaultValue:defaultForm,
+    value: stepValue || undefined,
+    defaultValue: defaultForm,
     onChange: (am) => setCbtForm("formType", am),
   });
-  useEffect(()=>{
-    setCbtForm("formType", defaultForm)
-  },[defaultForm])
+  useEffect(() => {
+    setCbtForm("formType", defaultForm);
+  }, [defaultForm]);
   const group = getRootProps();
   return (
     <>
@@ -230,13 +233,13 @@ const Step4 = () => {
       </Text>
       {["Meh", "Bad", "Terrible"].includes(feel) ? (
         <Stack {...group} mt={8} spacing={4} direction={"column"}>
-          {forms.map((value,index) => {
+          {forms.map((value, index) => {
             const radio = getRadioProps({ value });
             return (
               <>
                 <RadioCard key={value} {...radio}>
                   <>
-                    {value} { index === 0 ? "(Recomended)":""}
+                    {value} {index === 0 ? "(Recomended)" : ""}
                     <LottieCreator
                       src={value === forms[0] ? analyze : gratitude}
                       style={{ width: "150px", height: "100px" }}
@@ -251,13 +254,13 @@ const Step4 = () => {
         </Stack>
       ) : (
         <Stack {...group} mt={8} spacing={4} direction={"column"}>
-          {forms.reverse().map((value,index) => {
+          {forms.reverse().map((value, index) => {
             const radio = getRadioProps({ value });
             return (
               <>
                 <RadioCard key={value} {...radio}>
                   <>
-                    {value} { index === 0 ? "(Recomended)":""}
+                    {value} {index === 0 ? "(Recomended)" : ""}
                     <LottieCreator
                       src={value === forms[1] ? analyze : gratitude}
                       style={{ width: "150px", height: "100px" }}
@@ -284,8 +287,8 @@ const Step5 = () => {
       ]
   );
   const setCbtForm = useCbtForm((state) => state.setCbtForm);
-  console.log("form",form);
-  
+  console.log("form", form);
+
   return (
     <>
       {form === "Practise Gratitude" ? (
@@ -294,6 +297,7 @@ const Step5 = () => {
             What are you grateful for ?
           </Text>
           <Textarea
+          mt={8}
             value={stepValue}
             onChange={(e) => setCbtForm("gratitudeThoughts", e.target.value)}
             color={"purple.600"}
@@ -390,5 +394,20 @@ const Step6 = () => {
       desc: "I should have done this.",
     },
   ];
-  return <></>;
+    const { value, getCheckboxProps } = useCheckboxGroup({
+    //onChange: (val) => setCbtForm("emotions", val),
+   // value: stepValue,
+  });
+  return (
+    <>
+      <Text color={"purple.500"} fontWeight={"semibold"}>
+        Did you experiece any of the following thought distortions ?
+      </Text>
+      <SimpleGrid mt={8} gap={2} columns={1}>
+        {thoughtDistortions.map((value) => {
+          return <CustomCheckbox desc={value.desc} {...getCheckboxProps({ value:value.name })} />;
+        })}
+      </SimpleGrid>
+    </>
+  );
 };
