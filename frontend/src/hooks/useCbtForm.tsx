@@ -2,6 +2,7 @@ import create from "zustand"
 
 
 interface CbtFormType {
+  user_id: string | undefined;
   feelBefore: string;
   emotions: (string | number)[];
   elaboration: string;
@@ -30,7 +31,8 @@ const useCbtForm = create<CbtStoreType>((set) => ({
     thoughtDistortions:[],
     challengeNegative:"",
     reinterpretNegative:"",
-    feelAfter:""
+    feelAfter: "",
+    user_id: ""
   },
   setCbtForm: (field, formData) => set((state) => ({ cbtForm: { ...state.cbtForm, [field]: formData } })),
   clearFormTypes: () => set((state) => ({ cbtForm: { ...state.cbtForm, negativeThoughts: "", gratitudeThoughts: "", thoughtDistortions: [], challengeNegative: "", reinterpretNegative: "", feelAfter: "" } }))

@@ -25,8 +25,12 @@ import useCbtForm from "../hooks/useCbtForm";
 import gratitude from "../lotties/gradtitudeHero.json";
 import analyze from "../lotties/analyzeHero.json";
 import { feelNows, negative, options, positive, thoughtDistortions } from "../AppConstants";
+import { supabase } from "../helper/supabaseClient";
+import useUser from "../hooks/useUser";
 const CBTForm = () => {
   const formType = useCbtForm((state) => state.cbtForm.formType);
+  const cbtForm = useCbtForm((state) => state.cbtForm)
+  const userId = useUser((state) => state.user.user?.id)
   const [step, setstep] = useState(1);
   const nextStep = () => {
     setstep(step + 1);
@@ -34,6 +38,19 @@ const CBTForm = () => {
   const prevStep = () => {
     setstep(step - 1);
   };
+  const handleSubmit = async () => {
+    console.log("submit", { cbtForm });
+    cbtForm.user_id = userId
+    const { data, error } = await supabase
+      .from('cbtForm')
+      .insert([
+        cbtForm,
+      ])
+
+    console.log("done", { data });
+
+
+  }
   return (
     <div>
       <Box
@@ -77,18 +94,18 @@ const CBTForm = () => {
           icon={<ArrowLeftIcon />}
           aria-label={"go previous button"}
         />
-        {(formType === "Practise Gratitude" && step === 6 || formType === "Analyze Thoughts" && step === 9 ) ? (
-          <Button colorScheme={"purple"}>Submit</Button>
+        {(formType === "Practise Gratitude" && step === 6 || formType === "Analyze Thoughts" && step === 9) ? (
+          <Button onClick={handleSubmit} colorScheme={"purple"}>Submit</Button>
         ) :
-        
-        (
-          <IconButton
-            onClick={nextStep}
-            colorScheme={"purple"}
-            icon={<ArrowRightIcon />}
-            aria-label={"go next button"}
-          />
-        )}
+
+          (
+            <IconButton
+              onClick={nextStep}
+              colorScheme={"purple"}
+              icon={<ArrowRightIcon />}
+              aria-label={"go next button"}
+            />
+          )}
       </Flex>
     </div>
   );
@@ -214,7 +231,7 @@ const Step4 = () => {
   });
   useEffect(() => {
     if (!stepValue)
-    setCbtForm("formType", defaultForm);
+      setCbtForm("formType", defaultForm);
   }, [defaultForm, stepValue]);
   const group = getRootProps();
   return (
@@ -274,7 +291,7 @@ const Step5 = () => {
   const stepValue = useCbtForm(
     (state) =>
       state.cbtForm[
-        form === "Practise Gratitude" ? "gratitudeThoughts" : "negativeThoughts"
+      form === "Practise Gratitude" ? "gratitudeThoughts" : "negativeThoughts"
       ]
   );
   const setCbtForm = useCbtForm((state) => state.setCbtForm);
@@ -348,7 +365,7 @@ const Step7 = () => {
       </Text>
       <Textarea
         value={stepValue}
-        onChange={(e) => setCbtForm("negativeThoughts", e.target.value)}
+        onChange={(e) => setCbtForm("challengeNegative", e.target.value)}
         color={"purple.600"}
         mt={4}
         height={"lg"}
@@ -386,7 +403,7 @@ const Done = () => {
     defaultValue: feelNows[0],
     onChange: (am) => setCbtForm("feelAfter", am),
   });
-  useEffect(()=>{
+  useEffect(() => {
     if (!stepValue)
       setCbtForm("feelAfter", feelNows[0])
   }, [stepValue])
