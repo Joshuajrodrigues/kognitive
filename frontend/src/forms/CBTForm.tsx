@@ -24,7 +24,7 @@ import LottieCreator from "../components/sideBanner/LottieCreator";
 import useCbtForm from "../hooks/useCbtForm";
 import gratitude from "../lotties/gradtitudeHero.json";
 import analyze from "../lotties/analyzeHero.json";
-import { negative, options, positive } from "../AppConstants";
+import { feelNows, negative, options, positive, thoughtDistortions } from "../AppConstants";
 const CBTForm = () => {
   const formType = useCbtForm((state) => state.cbtForm.formType);
   const [step, setstep] = useState(1);
@@ -107,8 +107,10 @@ const Step1 = () => {
     onChange: (am) => setCbtForm("feelBefore", am),
   });
   useEffect(() => {
-    setCbtForm("feelBefore", options[3]);
-  }, []);
+    if (!stepValue) {
+      setCbtForm("feelBefore", options[3]);
+    }
+  }, [stepValue]);
   const group = getRootProps();
   return (
     <>
@@ -198,6 +200,7 @@ const Step3 = () => {
 const Step4 = () => {
   const feel = useCbtForm((state) => state.cbtForm.feelBefore);
   const stepValue = useCbtForm((state) => state.cbtForm.formType);
+  const clearFormTypes = useCbtForm((state) => state.clearFormTypes)
   const setCbtForm = useCbtForm((state) => state.setCbtForm);
   const forms = ["Analyze Thoughts", "Practise Gratitude"];
   const defaultForm: string = ["Meh", "Bad", "Terrible"].includes(feel)
@@ -207,11 +210,12 @@ const Step4 = () => {
     name: "choose form",
     value: stepValue || undefined,
     defaultValue: defaultForm,
-    onChange: (am) => setCbtForm("formType", am),
+    onChange: (am) => { clearFormTypes(); setCbtForm("formType", am) },
   });
   useEffect(() => {
+    if (!stepValue)
     setCbtForm("formType", defaultForm);
-  }, [defaultForm]);
+  }, [defaultForm, stepValue]);
   const group = getRootProps();
   return (
     <>
@@ -310,78 +314,7 @@ const Step5 = () => {
 const Step6 = () => {
   const setCbtForm = useCbtForm((state) => state.setCbtForm);
   const stepValue = useCbtForm((state) => state.cbtForm.thoughtDistortions);
-  const thoughtDistortions = [
-    {
-      id: 1,
-      name: "Catastrophizing",
-      desc: "What if the worst happens ?",
-    },
-    {
-      id: 2,
-      name: "All-or-nothing thinking",
-      desc: "I am a total failure.",
-    },
-    {
-      id: 3,
-      name: "Emotional Reasoning",
-      desc: "I feel this way so it must be true.",
-    },
-    {
-      id: 4,
-      name: "Magnification of the Negative",
-      desc: "I totally ruined everything.",
-    },
-    {
-      id: 5,
-      name: "Minimization of the Positive",
-      desc: "They didnt really mean that.",
-    },
-    {
-      id: 6,
-      name: "Jumping to conclusions",
-      desc: "She didnt say hi so she hates me.",
-    },
-    {
-      id: 7,
-      name: "Fortune telling",
-      desc: "I will fail my exam.",
-    },
-    {
-      id: 8,
-      name: "Mind Reading",
-      desc: "He doesnt want to talk to me.",
-    },
-    {
-      id: 9,
-      name: "Self Blaming",
-      desc: "This is my fault.",
-    },
-    {
-      id: 10,
-      name: "Other blaming",
-      desc: "This is thier fault.",
-    },
-    {
-      id: 11,
-      name: "Filtering out Positive",
-      desc: "Nothing good happened today.",
-    },
-    {
-      id: 12,
-      name: "Overgeneralizing",
-      desc: "Everyone dislikes me.",
-    },
-    {
-      id: 13,
-      name: "Labelig",
-      desc: "I am a loser.",
-    },
-    {
-      id: 14,
-      name: "Should/Must Comments",
-      desc: "I should have done this.",
-    },
-  ];
+
   const { value, getCheckboxProps } = useCheckboxGroup({
     onChange: (val) => setCbtForm("thoughtDistortions", val),
     value: stepValue,
@@ -444,22 +377,19 @@ const Step8 = () => {
 };
 
 const Done = () => {
-  const feelNows = [
-    "Better than before",
-    "About the same",
-    "Worse than before",
-  ];
+
   const setCbtForm = useCbtForm((state) => state.setCbtForm);
   const stepValue = useCbtForm((state) => state.cbtForm.feelAfter);
   const { getRootProps, getRadioProps } = useRadioGroup({
     name: "emotions after",
     value: stepValue,
-    defaultValue:feelNows[1],
+    defaultValue: feelNows[0],
     onChange: (am) => setCbtForm("feelAfter", am),
   });
   useEffect(()=>{
-    setCbtForm("feelAfter", feelNows[1])
-  },[])
+    if (!stepValue)
+      setCbtForm("feelAfter", feelNows[0])
+  }, [stepValue])
   const group = getRootProps();
   return (
     <>

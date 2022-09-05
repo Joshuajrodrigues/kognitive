@@ -14,8 +14,10 @@ interface CbtFormType {
   feelAfter:string
 }
 interface CbtStoreType {
-  cbtForm: CbtFormType,
-  setCbtForm:< k extends keyof CbtFormType > (field: k, formData: CbtFormType[k]) => void
+  cbtForm: CbtFormType;
+  setCbtForm: < k extends keyof CbtFormType > (field: k, formData: CbtFormType[k]) => void;
+  clearFormTypes: () => void
+
 }
 const useCbtForm = create<CbtStoreType>((set) => ({
   cbtForm: {
@@ -30,7 +32,8 @@ const useCbtForm = create<CbtStoreType>((set) => ({
     reinterpretNegative:"",
     feelAfter:""
   },
-  setCbtForm: (field, formData) => set((state) => ({ cbtForm: { ...state.cbtForm, [field]: formData } }))
+  setCbtForm: (field, formData) => set((state) => ({ cbtForm: { ...state.cbtForm, [field]: formData } })),
+  clearFormTypes: () => set((state) => ({ cbtForm: { ...state.cbtForm, negativeThoughts: "", gratitudeThoughts: "", thoughtDistortions: [], challengeNegative: "", reinterpretNegative: "", feelAfter: "" } }))
 }))
 
 export default useCbtForm
