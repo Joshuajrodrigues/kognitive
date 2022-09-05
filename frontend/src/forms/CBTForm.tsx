@@ -24,6 +24,7 @@ import LottieCreator from "../components/sideBanner/LottieCreator";
 import useCbtForm from "../hooks/useCbtForm";
 import gratitude from "../lotties/gradtitudeHero.json";
 import analyze from "../lotties/analyzeHero.json";
+import { negative, options, positive } from "../AppConstants";
 const CBTForm = () => {
   const formType = useCbtForm((state) => state.cbtForm.formType);
   const [step, setstep] = useState(1);
@@ -96,7 +97,7 @@ const CBTForm = () => {
 export default CBTForm;
 
 const Step1 = () => {
-  const options = ["Terrible", "Bad", "Meh", "Ok Ok", "Good", "Terrific!"];
+  //const options = ["Terrible", "Bad", "Meh", "Ok Ok", "Good", "Terrific!"];
   const stepValue = useCbtForm((state) => state.cbtForm.feelBefore);
   const setCbtForm = useCbtForm((state) => state.setCbtForm);
   const { getRootProps, getRadioProps } = useRadioGroup({
@@ -129,38 +130,6 @@ const Step1 = () => {
 };
 
 const Step2 = () => {
-  const positive = [
-    "Calm",
-    "Confident",
-    "Content",
-    "Excited",
-    "Fulfilled",
-    "Grateful",
-    "Happy",
-    "Hopeful",
-    "Inspired",
-    "Loved",
-    "Motivated",
-    "Peaceful",
-    "Proud",
-    "Relived",
-  ];
-  const negative = [
-    "Annoyed",
-    "Anxious",
-    "Disapointed",
-    "Empty",
-    "Frustrated",
-    "Guilty",
-    "Hopeless",
-    "Lonely",
-    "Nervous",
-    "Overwhelmed",
-    "Sad",
-    "Stressed",
-    "Tired",
-    "Worried",
-  ];
   const setCbtForm = useCbtForm((state) => state.setCbtForm);
   const feel = useCbtForm((state) => state.cbtForm.feelBefore);
   const stepValue = useCbtForm((state) => state.cbtForm.emotions);
