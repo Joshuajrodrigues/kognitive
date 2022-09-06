@@ -16,6 +16,7 @@ import {
   Textarea,
   useCheckboxGroup,
   useRadioGroup,
+  useToast,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import CustomCheckbox from "../components/CustomCheckbox";
@@ -24,12 +25,16 @@ import LottieCreator from "../components/sideBanner/LottieCreator";
 import useCbtForm from "../hooks/useCbtForm";
 import gratitude from "../lotties/gradtitudeHero.json";
 import analyze from "../lotties/analyzeHero.json";
-import { feelNows, negative, options, positive, thoughtDistortions } from "../AppConstants";
+import { appRoutes, feelNows, negative, options, positive, thoughtDistortions } from "../AppConstants";
 import { supabase } from "../helper/supabaseClient";
 import useUser from "../hooks/useUser";
+import { useNavigate } from "react-router-dom";
 const CBTForm = () => {
   const formType = useCbtForm((state) => state.cbtForm.formType);
+  const toast = useToast();
+  const navigate = useNavigate()
   const cbtForm = useCbtForm((state) => state.cbtForm)
+  const resetCbtForm = useCbtForm((state) => state.resetCbtForm)
   const userId = useUser((state) => state.user.user?.id)
   const [step, setstep] = useState(1);
   const nextStep = () => {
@@ -39,15 +44,38 @@ const CBTForm = () => {
     setstep(step - 1);
   };
   const handleSubmit = async () => {
-    console.log("submit", { cbtForm });
+    // console.log("submit", { cbtForm });
     cbtForm.user_id = userId
-    const { data, error } = await supabase
-      .from('cbtForm')
-      .insert([
-        cbtForm,
-      ])
+    try {
+      await supabase
+        .from('cbtForm')
+        .insert([
+          cbtForm,
+        ])
+        .then((data) => {
+          resetCbtForm()
+          setstep(1)
+          toast({
+            title: "Entry created.",
+            status: "success",
+            duration: 5000,
+            isClosable: true,
+          });
+          navigate(appRoutes.root)
+          //console.log("done", { data });
+        })
 
-    console.log("done", { data });
+    } catch (error) {
+      console.log(error);
+      toast({
+        title: "Hmm something went wrong.",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+
+
 
 
   }

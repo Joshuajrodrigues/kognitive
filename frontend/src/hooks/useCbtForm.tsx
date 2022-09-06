@@ -17,25 +17,29 @@ interface CbtFormType {
 interface CbtStoreType {
   cbtForm: CbtFormType;
   setCbtForm: < k extends keyof CbtFormType > (field: k, formData: CbtFormType[k]) => void;
-  clearFormTypes: () => void
+  clearFormTypes: () => void;
+  resetCbtForm: () => void
 
 }
+let initialState = {
+  feelBefore: "",
+  emotions: [],
+  elaboration: "",
+  formType: "",
+  negativeThoughts: "",
+  gratitudeThoughts: "",
+  thoughtDistortions: [],
+  challengeNegative: "",
+  reinterpretNegative: "",
+  feelAfter: "",
+  user_id: ""
+}
 const useCbtForm = create<CbtStoreType>((set) => ({
-  cbtForm: {
-    feelBefore: "",
-    emotions: [],
-    elaboration: "",
-    formType:"",
-    negativeThoughts:"",
-    gratitudeThoughts:"",
-    thoughtDistortions:[],
-    challengeNegative:"",
-    reinterpretNegative:"",
-    feelAfter: "",
-    user_id: ""
-  },
+  cbtForm: { ...initialState },
   setCbtForm: (field, formData) => set((state) => ({ cbtForm: { ...state.cbtForm, [field]: formData } })),
-  clearFormTypes: () => set((state) => ({ cbtForm: { ...state.cbtForm, negativeThoughts: "", gratitudeThoughts: "", thoughtDistortions: [], challengeNegative: "", reinterpretNegative: "", feelAfter: "" } }))
+  clearFormTypes: () => set((state) => ({ cbtForm: { ...state.cbtForm, negativeThoughts: "", gratitudeThoughts: "", thoughtDistortions: [], challengeNegative: "", reinterpretNegative: "", feelAfter: "" } })),
+  resetCbtForm: () => set(() => ({ cbtForm: { ...initialState } }))
+
 }))
 
 export default useCbtForm
