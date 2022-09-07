@@ -6,12 +6,13 @@ import {
   FormLabel,
   Input,
   SimpleGrid,
+  Spinner,
   Text,
   useToast,
 } from "@chakra-ui/react";
 //@ts-ignore
 import { Field, Form, Formik } from "formik";
-import { FunctionComponent } from "react";
+import { FunctionComponent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { appRoutes } from "../../AppConstants";
@@ -22,6 +23,7 @@ import lottieSrc from "../../lotties/hero-signin.json";
 
 const Home: FunctionComponent<{}> = () => {
   const toast = useToast();
+  const [isLoading,setIsLoading] = useState(false)
   const addUser = useUser((state) => state.addUser);
   let navigate = useNavigate();
   const SignupSchema = Yup.object().shape({
@@ -69,12 +71,14 @@ const Home: FunctionComponent<{}> = () => {
               password: "",
             }}
             onSubmit={async (values) => {
+              setIsLoading(true)
               let { data, error } = await supabase.auth.signInWithPassword({
                 email: values.email,
                 password: values.password,
               });
 
               if (!error) {
+              
                 navigate(appRoutes.root);
                 toast({
                   title: "Login Successfull.",
@@ -82,7 +86,7 @@ const Home: FunctionComponent<{}> = () => {
                   duration: 5000,
                   isClosable: true,
                 });
-                //console.log(data);
+                setIsLoading(false)
                 addUser({id:data.user?.id});
                 //sessionStorage.setItem("user", JSON.stringify(data));
               } else {
@@ -93,7 +97,7 @@ const Home: FunctionComponent<{}> = () => {
                   duration: 5000,
                   isClosable: true,
                 });
-                console.log(error);
+                setIsLoading(false)
               }
             }}
           >
@@ -125,7 +129,7 @@ const Home: FunctionComponent<{}> = () => {
                 )}
               </Field>
 
-              <Button mt={4} colorScheme={"purple"} type="submit">
+              <Button isLoading={isLoading} mt={4} colorScheme={"purple"} type="submit">
                 Login
               </Button>
             </Form>

@@ -22,7 +22,7 @@ import { appRoutes } from "../../AppConstants";
 const Signup: FunctionComponent<{}> = () => {
   const toast = useToast();
   const addUser = useUser((state)=>state.addUser)
-
+  const [isLoading,setIsLoading] = useState(false)
   let navigate = useNavigate();
   const SignupSchema = Yup.object().shape({
     name: Yup.string().required("Do tell us what to call you."),
@@ -72,6 +72,7 @@ const Signup: FunctionComponent<{}> = () => {
             confirm: "",
           }}
           onSubmit={async (values) => {
+            setIsLoading(true)
             let { data, error } = await supabase.auth.signUp({
               email: values.email,
               password: values.password,
@@ -92,7 +93,7 @@ const Signup: FunctionComponent<{}> = () => {
               });
              
               addUser({id:data.user?.id});
-        
+              setIsLoading(false)
               //sessionStorage.setItem('user', JSON.stringify(data))
             } else {
               toast({
@@ -102,7 +103,7 @@ const Signup: FunctionComponent<{}> = () => {
                 duration: 5000,
                 isClosable: true,
               });
-              console.log(error);
+              setIsLoading(false)
             }
           }}
         >
@@ -161,7 +162,7 @@ const Signup: FunctionComponent<{}> = () => {
               )}
             </Field>
 
-            <Button mt={4} colorScheme={"purple"} type="submit">
+            <Button isLoading={isLoading} mt={4} colorScheme={"purple"} type="submit">
               Sign Up
             </Button>
           </Form>

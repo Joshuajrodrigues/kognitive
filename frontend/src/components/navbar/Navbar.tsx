@@ -7,7 +7,7 @@ import {
   SimpleGrid,
   Spacer,
 } from "@chakra-ui/react";
-import { FunctionComponent, useEffect } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { appRoutes } from "../../AppConstants";
 import { supabase } from "../../helper/supabaseClient";
@@ -15,6 +15,7 @@ import useUser, { UserDataType } from "../../hooks/useUser";
 
 const Navbar: FunctionComponent<{}> = () => {
   const user = useUser((state) => state.user);
+  const [isLoading,setIsLoading] = useState(false)
   const addUser = useUser((state) => state.addUser);
   const removeUser = useUser((state) => state.removeUser);
   let navigate = useNavigate();
@@ -33,13 +34,16 @@ const Navbar: FunctionComponent<{}> = () => {
     // }
   }, []);
   const handleLogOut = async () => {
+    setIsLoading(true)
     let { error } = await supabase.auth.signOut();
     if (!error) {
       removeUser();
       navigate(appRoutes.root);
-      sessionStorage.removeItem("user");
+      setIsLoading(false)
+      //sessionStorage.removeItem("user");
     } else {
       console.log(error);
+      setIsLoading(false)
     }
   };
   return (
@@ -52,7 +56,7 @@ const Navbar: FunctionComponent<{}> = () => {
       <Spacer />
       <ButtonGroup p="2" gap="2">
         {user.id && (
-          <Button variant={"outline"} onClick={handleLogOut} colorScheme={"purple"}>
+          <Button isLoading={isLoading} variant={"outline"} onClick={handleLogOut} colorScheme={"purple"}>
             Log Out
           </Button>
         )}

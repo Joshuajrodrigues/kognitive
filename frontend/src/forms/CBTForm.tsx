@@ -32,6 +32,7 @@ import { useNavigate } from "react-router-dom";
 const CBTForm = () => {
   const formType = useCbtForm((state) => state.cbtForm.formType);
   const toast = useToast();
+  const [isLoading,setIsLoading] = useState(false)
   const navigate = useNavigate()
   const cbtForm = useCbtForm((state) => state.cbtForm)
   const resetCbtForm = useCbtForm((state) => state.resetCbtForm)
@@ -44,7 +45,7 @@ const CBTForm = () => {
     setstep(step - 1);
   };
   const handleSubmit = async () => {
-    // console.log("submit", { cbtForm });
+    setIsLoading(true)
     cbtForm.user_id = userId
     try {
       await supabase
@@ -62,7 +63,7 @@ const CBTForm = () => {
             isClosable: true,
           });
           navigate(appRoutes.root)
-          //console.log("done", { data });
+         setIsLoading(false)
         })
 
     } catch (error) {
@@ -73,6 +74,7 @@ const CBTForm = () => {
         duration: 5000,
         isClosable: true,
       });
+      setIsLoading(false)
     }
 
 
@@ -123,7 +125,7 @@ const CBTForm = () => {
           aria-label={"go previous button"}
         />
         {(formType === "Practise Gratitude" && step === 6 || formType === "Analyze Thoughts" && step === 9) ? (
-          <Button onClick={handleSubmit} colorScheme={"purple"}>Submit</Button>
+          <Button isLoading={isLoading} onClick={handleSubmit} colorScheme={"purple"}>Submit</Button>
         ) :
 
           (
