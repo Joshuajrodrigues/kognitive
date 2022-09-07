@@ -1,7 +1,8 @@
 import create from "zustand"
 
 
-interface CbtFormType {
+export interface CbtFormType {
+  created_at?: string;
   user_id: string | undefined;
   feelBefore: string;
   emotions: (string | number)[];

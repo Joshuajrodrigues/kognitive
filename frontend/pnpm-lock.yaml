@@ -10,6 +10,7 @@ specifiers:
   '@types/react': ^18.0.15
   '@types/react-dom': ^18.0.6
   '@vitejs/plugin-react': ^2.0.0
+  dayjs: ^1.11.5
   formik: ^2.2.9
   framer-motion: ^6
   prop-types: ^15.8.1
@@ -28,6 +29,7 @@ dependencies:
   '@emotion/styled': 11.10.0_749270edd816c6def6aa28737e362a2a
   '@lottiefiles/react-lottie-player': 3.4.7_react@18.2.0
   '@supabase/supabase-js': 2.0.0-rc.6
+  dayjs: 1.11.5
   formik: 2.2.9_react@18.2.0
   framer-motion: 6.5.1_react-dom@18.2.0+react@18.2.0
   prop-types: 15.8.1
@@ -1695,6 +1697,10 @@ packages:
     dependencies:
       es5-ext: 0.10.62
       type: 1.2.0
+    dev: false
+
+  /dayjs/1.11.5:
+    resolution: {integrity: sha512-CAdX5Q3YW3Gclyo5Vpqkgpj8fSdLQcRuzfX6mC6Phy0nfJ0eGYOeS7m4mt2plDWLAtA4TqTakvbboHvUxfe4iA==}
     dev: false
 
   /debug/2.6.9:
