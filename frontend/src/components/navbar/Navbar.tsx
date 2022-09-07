@@ -20,6 +20,7 @@ const Navbar: FunctionComponent<{}> = () => {
   let navigate = useNavigate();
 
   useEffect(() => {
+    //const user = supabase.auth.getUser()
     const data = sessionStorage.getItem("user");
     if (data) {
       const user: UserDataType = JSON.parse(sessionStorage.getItem("user") || "");
