@@ -10,11 +10,17 @@ export type UserDataType = {
     user: null;
     session: null;
 };
-export type AddUserType=(userData:UserDataType)=>void
+type UserType = {
+    id?: string;
+    user_metadata?: {
+        name?: string
+    }
+}
+export type AddUserType = (userData: UserType) => void
 export type RemoveUserType=()=>void
 
 interface UserInstanceType{
-    user:UserDataType
+    user: UserType
     addUser:AddUserType;
     removeUser:RemoveUserType
 }
@@ -22,9 +28,9 @@ interface UserInstanceType{
 const useUser =  create<UserInstanceType>((set) => ({
 
 
-    user:{user:null,session:null},
+    user: { id: undefined, user_metadata: undefined },
     addUser: (userData) => set(() => ({ user: userData })),
-    removeUser: () => set({ user: {user:null,session:null} }),
+    removeUser: () => set({ user: { id: undefined, user_metadata: undefined } }),
   }))
 
 export default useUser

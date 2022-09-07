@@ -65,7 +65,7 @@ const Welcome: FunctionComponent<{}> = () => {
             fontSize={"lg"}
             m={4}
           >
-            Welcome {user.user?.user_metadata.name || "Anon"}, how are you
+            Welcome {user.user_metadata?.name || "Anon"}, how are you
             feeling ?
           </Text>
           <SimpleGrid columns={2}>

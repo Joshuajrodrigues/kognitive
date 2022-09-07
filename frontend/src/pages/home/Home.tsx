@@ -81,10 +81,10 @@ const Home: FunctionComponent<{}> = () => {
                   duration: 5000,
                   isClosable: true,
                 });
-                console.log(data);
-                addUser(data);
+                //console.log(data);
+                //addUser(data);
                 if (data.user?.id) navigate(appRoutes.root);
-                sessionStorage.setItem("user", JSON.stringify(data));
+                //sessionStorage.setItem("user", JSON.stringify(data));
               } else {
                 toast({
                   title: "An error occured.",

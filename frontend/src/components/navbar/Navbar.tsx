@@ -20,14 +20,17 @@ const Navbar: FunctionComponent<{}> = () => {
   let navigate = useNavigate();
 
   useEffect(() => {
-    //const user = supabase.auth.getUser()
-    const data = sessionStorage.getItem("user");
-    if (data) {
-      const user: UserDataType = JSON.parse(sessionStorage.getItem("user") || "");
-      if (user) {
-        addUser(user);
-      }
-    }
+    const user = supabase.auth.getUser()
+    user.then((response) => {
+      addUser({ id: response.data.user?.id, user_metadata: response.data.user?.user_metadata })
+    })
+    // const data = sessionStorage.getItem("user");
+    // if (data) {
+    //   const user: UserDataType = JSON.parse(sessionStorage.getItem("user") || "");
+    //   if (user) {
+    //     addUser(user);
+    //   }
+    // }
   }, []);
   const handleLogOut = async () => {
     let { error } = await supabase.auth.signOut();
@@ -48,7 +51,7 @@ const Navbar: FunctionComponent<{}> = () => {
       </Box>
       <Spacer />
       <ButtonGroup p="2" gap="2">
-        {user.user && (
+        {user.id && (
           <Button variant={"outline"} onClick={handleLogOut} colorScheme={"purple"}>
             Log Out
           </Button>

@@ -15,7 +15,7 @@ const History = () => {
             .from('cbtForm')
             .select("*")
             .range(0, 9)
-            .eq('user_id', user.user?.id)
+            .eq('user_id', user.id)
             .then((response) => {
                 console.log("user data", { data });
                 {/* @ts-ignore */ }

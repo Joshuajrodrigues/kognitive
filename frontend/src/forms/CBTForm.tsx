@@ -35,7 +35,7 @@ const CBTForm = () => {
   const navigate = useNavigate()
   const cbtForm = useCbtForm((state) => state.cbtForm)
   const resetCbtForm = useCbtForm((state) => state.resetCbtForm)
-  const userId = useUser((state) => state.user.user?.id)
+  const userId = useUser((state) => state.user.id)
   const [step, setstep] = useState(1);
   const nextStep = () => {
     setstep(step + 1);
