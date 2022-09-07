@@ -93,7 +93,7 @@ const Signup: FunctionComponent<{}> = () => {
               addUser(data)
               if(data.user?.id)
               navigate(appRoutes.root)
-              localStorage.setItem('user', JSON.stringify(data))
+              sessionStorage.setItem('user', JSON.stringify(data))
             } else {
               toast({
                 title: "An error occured.",

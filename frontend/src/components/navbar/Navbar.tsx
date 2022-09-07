@@ -20,9 +20,9 @@ const Navbar: FunctionComponent<{}> = () => {
   let navigate = useNavigate();
 
   useEffect(() => {
-    const data = localStorage.getItem("user");
+    const data = sessionStorage.getItem("user");
     if (data) {
-      const user: UserDataType = JSON.parse(localStorage.getItem("user") || "");
+      const user: UserDataType = JSON.parse(sessionStorage.getItem("user") || "");
       if (user) {
         addUser(user);
       }
@@ -33,7 +33,7 @@ const Navbar: FunctionComponent<{}> = () => {
     if (!error) {
       removeUser();
       navigate(appRoutes.root);
-      localStorage.removeItem("user");
+      sessionStorage.removeItem("user");
     } else {
       console.log(error);
     }
