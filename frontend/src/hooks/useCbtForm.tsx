@@ -2,6 +2,7 @@ import create from "zustand"
 
 
 export interface CbtFormType {
+  id?:string;
   created_at?: string;
   user_id: string | undefined;
   feelBefore: string;
