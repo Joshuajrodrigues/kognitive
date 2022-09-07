@@ -82,6 +82,7 @@ const Signup: FunctionComponent<{}> = () => {
               },
             });
             if (!error) {
+              navigate(appRoutes.root)
               toast({
                 title: "Account created.",
                 description: "We've created your account for you.",
@@ -89,10 +90,9 @@ const Signup: FunctionComponent<{}> = () => {
                 duration: 5000,
                 isClosable: true,
               });
-              console.log({data});
-              ///addUser(data)
-              if(data.user?.id)
-              navigate(appRoutes.root)
+             
+              addUser({id:data.user?.id});
+        
               //sessionStorage.setItem('user', JSON.stringify(data))
             } else {
               toast({

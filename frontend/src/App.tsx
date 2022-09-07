@@ -12,6 +12,8 @@ import Welcome from "./pages/userPages/Welcome";
 
 function App() {
   const user = useUser((state) => state.user);
+
+  
   return (
     <div>
       <Navbar />

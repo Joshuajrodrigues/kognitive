@@ -75,6 +75,7 @@ const Home: FunctionComponent<{}> = () => {
               });
 
               if (!error) {
+                navigate(appRoutes.root);
                 toast({
                   title: "Login Successfull.",
                   status: "success",
@@ -82,8 +83,7 @@ const Home: FunctionComponent<{}> = () => {
                   isClosable: true,
                 });
                 //console.log(data);
-                //addUser(data);
-                if (data.user?.id) navigate(appRoutes.root);
+                addUser({id:data.user?.id});
                 //sessionStorage.setItem("user", JSON.stringify(data));
               } else {
                 toast({
