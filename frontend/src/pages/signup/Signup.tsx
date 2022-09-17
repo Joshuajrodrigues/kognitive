@@ -92,7 +92,7 @@ const Signup: FunctionComponent<{}> = () => {
                 isClosable: true,
               });
              
-              addUser({id:data.user?.id});
+              addUser({id:data.user?.id, user_metadata:data.user?.user_metadata});
               setIsLoading(false)
               //sessionStorage.setItem('user', JSON.stringify(data))
             } else {

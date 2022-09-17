@@ -27,8 +27,10 @@ const Welcome: FunctionComponent<{}> = () => {
   const [dateTime, setDateTime] = useState(new Date());
   const navigate = useNavigate()
   useEffect(() => {
+    console.log(user);
+    
     setInterval(() => setDateTime(new Date()), 30000);
-  }, []);
+  }, [user]);
   return (
     <>
       <Center p={4}>
@@ -65,7 +67,7 @@ const Welcome: FunctionComponent<{}> = () => {
             fontSize={"lg"}
             m={4}
           >
-            Welcome {user.user_metadata?.name || "Anon"}, how are you
+            Welcome {user.user_metadata?.name}, how are you
             feeling ?
           </Text>
           <SimpleGrid columns={2}>

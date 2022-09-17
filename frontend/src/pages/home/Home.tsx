@@ -87,7 +87,7 @@ const Home: FunctionComponent<{}> = () => {
                   isClosable: true,
                 });
                 setIsLoading(false)
-                addUser({id:data.user?.id});
+                addUser({id:data.user?.id, user_metadata:data.user?.user_metadata});
                 //sessionStorage.setItem("user", JSON.stringify(data));
               } else {
                 toast({
