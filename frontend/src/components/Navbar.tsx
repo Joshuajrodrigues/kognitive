@@ -25,13 +25,6 @@ const Navbar: FunctionComponent<{}> = () => {
     user.then((response) => {
       addUser({ id: response.data.user?.id, user_metadata: response.data.user?.user_metadata })
     })
-    // const data = sessionStorage.getItem("user");
-    // if (data) {
-    //   const user: UserDataType = JSON.parse(sessionStorage.getItem("user") || "");
-    //   if (user) {
-    //     addUser(user);
-    //   }
-    // }
   }, []);
   const handleLogOut = async () => {
     setIsLoading(true)

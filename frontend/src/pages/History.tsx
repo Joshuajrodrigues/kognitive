@@ -1,8 +1,8 @@
 import { IconButton, Table, TableContainer, Tbody, Td, Th, Thead, Tr, useToast } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
-import { supabase } from '../../helper/supabaseClient'
-import { CbtFormType } from '../../hooks/useCbtForm'
-import useUser from '../../hooks/useUser'
+import { supabase } from '../helper/supabaseClient'
+import { CbtFormType } from '../hooks/useCbtForm'
+import useUser from '../hooks/useUser'
 import * as dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import { DeleteIcon } from '@chakra-ui/icons'
@@ -23,31 +23,31 @@ const History = () => {
                 setData(response.data)
             })
     }
-    const handleDelete=async(id?:string)=>{
+    const handleDelete = async (id?: string) => {
         try {
-            
+
             await supabase
-            .from('cbtForm')
-            .delete()
-            .eq('id',id)
-            .then(async()=>{
-            
-                   await fetchUserData()
+                .from('cbtForm')
+                .delete()
+                .eq('id', id)
+                .then(async () => {
+
+                    await fetchUserData()
                     toast({
                         title: "Entry deleted.",
                         status: "success",
                         duration: 5000,
                         isClosable: true,
-                      });
-                
-            })
+                    });
+
+                })
         } catch (error) {
             toast({
                 title: "An error occured.",
                 status: "error",
                 duration: 5000,
                 isClosable: true,
-              });
+            });
         }
     }
     useEffect(() => {
@@ -70,7 +70,7 @@ const History = () => {
                                 <Tr>
                                     <Td>{dataItem.feelBefore}</Td>
                                     <Td>{dayjs.utc(dataItem.created_at).local().format("MMM D, YYYY h:mm A")}</Td>
-                                    <Td><IconButton onClick={()=>handleDelete(dataItem.id)} colorScheme={"red"} icon={<DeleteIcon />} aria-label={'Delete entry'} /> </Td>
+                                    <Td><IconButton onClick={() => handleDelete(dataItem.id)} colorScheme={"red"} icon={<DeleteIcon />} aria-label={'Delete entry'} /> </Td>
                                 </Tr>
                             ))
                         }

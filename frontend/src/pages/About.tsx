@@ -1,10 +1,10 @@
 import { Box, Button, SimpleGrid, Text, Textarea } from "@chakra-ui/react";
 import { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
-import BackButton from "../../components/BackButton";
-import Navbar from "../../components/Navbar";
-import LottieCreator from "../../components/LottieCreator";
-import lottieSrc from "../../lotties/hero-about.json";
+import BackButton from "../components/BackButton";
+import Navbar from "../components/Navbar";
+import LottieCreator from "../components/LottieCreator";
+import lottieSrc from "../lotties/hero-about.json";
 const About: FunctionComponent<{}> = () => {
   return (
     <SimpleGrid
@@ -53,7 +53,7 @@ const About: FunctionComponent<{}> = () => {
         </a>
         <br />
       </Box>
-        <BackButton />
+      <BackButton />
     </SimpleGrid>
   );
 };

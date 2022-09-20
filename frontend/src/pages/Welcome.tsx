@@ -18,17 +18,17 @@ import {
 } from "@chakra-ui/react";
 import { FunctionComponent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { appRoutes } from "../../AppConstants";
-import LottieCreator from "../../components/LottieCreator";
-import useUser from "../../hooks/useUser";
-import hellocat from "../../lotties/hellocat.json";
+import { appRoutes } from "../AppConstants";
+import LottieCreator from "../components/LottieCreator";
+import useUser from "../hooks/useUser";
+import hellocat from "../lotties/hellocat.json";
 const Welcome: FunctionComponent<{}> = () => {
   const user = useUser((state) => state.user);
   const [dateTime, setDateTime] = useState(new Date());
   const navigate = useNavigate()
   useEffect(() => {
     console.log(user);
-    
+
     setInterval(() => setDateTime(new Date()), 30000);
   }, [user]);
   return (
@@ -83,7 +83,7 @@ const Welcome: FunctionComponent<{}> = () => {
                 w={"150px"}
                 colorScheme="purple"
                 aria-label="Make a cbt entry"
-                onClick={()=>navigate(appRoutes.cbtForm)}
+                onClick={() => navigate(appRoutes.cbtForm)}
               >
                 <AddIcon w={3} mr={1} />
                 New cbt entry
@@ -94,7 +94,7 @@ const Welcome: FunctionComponent<{}> = () => {
                 w={"150px"}
                 colorScheme="purple"
                 aria-label="Make a cbt entry"
-                onClick={()=>navigate(appRoutes.historicalSubmites)}
+                onClick={() => navigate(appRoutes.historicalSubmites)}
               >
                 <RepeatClockIcon w={3} mr={1} />
                 Previous entries

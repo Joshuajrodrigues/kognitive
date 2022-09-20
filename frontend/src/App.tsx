@@ -3,11 +3,11 @@ import { appRoutes } from "./AppConstants";
 import Navbar from "./components/Navbar";
 import CBTForm from "./forms/CBTForm";
 import useUser from "./hooks/useUser";
-import About from "./pages/about/About";
-import Home from "./pages/home/Home";
-import Signup from "./pages/signup/Signup";
-import History from "./pages/userPages/History";
-import Welcome from "./pages/userPages/Welcome";
+import About from "./pages/About";
+import Home from "./pages/Home";
+import Signup from "./pages/Signup";
+import History from "./pages/History";
+import Welcome from "./pages/Welcome";
 
 
 function App() {

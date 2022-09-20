@@ -11,18 +11,18 @@ import {
 } from "@chakra-ui/react";
 import { Field, Form, Formik, FieldProps } from "formik";
 import { FunctionComponent, useState } from "react";
-import BackButton from "../../components/BackButton";
-import LottieCreator from "../../components/LottieCreator";
-import { supabase } from "../../helper/supabaseClient";
-import lottieSrc from "../../lotties/hero-signup.json";
+import BackButton from "../components/BackButton";
+import LottieCreator from "../components/LottieCreator";
+import { supabase } from "../helper/supabaseClient";
+import lottieSrc from "../lotties/hero-signup.json";
 import * as Yup from "yup";
-import useUser from "../../hooks/useUser";
+import useUser from "../hooks/useUser";
 import { useNavigate } from "react-router-dom";
-import { appRoutes } from "../../AppConstants";
+import { appRoutes } from "../AppConstants";
 const Signup: FunctionComponent<{}> = () => {
   const toast = useToast();
-  const addUser = useUser((state)=>state.addUser)
-  const [isLoading,setIsLoading] = useState(false)
+  const addUser = useUser((state) => state.addUser)
+  const [isLoading, setIsLoading] = useState(false)
   let navigate = useNavigate();
   const SignupSchema = Yup.object().shape({
     name: Yup.string().required("Do tell us what to call you."),
@@ -91,8 +91,8 @@ const Signup: FunctionComponent<{}> = () => {
                 duration: 5000,
                 isClosable: true,
               });
-             
-              addUser({id:data.user?.id, user_metadata:data.user?.user_metadata});
+
+              addUser({ id: data.user?.id, user_metadata: data.user?.user_metadata });
               setIsLoading(false)
               //sessionStorage.setItem('user', JSON.stringify(data))
             } else {
@@ -116,7 +116,7 @@ const Signup: FunctionComponent<{}> = () => {
                   isInvalid={form.errors.name && form.touched.name}
                 >
                   <FormLabel color={"purple.500"} aria-required>Name</FormLabel>
-                  <Input color={"purple.800"}  bgColor={"white"}   borderColor={"purple.500"} {...field} name="name" type={"text"} />
+                  <Input color={"purple.800"} bgColor={"white"} borderColor={"purple.500"} {...field} name="name" type={"text"} />
                   <FormErrorMessage>{form.errors.name}</FormErrorMessage>
                 </FormControl>
               )}
@@ -129,7 +129,7 @@ const Signup: FunctionComponent<{}> = () => {
                   isInvalid={form.errors.email && form.touched.email}
                 >
                   <FormLabel color={"purple.500"} aria-required>Email</FormLabel>
-                  <Input color={"purple.800"}  bgColor={"white"}   borderColor={"purple.500"} {...field} name="email" type={"email"} />
+                  <Input color={"purple.800"} bgColor={"white"} borderColor={"purple.500"} {...field} name="email" type={"email"} />
                   <FormErrorMessage>{form.errors.email}</FormErrorMessage>
                 </FormControl>
               )}
@@ -143,7 +143,7 @@ const Signup: FunctionComponent<{}> = () => {
                   isInvalid={form.errors.password && form.touched.password}
                 >
                   <FormLabel color={"purple.500"} aria-required>Password</FormLabel>
-                  <Input color={"purple.800"}  bgColor={"white"}   borderColor={"purple.500"} {...field} name="password" type={"password"} />
+                  <Input color={"purple.800"} bgColor={"white"} borderColor={"purple.500"} {...field} name="password" type={"password"} />
                   <FormErrorMessage>{form.errors.password}</FormErrorMessage>
                 </FormControl>
               )}
@@ -156,7 +156,7 @@ const Signup: FunctionComponent<{}> = () => {
                   isInvalid={form.errors.confirm && form.touched.confirm}
                 >
                   <FormLabel color={"purple.500"} aria-required>Confirm Password</FormLabel>
-                  <Input color={"purple.800"} bgColor={"white"}  borderColor={"purple.500"} {...field} name="confirm" type={"password"} />
+                  <Input color={"purple.800"} bgColor={"white"} borderColor={"purple.500"} {...field} name="confirm" type={"password"} />
                   <FormErrorMessage>{form.errors.confirm}</FormErrorMessage>
                 </FormControl>
               )}

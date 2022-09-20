@@ -15,15 +15,15 @@ import { Field, Form, Formik } from "formik";
 import { FunctionComponent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import { appRoutes } from "../../AppConstants";
-import LottieCreator from "../../components/LottieCreator";
-import { supabase } from "../../helper/supabaseClient";
-import useUser from "../../hooks/useUser";
-import lottieSrc from "../../lotties/hero-signin.json";
+import { appRoutes } from "../AppConstants";
+import LottieCreator from "../components/LottieCreator";
+import { supabase } from "../helper/supabaseClient";
+import useUser from "../hooks/useUser";
+import lottieSrc from "../lotties/hero-signin.json";
 import styles from './home.module.css'
 const Home: FunctionComponent<{}> = () => {
   const toast = useToast();
-  const [isLoading,setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   const addUser = useUser((state) => state.addUser);
   let navigate = useNavigate();
   const SignupSchema = Yup.object().shape({
@@ -78,7 +78,7 @@ const Home: FunctionComponent<{}> = () => {
               });
 
               if (!error) {
-              
+
                 navigate(appRoutes.root);
                 toast({
                   title: "Login Successfull.",
@@ -87,7 +87,7 @@ const Home: FunctionComponent<{}> = () => {
                   isClosable: true,
                 });
                 setIsLoading(false)
-                addUser({id:data.user?.id, user_metadata:data.user?.user_metadata});
+                addUser({ id: data.user?.id, user_metadata: data.user?.user_metadata });
                 //sessionStorage.setItem("user", JSON.stringify(data));
               } else {
                 toast({
@@ -110,7 +110,7 @@ const Home: FunctionComponent<{}> = () => {
                     isInvalid={form.errors.email && form.touched.email}
                   >
                     <FormLabel color={"purple.500"} aria-required>Email</FormLabel>
-                    <Input  bgColor={"white"}  color={"purple.800"}   borderColor={"purple.500"} {...field} name="email" type={"email"} />
+                    <Input bgColor={"white"} color={"purple.800"} borderColor={"purple.500"} {...field} name="email" type={"email"} />
                     <FormErrorMessage>{form.errors.email}</FormErrorMessage>
                   </FormControl>
                 )}
@@ -122,8 +122,8 @@ const Home: FunctionComponent<{}> = () => {
                     isRequired
                     isInvalid={form.errors.password && form.touched.password}
                   >
-                    <FormLabel  color={"purple.500"} aria-required>Password</FormLabel>
-                    <Input  bgColor={"white"}  color={"purple.800"}  borderColor={"purple.500"} {...field} name="password" type={"password"} />
+                    <FormLabel color={"purple.500"} aria-required>Password</FormLabel>
+                    <Input bgColor={"white"} color={"purple.800"} borderColor={"purple.500"} {...field} name="password" type={"password"} />
                     <FormErrorMessage>{form.errors.password}</FormErrorMessage>
                   </FormControl>
                 )}
