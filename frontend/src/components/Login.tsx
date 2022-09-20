@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import BackButton from "../backButton/BackButton";
+import BackButton from "./BackButton";
 
 
 const Login: FunctionComponent<{}> = () => {

@@ -1,9 +1,9 @@
 import { Box, Button, SimpleGrid, Text, Textarea } from "@chakra-ui/react";
 import { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
-import BackButton from "../../components/backButton/BackButton";
-import Navbar from "../../components/navbar/Navbar";
-import LottieCreator from "../../components/sideBanner/LottieCreator";
+import BackButton from "../../components/BackButton";
+import Navbar from "../../components/Navbar";
+import LottieCreator from "../../components/LottieCreator";
 import lottieSrc from "../../lotties/hero-about.json";
 const About: FunctionComponent<{}> = () => {
   return (

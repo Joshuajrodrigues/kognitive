@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { appRoutes } from "./AppConstants";
-import Navbar from "./components/navbar/Navbar";
+import Navbar from "./components/Navbar";
 import CBTForm from "./forms/CBTForm";
 import useUser from "./hooks/useUser";
 import About from "./pages/about/About";

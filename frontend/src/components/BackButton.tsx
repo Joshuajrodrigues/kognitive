@@ -1,7 +1,7 @@
 import { Button } from "@chakra-ui/react";
 import { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
-import { appRoutes } from "../../AppConstants";
+import { appRoutes } from "../AppConstants";
 
 const BackButton: FunctionComponent<{}> = () => {
   return (

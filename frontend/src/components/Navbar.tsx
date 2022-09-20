@@ -9,13 +9,13 @@ import {
 } from "@chakra-ui/react";
 import { FunctionComponent, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { appRoutes } from "../../AppConstants";
-import { supabase } from "../../helper/supabaseClient";
-import useUser, { UserDataType } from "../../hooks/useUser";
+import { appRoutes } from "../AppConstants";
+import { supabase } from "../helper/supabaseClient";
+import useUser, { UserDataType } from "../hooks/useUser";
 
 const Navbar: FunctionComponent<{}> = () => {
   const user = useUser((state) => state.user);
-  const [isLoading,setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   const addUser = useUser((state) => state.addUser);
   const removeUser = useUser((state) => state.removeUser);
   let navigate = useNavigate();
@@ -47,7 +47,7 @@ const Navbar: FunctionComponent<{}> = () => {
     }
   };
   return (
-    <Flex  minWidth="max-content" alignItems="center" gap="2">
+    <Flex minWidth="max-content" alignItems="center" gap="2">
       <Box p="2">
         <Heading color={"#805ad5"} size="xl">
           Kognitive

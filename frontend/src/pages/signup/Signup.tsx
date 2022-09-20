@@ -11,8 +11,8 @@ import {
 } from "@chakra-ui/react";
 import { Field, Form, Formik, FieldProps } from "formik";
 import { FunctionComponent, useState } from "react";
-import BackButton from "../../components/backButton/BackButton";
-import LottieCreator from "../../components/sideBanner/LottieCreator";
+import BackButton from "../../components/BackButton";
+import LottieCreator from "../../components/LottieCreator";
 import { supabase } from "../../helper/supabaseClient";
 import lottieSrc from "../../lotties/hero-signup.json";
 import * as Yup from "yup";

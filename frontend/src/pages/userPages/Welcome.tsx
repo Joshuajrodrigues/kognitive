@@ -19,7 +19,7 @@ import {
 import { FunctionComponent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { appRoutes } from "../../AppConstants";
-import LottieCreator from "../../components/sideBanner/LottieCreator";
+import LottieCreator from "../../components/LottieCreator";
 import useUser from "../../hooks/useUser";
 import hellocat from "../../lotties/hellocat.json";
 const Welcome: FunctionComponent<{}> = () => {

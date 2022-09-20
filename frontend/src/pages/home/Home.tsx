@@ -16,7 +16,7 @@ import { FunctionComponent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { appRoutes } from "../../AppConstants";
-import LottieCreator from "../../components/sideBanner/LottieCreator";
+import LottieCreator from "../../components/LottieCreator";
 import { supabase } from "../../helper/supabaseClient";
 import useUser from "../../hooks/useUser";
 import lottieSrc from "../../lotties/hero-signin.json";

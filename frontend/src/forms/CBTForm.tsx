@@ -21,7 +21,7 @@ import {
 import React, { useEffect, useState } from "react";
 import CustomCheckbox from "../components/CustomCheckbox";
 import RadioCard from "../components/RadioCard";
-import LottieCreator from "../components/sideBanner/LottieCreator";
+import LottieCreator from "../components/LottieCreator";
 import useCbtForm from "../hooks/useCbtForm";
 import gratitude from "../lotties/gradtitudeHero.json";
 import analyze from "../lotties/analyzeHero.json";
