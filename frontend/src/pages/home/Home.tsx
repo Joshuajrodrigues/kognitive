@@ -20,7 +20,7 @@ import LottieCreator from "../../components/sideBanner/LottieCreator";
 import { supabase } from "../../helper/supabaseClient";
 import useUser from "../../hooks/useUser";
 import lottieSrc from "../../lotties/hero-signin.json";
-
+import styles from './home.module.css'
 const Home: FunctionComponent<{}> = () => {
   const toast = useToast();
   const [isLoading,setIsLoading] = useState(false)
