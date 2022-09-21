@@ -1,10 +1,149 @@
 @import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap");
 
+:root {
+    --primary-color: #805ad5;
+    --primary-color-hover: #815ad520;
+    --error-color: #d55a5a;
+}
 *,
 body,
 html {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+/* buttons */
+.outline-button {
+    all: unset;
+    cursor: pointer;
+    font-family: "Quicksand";
+    border: 2px solid var(--primary-color);
+    border-radius: 8px;
+    color: var(--primary-color);
+}
+
+.outline-button:hover {
+    cursor: pointer;
+    background-color: var(--primary-color-hover);
+}
+
+.link-button {
+    all: unset;
+    cursor: pointer;
+    font-family: "Quicksand";
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.normal-button {
+    all: unset;
+    cursor: pointer;
+    font-family: "Quicksand";
+    border: 2px solid var(--primary-color);
+    border-radius: 4px;
+    background-color: var(--primary-color);
+    color: #fff;
+    width: fit-content;
+    padding: 4px;
+}
+
+/* label */
+label {
+    color: var(--primary-color);
+}
+
+/* inputs */
+
+.normal-input {
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+    height: 42px;
+    display: block;
+    width: 100%;
+    padding: 8px;
+}
+
+.error-input {
+    border: 1px solid var(--error-color);
+    border-radius: 8px;
+    height: 42px;
+    display: block;
+    width: 100%;
+    padding: 8px;
+}
+
+/* navbar */
+.navbar {
+    margin: 8px;
+    min-width: max-content;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.app-heading {
+    color: #805ad5;
+    font-size: 32px;
+    font-family: 'Pacifico';
+}
+
+.navbar .outline-button {
+    padding: 8px;
+}
+
+/* home */
+
+.home-grid-container {
+    text-align: center;
+    margin-top: 10%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.lottie-container {
+    height: 100%;
+    width: 100%
+}
+
+.login-container {
+    border: 2px solid var(--primary-color);
+    border-radius: 12px;
+    margin: auto;
+    padding: 12px;
+    width: 80%;
+}
+
+.intro-text {
+    font-weight: bolder;
+    color: var(--primary-color);
+}
+
+.intro-text-light {
+    font-weight: normal;
+    color: var(--primary-color);
+}
+
+
+.login-container .link-button {
+    margin-top: 12px;
+}
+
+.login-container .normal-button {
+    margin-top: 12px;
+}
+
+.error-message {
+    display: block;
+    color: var(--error-color);
+}
+
+.login-form {
+    text-align: left;
+}
+
+@media screen and (max-width: 720px) {
+    .home-grid-container {
+        grid-template-columns: 1fr;
+    }
 }
