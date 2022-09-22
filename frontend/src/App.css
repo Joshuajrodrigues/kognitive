@@ -12,6 +12,7 @@ html {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: 'Quicksand';
 }
 /* buttons */
 .outline-button {
@@ -63,7 +64,9 @@ label {
     width: 100%;
     padding: 8px;
 }
-
+.normal-input:focus {
+    border: 1px solid var(--primary-color);
+}
 .error-input {
     border: 1px solid var(--error-color);
     border-radius: 8px;
@@ -71,6 +74,9 @@ label {
     display: block;
     width: 100%;
     padding: 8px;
+}
+.error-input:focus {
+    border: 1px solid var(--error-color);
 }
 
 /* navbar */
@@ -130,7 +136,10 @@ label {
 }
 
 .login-container .normal-button {
-    margin-top: 12px;
+    margin: 12px auto;
+        text-align: center;
+        display: block;
+        width: 50%;
 }
 
 .error-message {

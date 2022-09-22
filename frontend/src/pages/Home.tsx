@@ -112,7 +112,10 @@ const Home: FunctionComponent<{}> = () => {
                     {errors.password && touched.password && errors.password}
                   </p>
                   <button className="normal-button" type="submit">
-                    Login
+                    {
+                      isLoading ? <i className="fa fa-circle-o-notch fa-spin"></i> : "Login"
+                    }
+
                   </button>
                 </form>
               )
