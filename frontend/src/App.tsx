@@ -1,14 +1,14 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { appRoutes } from "./AppConstants";
 import Navbar from "./components/Navbar";
-import CBTForm from "./forms/CBTForm";
 import useUser from "./hooks/useUser";
-import About from "./pages/About";
 import Home from "./pages/Home";
 import Signup from "./pages/Signup";
-import History from "./pages/History";
-import Welcome from "./pages/Welcome";
-
+import { lazy } from "react";
+const Welcome = lazy(() => import("./pages/Welcome"));
+const History = lazy(() => import("./pages/History"));
+const CBTForm = lazy(() => import("./forms/CBTForm"));
+const About = lazy(() => import("./pages/About"));
 
 function App() {
   const user = useUser((state) => state.user);
