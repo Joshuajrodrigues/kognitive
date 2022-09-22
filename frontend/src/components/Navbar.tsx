@@ -40,28 +40,15 @@ const Navbar: FunctionComponent<{}> = () => {
     }
   };
   return (
-    // <Flex minWidth="max-content" alignItems="center" gap="2">
-    //   <Box p="2">
-    //     <Heading color={"#805ad5"} size="xl">
-    //       Kognitive
-    //     </Heading>
-    //   </Box>
-    //   <Spacer />
-    //   <ButtonGroup p="2" gap="2">
-    //     {user.id && (
-    //       <Button isLoading={isLoading} variant={"outline"} onClick={handleLogOut} colorScheme={"purple"}>
-    //         Log Out
-    //       </Button>
-    //     )}
-    //   </ButtonGroup>
-    // </Flex>
     <div className="navbar">
       <h1 className="app-heading">
         Kognitive
       </h1>
       {user.id && (
         <button className="outline-button" onClick={handleLogOut}>
-          Log Out
+          {
+            isLoading ? <i className="fa fa-circle-o-notch fa-spin"></i> : "Log Out"
+          }
         </button>
       )}
     </div>

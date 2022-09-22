@@ -1,17 +1,8 @@
 import {
-  Box,
-  Button,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  Input,
-  SimpleGrid,
-  Spinner,
-  Text,
-  useToast,
+  useToast
 } from "@chakra-ui/react";
 //@ts-ignore
-import { Field, Form, Formik } from "formik";
+import { Formik } from "formik";
 import { FunctionComponent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
@@ -20,7 +11,6 @@ import LottieCreator from "../components/LottieCreator";
 import { supabase } from "../helper/supabaseClient";
 import useUser from "../hooks/useUser";
 import lottieSrc from "../lotties/hero-signin.json";
-import styles from './home.module.css'
 const Home: FunctionComponent<{}> = () => {
   const toast = useToast();
   const [isLoading, setIsLoading] = useState(false)

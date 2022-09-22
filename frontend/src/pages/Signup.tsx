@@ -38,31 +38,20 @@ const Signup: FunctionComponent<{}> = () => {
       .required("Need to validate your password."),
   });
   return (
-    <SimpleGrid
-      marginTop={{ md: "10%" }}
-      spacing="8"
-      textAlign="center"
-      columns={{ base: 1, sm: 1, md: 2 }}
+    <div className="home-grid-container"
     >
-      <Box width={"100%"} height={"100%"}>
+      <div className="lottie-container">
         <LottieCreator
           style={{ height: "300px", width: "300px" }}
           loop={false}
           src={lottieSrc}
         />
-      </Box>
-      <Box
-        borderWidth="1px"
-        borderRadius="md"
-        bgColor={"purple.50"}
-        borderColor={"purple.500"}
-        margin={{ base: "auto", sm: "auto" }}
-        padding={{ base: "4", sm: "4" }}
-        width={{ base: "80%", sm: "80%", md: "80%" }}
+      </div>
+      <div className="login-container"
       >
-        <Text fontWeight={"semibold"} color={"purple.500"}>
+        <p className="intro-text">
           Welcome to <span>Kognitive</span> , <br /> your cbt journal.🤍
-        </Text>
+        </p>
         <Formik
           validationSchema={SignupSchema}
           initialValues={{
@@ -106,72 +95,56 @@ const Signup: FunctionComponent<{}> = () => {
               setIsLoading(false)
             }
           }}
-        >
-          <Form>
-            <Field name="name">
-              {/* @ts-ignore */}
-              {({ field, form }) => (
-                <FormControl
-                  isRequired
-                  isInvalid={form.errors.name && form.touched.name}
-                >
-                  <FormLabel color={"purple.500"} aria-required>Name</FormLabel>
-                  <Input color={"purple.800"} bgColor={"white"} borderColor={"purple.500"} {...field} name="name" type={"text"} />
-                  <FormErrorMessage>{form.errors.name}</FormErrorMessage>
-                </FormControl>
-              )}
-            </Field>
-            <Field name="email">
-              {/* @ts-ignore */}
-              {({ field, form }) => (
-                <FormControl
-                  isRequired
-                  isInvalid={form.errors.email && form.touched.email}
-                >
-                  <FormLabel color={"purple.500"} aria-required>Email</FormLabel>
-                  <Input color={"purple.800"} bgColor={"white"} borderColor={"purple.500"} {...field} name="email" type={"email"} />
-                  <FormErrorMessage>{form.errors.email}</FormErrorMessage>
-                </FormControl>
-              )}
-            </Field>
+        >{
+            ({
+              values,
+              errors,
+              touched,
+              handleChange,
+              handleBlur,
+              handleSubmit, isSubmitting
+            }) => (
+              <form className="login-form" onSubmit={handleSubmit}>
+                <label htmlFor="name">Name</label>
+                <input title="name" aria-label="name" placeholder="Name" className={"normal-input"} value={values.name} onChange={handleChange} onBlur={handleBlur} required type={"text"} name="name" />
+                <p className="error-message">
+                  {errors.name && touched.name && errors.name}
+                </p>
 
-            <Field name="password">
-              {/* @ts-ignore */}
-              {({ field, form }) => (
-                <FormControl
-                  isRequired
-                  isInvalid={form.errors.password && form.touched.password}
-                >
-                  <FormLabel color={"purple.500"} aria-required>Password</FormLabel>
-                  <Input color={"purple.800"} bgColor={"white"} borderColor={"purple.500"} {...field} name="password" type={"password"} />
-                  <FormErrorMessage>{form.errors.password}</FormErrorMessage>
-                </FormControl>
-              )}
-            </Field>
-            <Field name="confirm">
-              {/* @ts-ignore */}
-              {({ field, form }) => (
-                <FormControl
-                  isRequired
-                  isInvalid={form.errors.confirm && form.touched.confirm}
-                >
-                  <FormLabel color={"purple.500"} aria-required>Confirm Password</FormLabel>
-                  <Input color={"purple.800"} bgColor={"white"} borderColor={"purple.500"} {...field} name="confirm" type={"password"} />
-                  <FormErrorMessage>{form.errors.confirm}</FormErrorMessage>
-                </FormControl>
-              )}
-            </Field>
+                <label htmlFor="email">Email</label>
+                <input title="email" aria-label="Email" placeholder="Email" className={"normal-input"} value={values.email} onChange={handleChange} onBlur={handleBlur} required type={"email"} name="email" />
+                <p className="error-message">
+                  {errors.email && touched.email && errors.email}
+                </p>
 
-            <Button isLoading={isLoading} mt={4} colorScheme={"purple"} type="submit">
-              Sign Up
-            </Button>
-          </Form>
+
+                <label htmlFor="password">Password</label>
+                <input title="password" placeholder="Password" className={"normal-input"} value={values.password} onChange={handleChange} onBlur={handleBlur} required type={"password"} name="password" />
+                <p className="error-message">
+                  {errors.password && touched.password && errors.password}
+                </p>
+
+
+                <label htmlFor="confirm">Confirm Password</label>
+                <input title="Confirm Password" placeholder="Confirm Password" className={"normal-input"} value={values.confirm} onChange={handleChange} onBlur={handleBlur} required type={"password"} name="confirm" />
+                <p className="error-message">
+                  {errors.confirm && touched.confirm && errors.confirm}
+                </p>
+                <button className="normal-button" type="submit">
+                  {
+                    isLoading ? <i className="fa fa-circle-o-notch fa-spin"></i> : "Sign Up"
+                  }
+
+                </button>
+              </form>
+            )
+          }
         </Formik>
         <div className="div login-extra-text">
           <BackButton />
         </div>
-      </Box>
-    </SimpleGrid>
+      </div>
+    </div>
   );
 };
 
