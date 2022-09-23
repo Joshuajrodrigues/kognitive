@@ -56,6 +56,8 @@ html {
 .outline-button {
     all: unset;
     cursor: pointer;
+    width: fit-content;
+        padding: 8px;
     font-family: "Quicksand";
     border: 2px solid var(--primary-color);
     border-radius: 8px;

@@ -28,12 +28,13 @@ import analyze from "../lotties/analyzeHero.json";
 import { appRoutes, feelNows, negative, options, positive, thoughtDistortions } from "../AppConstants";
 import { supabase } from "../helper/supabaseClient";
 import useUser from "../hooks/useUser";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useToast } from "../hooks/useToast";
+import BackButton from "../components/BackButton";
 const CBTForm = () => {
   const formType = useCbtForm((state) => state.cbtForm.formType);
   const { toast } = useToast();
-  const [isLoading,setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
   const cbtForm = useCbtForm((state) => state.cbtForm)
   const resetCbtForm = useCbtForm((state) => state.resetCbtForm)
@@ -59,7 +60,7 @@ const CBTForm = () => {
           setstep(1)
           toast.success("Entry created")
           navigate(appRoutes.root)
-         setIsLoading(false)
+          setIsLoading(false)
         })
 
     } catch (error) {
@@ -74,7 +75,8 @@ const CBTForm = () => {
 
   }
   return (
-    <div>
+    <div >
+
       <Box
         bgColor={"purple.50"}
         borderColor={"purple.500"}
@@ -85,6 +87,7 @@ const CBTForm = () => {
         className="form"
         overflow={"scroll"}
       >
+
         {step === 1 ? (
           <Step1 />
         ) : step === 2 ? (
@@ -106,9 +109,13 @@ const CBTForm = () => {
         ) : (
           <Done />
         )}
+
       </Box>
 
       <Flex justifyContent={"space-around"} className="navigation">
+        <Link className="outline-button" onClick={resetCbtForm} to={appRoutes.root}>
+          Back
+        </Link>
         <IconButton
           disabled={step === 1}
           onClick={prevStep}

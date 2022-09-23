@@ -7,6 +7,9 @@ import * as dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import { DeleteIcon } from '@chakra-ui/icons'
 import { useToast } from '../hooks/useToast'
+import BackButton from '../components/BackButton'
+import { appRoutes } from '../AppConstants'
+import { Link } from 'react-router-dom'
 dayjs.extend(utc);
 const History = () => {
     const user = useUser((state) => state.user)
@@ -47,7 +50,11 @@ const History = () => {
         fetchUserData()
     }, [])
     return (
-        <>
+        <div style={{ "marginTop": "32px" }}>
+
+            <Link style={{ "margin": "12px" }} className="outline-button" to={appRoutes.root}>
+                Back
+            </Link>
             <TableContainer>
                 <Table variant={"striped"} colorScheme={"purple"}>
                     <Thead>
@@ -70,7 +77,9 @@ const History = () => {
                     </Tbody>
                 </Table>
             </TableContainer>
-        </>
+
+
+        </div>
     )
 }
 

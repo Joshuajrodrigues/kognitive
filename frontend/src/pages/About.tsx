@@ -7,29 +7,19 @@ import LottieCreator from "../components/LottieCreator";
 import lottieSrc from "../lotties/hero-about.json";
 const About: FunctionComponent<{}> = () => {
   return (
-    <SimpleGrid
-      marginTop={{ md: "10%" }}
-      spacing="8"
-      textAlign="center"
-      columns={{ base: 1, sm: 1, md: 2 }}
+    <div className="home-grid-container"
     >
-      <Box width={"100%"} height={"100%"}>
+      <div className="lottie-container">
         <LottieCreator
           style={{ height: "300px", width: "400px" }}
           loop={true}
           src={lottieSrc}
         />
-      </Box>
-      <Box
-        borderWidth="1px"
-        borderRadius="md"
-        bgColor={"purple.50"}
-        borderColor={"purple.500"}
-        margin={{ base: "auto", sm: "auto" }}
-        padding={{ base: "4", sm: "4" }}
-        width={{ base: "80%", sm: "80%", md: "80%" }}
+      </div>
+
+      <div className="login-container"
       >
-        <Text color={"purple.500"}>
+        <p className="intro-text">
           Cognitive behavioral therapy (CBT) is a psycho-social intervention
           that aims to reduce symptoms of various mental health conditions,
           primarily depression and anxiety disorders. CBT focuses on challenging
@@ -42,19 +32,22 @@ const About: FunctionComponent<{}> = () => {
           disorders, marital problems, and eating disorders. CBT includes a
           number of cognitive or behavioral psychotherapies that treat defined
           psychopathologies using evidence-based techniques and strategies
-        </Text>
-        <a
-          target={"_blank"}
-          href={"https://en.wikipedia.org/wiki/Cognitive_behavioral_therapy"}
-        >
-          <Button variant={"link"} mt={4} colorScheme={"purple"} type="submit">
-            Read More
-          </Button>
-        </a>
+
+          <a
+            className="link-button"
+            target={"_blank"}
+            href={"https://en.wikipedia.org/wiki/Cognitive_behavioral_therapy"}
+          >
+
+            {" "} <u>Read More
+            </u>
+
+          </a>
+        </p>
         <br />
-      </Box>
-      <BackButton />
-    </SimpleGrid>
+        <BackButton />
+      </div>
+    </div>
   );
 };
 

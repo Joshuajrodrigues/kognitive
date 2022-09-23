@@ -3,12 +3,10 @@ import { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
 import { appRoutes } from "../AppConstants";
 
-const BackButton: FunctionComponent<{}> = () => {
+const BackButton: FunctionComponent<{ to?: string }> = ({ to }) => {
   return (
-    <Link to={appRoutes.root}>
-      <Button mt={4} variant={"ghost"} colorScheme={"purple"} type="submit">
-        Back
-      </Button>
+    <Link className="link-button" to={to || appRoutes.root}>
+      Back
     </Link>
   );
 };
