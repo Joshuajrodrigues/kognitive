@@ -8,7 +8,7 @@ const Toast = () => {
 
             setTimeout(() => {
                 closeToast()
-            }, 1500)
+            }, 1700)
         }
     }, [isToastOpen])
     return (
