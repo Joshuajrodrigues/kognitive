@@ -24,7 +24,6 @@ html {
     border: 1px solid var(--success-color);
     color: var(--success-color);
     font-weight: bold;
-    top: 0;
     right: 0;
     display: flex;
     align-items: center;
