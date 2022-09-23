@@ -7,6 +7,7 @@ import Signup from "./pages/Signup";
 import CBTForm from "./forms/CBTForm"
 import Welcome from "./pages/Welcome"
 import { lazy, Suspense } from "react";
+import Toast from "./components/Toast";
 const History = lazy(() => import("./pages/History"));
 const About = lazy(() => import("./pages/About"));
 
@@ -17,7 +18,7 @@ function App() {
   return (
     <div>
       <Navbar />
-
+      <Toast />
       <Routes>
         <Route path={appRoutes.login} element={!user.id ? <Home /> : <Navigate to={appRoutes.root} />} />
         <Route path={appRoutes.signup} element={!user.id ? <Signup /> : <Navigate to={appRoutes.root} />} />

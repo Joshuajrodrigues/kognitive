@@ -5,7 +5,9 @@
     --primary-color: #805ad5;
     --primary-color-hover: #815ad520;
     --error-color: #d55a5a;
+    --success-color: rgb(24, 193, 136);
 }
+
 *,
 body,
 html {
@@ -14,6 +16,44 @@ html {
     padding: 0;
     font-family: 'Quicksand';
 }
+
+/* toast */
+.toast-container-success {
+    position: fixed;
+    background-color: rgb(237, 255, 249);
+    border: 1px solid var(--success-color);
+    color: var(--success-color);
+    font-weight: bold;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 32px;
+    width: fit-content;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 15px;
+}
+
+.toast-container-error {
+    position: fixed;
+    background-color: rgb(252, 172, 172);
+    border: 1px solid var(--error-color);
+    color: var(--error-color);
+    font-weight: bold;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 32px;
+    width: fit-content;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 15px;
+}
+
 /* buttons */
 .outline-button {
     all: unset;
@@ -47,6 +87,13 @@ html {
     color: #fff;
     width: fit-content;
     padding: 4px;
+
+}
+
+.toast-button {
+    padding: 2px;
+    margin-left: 5px;
+    font-weight: bold;
 }
 
 /* label */
@@ -64,9 +111,11 @@ label {
     width: 100%;
     padding: 8px;
 }
+
 .normal-input:focus {
     border: 1px solid var(--primary-color);
 }
+
 .error-input {
     border: 1px solid var(--error-color);
     border-radius: 8px;
@@ -75,6 +124,7 @@ label {
     width: 100%;
     padding: 8px;
 }
+
 .error-input:focus {
     border: 1px solid var(--error-color);
 }
@@ -137,9 +187,9 @@ label {
 
 .login-container .normal-button {
     margin: 12px auto;
-        text-align: center;
-        display: block;
-        width: 50%;
+    text-align: center;
+    display: block;
+    width: 50%;
 }
 
 .error-message {

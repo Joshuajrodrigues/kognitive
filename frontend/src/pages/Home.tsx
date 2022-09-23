@@ -1,6 +1,4 @@
-import {
-  useToast
-} from "@chakra-ui/react";
+
 //@ts-ignore
 import { Formik } from "formik";
 import { FunctionComponent, useState } from "react";
@@ -9,10 +7,12 @@ import * as Yup from "yup";
 import { appRoutes } from "../AppConstants";
 import LottieCreator from "../components/LottieCreator";
 import { supabase } from "../helper/supabaseClient";
+import { useToast } from "../hooks/useToast";
 import useUser from "../hooks/useUser";
 import lottieSrc from "../lotties/hero-signin.json";
 const Home: FunctionComponent<{}> = () => {
-  const toast = useToast();
+
+  const { toast } = useToast()
   const [isLoading, setIsLoading] = useState(false)
   const addUser = useUser((state) => state.addUser);
   let navigate = useNavigate();
@@ -59,23 +59,25 @@ const Home: FunctionComponent<{}> = () => {
               if (!error) {
 
                 navigate(appRoutes.root);
-                toast({
-                  title: "Login Successfull.",
-                  status: "success",
-                  duration: 5000,
-                  isClosable: true,
-                });
+                toast.success("Login Successfull")
+                // toast({
+                //   title: "Login Successfull.",
+                //   status: "success",
+                //   duration: 5000,
+                //   isClosable: true,
+                // });
                 setIsLoading(false)
                 addUser({ id: data.user?.id, user_metadata: data.user?.user_metadata });
                 //sessionStorage.setItem("user", JSON.stringify(data));
               } else {
-                toast({
-                  title: "An error occured.",
-                  description: error.message,
-                  status: "error",
-                  duration: 5000,
-                  isClosable: true,
-                });
+                toast.error(error.message)
+                // toast({
+                //   title: "An error occured.",
+                //   description: error.message,
+                //   status: "error",
+                //   duration: 5000,
+                //   isClosable: true,
+                // });
                 setIsLoading(false)
               }
             }}
