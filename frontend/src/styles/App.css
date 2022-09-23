@@ -24,7 +24,7 @@ html {
     border: 1px solid var(--success-color);
     color: var(--success-color);
     font-weight: bold;
-    right: 0;
+    bottom: 0;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -41,8 +41,7 @@ html {
     border: 1px solid var(--error-color);
     color: var(--error-color);
     font-weight: bold;
-    top: 0;
-    right: 0;
+    bottom: 0;
     display: flex;
     align-items: center;
     justify-content: space-around;

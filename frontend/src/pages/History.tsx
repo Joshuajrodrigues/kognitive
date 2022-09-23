@@ -1,4 +1,4 @@
-import { IconButton, Table, TableContainer, Tbody, Td, Th, Thead, Tr, useToast } from '@chakra-ui/react'
+import { IconButton, Table, TableContainer, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { supabase } from '../helper/supabaseClient'
 import { CbtFormType } from '../hooks/useCbtForm'
@@ -6,11 +6,12 @@ import useUser from '../hooks/useUser'
 import * as dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import { DeleteIcon } from '@chakra-ui/icons'
+import { useToast } from '../hooks/useToast'
 dayjs.extend(utc);
 const History = () => {
     const user = useUser((state) => state.user)
     const [data, setData] = useState<CbtFormType[]>([])
-    const toast = useToast()
+    const { toast } = useToast()
     const fetchUserData = async () => {
         await supabase
             .from('cbtForm')
@@ -33,21 +34,13 @@ const History = () => {
                 .then(async () => {
 
                     await fetchUserData()
-                    toast({
-                        title: "Entry deleted.",
-                        status: "success",
-                        duration: 5000,
-                        isClosable: true,
-                    });
+                    toast.success("Entry deleted.")
+
 
                 })
         } catch (error) {
-            toast({
-                title: "An error occured.",
-                status: "error",
-                duration: 5000,
-                isClosable: true,
-            });
+            toast.error("An error occured.")
+
         }
     }
     useEffect(() => {

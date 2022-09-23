@@ -7,7 +7,7 @@ import {
   Input,
   SimpleGrid,
   Text,
-  useToast,
+
 } from "@chakra-ui/react";
 import { Field, Form, Formik, FieldProps } from "formik";
 import { FunctionComponent, useState } from "react";
@@ -19,8 +19,9 @@ import * as Yup from "yup";
 import useUser from "../hooks/useUser";
 import { useNavigate } from "react-router-dom";
 import { appRoutes } from "../AppConstants";
+import { useToast } from "../hooks/useToast";
 const Signup: FunctionComponent<{}> = () => {
-  const toast = useToast();
+  const { toast } = useToast();
   const addUser = useUser((state) => state.addUser)
   const [isLoading, setIsLoading] = useState(false)
   let navigate = useNavigate();
@@ -73,25 +74,15 @@ const Signup: FunctionComponent<{}> = () => {
             });
             if (!error) {
               navigate(appRoutes.root)
-              toast({
-                title: "Account created.",
-                description: "We've created your account for you.",
-                status: "success",
-                duration: 5000,
-                isClosable: true,
-              });
+              toast.success("Account created.")
+
 
               addUser({ id: data.user?.id, user_metadata: data.user?.user_metadata });
               setIsLoading(false)
               //sessionStorage.setItem('user', JSON.stringify(data))
             } else {
-              toast({
-                title: "An error occured.",
-                description: error.message,
-                status: "error",
-                duration: 5000,
-                isClosable: true,
-              });
+              toast.error(error.message)
+
               setIsLoading(false)
             }
           }}

@@ -11,6 +11,7 @@ import { FunctionComponent, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { appRoutes } from "../AppConstants";
 import { supabase } from "../helper/supabaseClient";
+import { useToast } from "../hooks/useToast";
 import useUser, { UserDataType } from "../hooks/useUser";
 
 const Navbar: FunctionComponent<{}> = () => {
@@ -19,7 +20,7 @@ const Navbar: FunctionComponent<{}> = () => {
   const addUser = useUser((state) => state.addUser);
   const removeUser = useUser((state) => state.removeUser);
   let navigate = useNavigate();
-
+  const { toast } = useToast()
   useEffect(() => {
     const user = supabase.auth.getUser()
     user.then((response) => {
@@ -33,9 +34,11 @@ const Navbar: FunctionComponent<{}> = () => {
       removeUser();
       navigate(appRoutes.root);
       setIsLoading(false)
+      toast.success("Logout Successfull")
       //sessionStorage.removeItem("user");
     } else {
       console.log(error);
+      toast.error(error.message)
       setIsLoading(false)
     }
   };

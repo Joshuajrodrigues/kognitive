@@ -16,7 +16,7 @@ import {
   Textarea,
   useCheckboxGroup,
   useRadioGroup,
-  useToast,
+
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import CustomCheckbox from "../components/CustomCheckbox";
@@ -29,9 +29,10 @@ import { appRoutes, feelNows, negative, options, positive, thoughtDistortions } 
 import { supabase } from "../helper/supabaseClient";
 import useUser from "../hooks/useUser";
 import { useNavigate } from "react-router-dom";
+import { useToast } from "../hooks/useToast";
 const CBTForm = () => {
   const formType = useCbtForm((state) => state.cbtForm.formType);
-  const toast = useToast();
+  const { toast } = useToast();
   const [isLoading,setIsLoading] = useState(false)
   const navigate = useNavigate()
   const cbtForm = useCbtForm((state) => state.cbtForm)
@@ -56,24 +57,15 @@ const CBTForm = () => {
         .then((data) => {
           resetCbtForm()
           setstep(1)
-          toast({
-            title: "Entry created.",
-            status: "success",
-            duration: 5000,
-            isClosable: true,
-          });
+          toast.success("Entry created")
           navigate(appRoutes.root)
          setIsLoading(false)
         })
 
     } catch (error) {
       console.log(error);
-      toast({
-        title: "Hmm something went wrong.",
-        status: "error",
-        duration: 5000,
-        isClosable: true,
-      });
+      toast.error("Hmm something went wrong.")
+
       setIsLoading(false)
     }
 
