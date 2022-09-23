@@ -1,25 +1,16 @@
-import {
-  Box,
-  Button,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  Input,
-  SimpleGrid,
-  Text,
-
-} from "@chakra-ui/react";
-import { Field, Form, Formik, FieldProps } from "formik";
+import { Formik } from "formik";
+import { motion } from "framer-motion";
 import { FunctionComponent, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import * as Yup from "yup";
+import { appRoutes } from "../AppConstants";
 import BackButton from "../components/BackButton";
 import LottieCreator from "../components/LottieCreator";
 import { supabase } from "../helper/supabaseClient";
-import lottieSrc from "../lotties/hero-signup.json";
-import * as Yup from "yup";
-import useUser from "../hooks/useUser";
-import { useNavigate } from "react-router-dom";
-import { appRoutes } from "../AppConstants";
 import { useToast } from "../hooks/useToast";
+import useUser from "../hooks/useUser";
+import lottieSrc from "../lotties/hero-signup.json";
+
 const Signup: FunctionComponent<{}> = () => {
   const { toast } = useToast();
   const addUser = useUser((state) => state.addUser)
@@ -39,7 +30,7 @@ const Signup: FunctionComponent<{}> = () => {
       .required("Need to validate your password."),
   });
   return (
-    <div className="home-grid-container"
+    <div style={{ "marginTop": "48px" }} className="home-grid-container"
     >
       <div className="lottie-container">
         <LottieCreator
@@ -48,7 +39,12 @@ const Signup: FunctionComponent<{}> = () => {
           src={lottieSrc}
         />
       </div>
-      <div className="login-container"
+      <motion.div
+        style={{ "marginTop": "24px" }}
+        className="login-container"
+        initial={{ "opacity": 0, "scale": 0.5 }}
+        transition={{ ease: "easeIn", duration: 0.6 }}
+        animate={{ "opacity": 1, "scale": 1 }}
       >
         <p className="intro-text">
           Welcome to <span>Kognitive</span> , <br /> your cbt journal.🤍
@@ -134,7 +130,7 @@ const Signup: FunctionComponent<{}> = () => {
         <div className="div login-extra-text">
           <BackButton />
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

@@ -1,6 +1,7 @@
 
 //@ts-ignore
 import { Formik } from "formik";
+import { motion } from "framer-motion";
 import { FunctionComponent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
@@ -10,6 +11,7 @@ import { supabase } from "../helper/supabaseClient";
 import { useToast } from "../hooks/useToast";
 import useUser from "../hooks/useUser";
 import lottieSrc from "../lotties/hero-signin.json";
+
 const Home: FunctionComponent<{}> = () => {
 
   const { toast } = useToast()
@@ -38,7 +40,11 @@ const Home: FunctionComponent<{}> = () => {
           />
         </div>
 
-        <div className="login-container"
+        <motion.div
+          className="login-container"
+          initial={{ "opacity": 0, "scale": 0.5 }}
+          transition={{ ease: "easeIn", duration: 0.6 }}
+          animate={{ "opacity": 1, "scale": 1 }}
         >
           <p className="intro-text">
             Welcome to <span>Kognitive</span>, <br /> your cbt journal.
@@ -128,7 +134,7 @@ const Home: FunctionComponent<{}> = () => {
             About
 
           </Link>
-        </div>
+        </motion.div>
       </div>
     </>
   );
