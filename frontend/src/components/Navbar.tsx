@@ -43,7 +43,7 @@ const Navbar: FunctionComponent<{}> = () => {
     }
   };
   return (
-    <div className="navbar">
+    <div tabIndex={0} className="navbar">
       <h1 className="app-heading">
         Kognitive
       </h1>

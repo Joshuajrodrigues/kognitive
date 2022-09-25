@@ -16,6 +16,7 @@ const Toast = () => {
             {
                 isToastOpen && (
                     <motion.div
+                        
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }} className={toastType === "success" ? 'toast-container-success' : 'toast-container-error'}>

@@ -33,11 +33,12 @@ const Signup: FunctionComponent<{}> = () => {
     <div style={{ "marginTop": "48px" }} className="home-grid-container"
     >
       <div className="lottie-container">
-        <LottieCreator
+      <img src="./signup.svg" alt="" className="hero-image" />
+        {/* <LottieCreator
           style={{ height: "300px", width: "300px" }}
           loop={false}
           src={lottieSrc}
-        />
+        /> */}
       </div>
       <motion.div
         style={{ "marginTop": "24px" }}
@@ -93,27 +94,27 @@ const Signup: FunctionComponent<{}> = () => {
             }) => (
               <form className="login-form" onSubmit={handleSubmit}>
                 <label htmlFor="name">Name</label>
-                <input title="name" aria-label="name" placeholder="Name" className={"normal-input"} value={values.name} onChange={handleChange} onBlur={handleBlur} required type={"text"} name="name" />
+                <input id="name" title="name" aria-label="name" placeholder="Name" className={"normal-input"} value={values.name} onChange={handleChange} onBlur={handleBlur} required type={"text"} name="name" />
                 <p className="error-message">
                   {errors.name && touched.name && errors.name}
                 </p>
 
                 <label htmlFor="email">Email</label>
-                <input title="email" aria-label="Email" placeholder="Email" className={"normal-input"} value={values.email} onChange={handleChange} onBlur={handleBlur} required type={"email"} name="email" />
+                <input id="email" title="email" aria-label="Email" placeholder="Email" className={"normal-input"} value={values.email} onChange={handleChange} onBlur={handleBlur} required type={"email"} name="email" />
                 <p className="error-message">
                   {errors.email && touched.email && errors.email}
                 </p>
 
 
                 <label htmlFor="password">Password</label>
-                <input title="password" placeholder="Password" className={"normal-input"} value={values.password} onChange={handleChange} onBlur={handleBlur} required type={"password"} name="password" />
+                <input id="password" title="password" placeholder="Password" className={"normal-input"} value={values.password} onChange={handleChange} onBlur={handleBlur} required type={"password"} name="password" />
                 <p className="error-message">
                   {errors.password && touched.password && errors.password}
                 </p>
 
 
                 <label htmlFor="confirm">Confirm Password</label>
-                <input title="Confirm Password" placeholder="Confirm Password" className={"normal-input"} value={values.confirm} onChange={handleChange} onBlur={handleBlur} required type={"password"} name="confirm" />
+                <input id="confirm" title="Confirm Password" placeholder="Confirm Password" className={"normal-input"} value={values.confirm} onChange={handleChange} onBlur={handleBlur} required type={"password"} name="confirm" />
                 <p className="error-message">
                   {errors.confirm && touched.confirm && errors.confirm}
                 </p>

@@ -16,8 +16,8 @@ function App() {
 
 
   return (
-    <div>
-      <Navbar />
+    <div tabIndex={0}>
+      <Navbar  />
       <Toast />
       <Routes>
         <Route path={appRoutes.login} element={!user.id ? <Home /> : <Navigate to={appRoutes.root} />} />
