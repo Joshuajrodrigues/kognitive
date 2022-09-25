@@ -25,7 +25,7 @@ import hellocat from "../lotties/hellocat.json";
 const Welcome: FunctionComponent<{}> = () => {
   const user = useUser((state) => state.user);
   const [dateTime, setDateTime] = useState(new Date());
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   useEffect(() => {
     console.log(user);
 
@@ -67,39 +67,38 @@ const Welcome: FunctionComponent<{}> = () => {
             fontSize={"lg"}
             m={4}
           >
-            Welcome {user.user_metadata?.name}, how are you
-            feeling ?
+            Welcome {user.user_metadata?.name}, how are you feeling ?
           </Text>
           <SimpleGrid columns={2}>
-            <LottieCreator
-              style={{ width: "200px", height: "200px" }}
-              loop
-              src={hellocat}
-            />
-            <SimpleGrid gridTemplateRows={"1fr 1fr"}>
+            <div className="lottie-container">
+              <img src="./checkin.svg" alt="" className="hero-image" />
+            </div>
+            <Flex m={2} justifyContent={"center"} direction={{"base":"column","sm":"column",md:"row",lg:"row"}}>
               <Button
+              m={2}
                 alignItems={"center"}
                 alignSelf={"center"}
-                w={"150px"}
+                w={"120px"}
                 colorScheme="purple"
                 aria-label="Make a cbt entry"
                 onClick={() => navigate(appRoutes.cbtForm)}
               >
                 <AddIcon w={3} mr={1} />
-                New cbt entry
+               Check In
               </Button>
               <Button
+                m={2}
                 alignItems={"center"}
                 alignSelf={"center"}
-                w={"150px"}
+                w={"120px"}
                 colorScheme="purple"
                 aria-label="Make a cbt entry"
                 onClick={() => navigate(appRoutes.historicalSubmites)}
               >
                 <RepeatClockIcon w={3} mr={1} />
-                Previous entries
+               History
               </Button>
-            </SimpleGrid>
+            </Flex>
           </SimpleGrid>
         </Box>
       </Center>

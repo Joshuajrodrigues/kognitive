@@ -10,11 +10,12 @@ const About: FunctionComponent<{}> = () => {
     <div className="home-grid-container"
     >
       <div className="lottie-container">
-        <LottieCreator
+      <img src="./about.svg" alt="" className="hero-image" />
+        {/* <LottieCreator
           style={{ height: "300px", width: "400px" }}
           loop={true}
           src={lottieSrc}
-        />
+        /> */}
       </div>
 
       <div className="login-container"
