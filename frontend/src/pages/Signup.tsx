@@ -34,11 +34,7 @@ const Signup: FunctionComponent<{}> = () => {
     >
       <div className="lottie-container">
       <img src="./signup.svg" alt="" className="hero-image" />
-        {/* <LottieCreator
-          style={{ height: "300px", width: "300px" }}
-          loop={false}
-          src={lottieSrc}
-        /> */}
+
       </div>
       <motion.div
         style={{ "marginTop": "24px" }}

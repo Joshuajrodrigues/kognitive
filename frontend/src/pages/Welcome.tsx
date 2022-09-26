@@ -69,7 +69,7 @@ const Welcome: FunctionComponent<{}> = () => {
           >
             Welcome {user.user_metadata?.name}, how are you feeling ?
           </Text>
-          <SimpleGrid columns={2}>
+          <SimpleGrid columns={1}>
             <div className="lottie-container">
               <img src="./checkin.svg" alt="" className="hero-image" />
             </div>
@@ -84,7 +84,7 @@ const Welcome: FunctionComponent<{}> = () => {
                 onClick={() => navigate(appRoutes.cbtForm)}
               >
                 <AddIcon w={3} mr={1} />
-               Check In
+                New entry
               </Button>
               <Button
                 m={2}
@@ -96,7 +96,7 @@ const Welcome: FunctionComponent<{}> = () => {
                 onClick={() => navigate(appRoutes.historicalSubmites)}
               >
                 <RepeatClockIcon w={3} mr={1} />
-               History
+                View histroy
               </Button>
             </Flex>
           </SimpleGrid>
