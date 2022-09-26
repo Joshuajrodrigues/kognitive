@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useParams } from "react-router-dom";
 import { appRoutes } from "./AppConstants";
 import Navbar from "./components/Navbar";
 import useUser from "./hooks/useUser";
@@ -6,18 +6,35 @@ import Home from "./pages/Home";
 import Signup from "./pages/Signup";
 import CBTForm from "./forms/CBTForm"
 import Welcome from "./pages/Welcome"
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import Toast from "./components/Toast";
 import PasswordReset from "./pages/PasswordReset";
+import { supabase } from "./helper/supabaseClient";
 const History = lazy(() => import("./pages/History"));
 const About = lazy(() => import("./pages/About"));
 
 function App() {
+  const { type } = useParams()
   const user = useUser((state) => state.user);
+  useEffect(() => {
+    supabase.auth.onAuthStateChange(async (event, session) => {
+      if (event == "PASSWORD_RECOVERY") {
+        console.log("yooooooooooo");
 
+        const newPassword = prompt("What would you like your new password to be?");
+        // const { data, error } = await supabase.auth.updateUser({
+        //   password: newPassword,
+        // })
+
+        // if (data) alert("Password updated successfully!")
+        // if (error) alert("There was an error updating your password.")
+      }
+    })
+  }, [])
 
   return (
     <div tabIndex={0}>
+
       <Navbar  />
       <Toast />
       <Routes>
