@@ -54,7 +54,7 @@ const PasswordReset = () => {
                         onSubmit={async (values) => {
                             setIsLoading(true);
                             let { data, error } = await supabase.auth.resetPasswordForEmail(values.email, {
-                                redirectTo: 'http://kognitive.netlify.app/resetpassword'
+                                redirectTo: 'https://kognitive.netlify.app/resetpassword'
                             })
                             if (!error) {
                                 toast.success("Password reset link sent to your email.")
