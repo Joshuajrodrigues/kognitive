@@ -22,6 +22,8 @@ const Navbar: FunctionComponent<{}> = () => {
   let navigate = useNavigate();
   const { toast } = useToast()
   useEffect(() => {
+    console.log("bad boy ?");
+
     const user = supabase.auth.getUser()
     user.then((response) => {
       addUser({ id: response.data.user?.id, user_metadata: response.data.user?.user_metadata })

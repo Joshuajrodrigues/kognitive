@@ -8,6 +8,7 @@ import CBTForm from "./forms/CBTForm"
 import Welcome from "./pages/Welcome"
 import { lazy, Suspense } from "react";
 import Toast from "./components/Toast";
+import PasswordReset from "./pages/PasswordReset";
 const History = lazy(() => import("./pages/History"));
 const About = lazy(() => import("./pages/About"));
 
@@ -26,6 +27,7 @@ function App() {
         <Route path={appRoutes.about} element={<Suspense fallback={<i className="fa fa-circle-o-notch fa-spin"></i>}><About /></Suspense>} />
         <Route path={appRoutes.root} element={!user.id ? <Navigate to={appRoutes.login} /> : <Welcome />} />
         <Route path={appRoutes.historicalSubmites} element={!user.id ? <Navigate to={appRoutes.login} /> : <Suspense fallback={<i className="fa fa-circle-o-notch fa-spin"></i>}><History /></Suspense>} />
+        <Route path={appRoutes.forgotPassword} element={!user.id && <PasswordReset />} />
         {/* <Route path={appRoutes.root} element={<Welcome />} /> */}
       </Routes>
     </div>

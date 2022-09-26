@@ -30,12 +30,7 @@ const Home: FunctionComponent<{}> = () => {
     <>
       <div className="home-grid-container" tabIndex={0}>
         <div className="lottie-container">
-          <img src="./hero.svg" alt="" className="hero-image" />
-          {/* <LottieCreator
-            style={{ height: "300px", width: "400px" }}
-            loop={true}
-            src={lottieSrc}
-          /> */}
+          <img src="./hero.svg" alt="picture of a girl admiring flowers after doing cbt" className="hero-image" />
         </div>
 
         <motion.div
@@ -63,12 +58,6 @@ const Home: FunctionComponent<{}> = () => {
               if (!error) {
                 navigate(appRoutes.root);
                 toast.success("Login Successfull");
-                // toast({
-                //   title: "Login Successfull.",
-                //   status: "success",
-                //   duration: 5000,
-                //   isClosable: true,
-                // });
                 setIsLoading(false);
                 addUser({
                   id: data.user?.id,
@@ -77,13 +66,6 @@ const Home: FunctionComponent<{}> = () => {
                 //sessionStorage.setItem("user", JSON.stringify(data));
               } else {
                 toast.error(error.message);
-                // toast({
-                //   title: "An error occured.",
-                //   description: error.message,
-                //   status: "error",
-                //   duration: 5000,
-                //   isClosable: true,
-                // });
                 setIsLoading(false);
               }
             }}
@@ -132,6 +114,7 @@ const Home: FunctionComponent<{}> = () => {
                 <p className="error-message">
                   {errors.password && touched.password && errors.password}
                 </p>
+                <Link className="link-button" to={appRoutes.forgotPassword} aria-label="Forgot password">Forgot password ?</Link>
                 <label>
                   <button className="normal-button" type="submit">
                     {isLoading ? (
@@ -144,6 +127,7 @@ const Home: FunctionComponent<{}> = () => {
               </form>
             )}
           </Formik>
+
 
           <p className="intro-text-light">
             New here?{" "}

@@ -4,7 +4,8 @@ export const appRoutes ={
     signup:'/signup',
     about:'/about',
     cbtForm:'/cbtform',
-    historicalSubmites:'/history'
+    historicalSubmites: '/history',
+    forgotPassword: '/resetpassword'
 }
 
 export const options = ["Terrible", "Bad", "Meh", "Ok Ok", "Good", "Terrific!"];
