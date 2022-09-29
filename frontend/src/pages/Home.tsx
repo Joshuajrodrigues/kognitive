@@ -9,7 +9,8 @@ import LottieCreator from "../components/LottieCreator";
 import { supabase } from "../helper/supabaseClient";
 import { useToast } from "../hooks/useToast";
 import useUser from "../hooks/useUser";
-import lottieSrc from "../lotties/hero-signin.json";
+import { CircleNotch } from "phosphor-react";
+import { Loader } from "../components/Loader";
 
 const Home: FunctionComponent<{}> = () => {
   const { toast } = useToast();
@@ -30,7 +31,11 @@ const Home: FunctionComponent<{}> = () => {
     <>
       <div className="home-grid-container" tabIndex={0}>
         <div className="lottie-container">
-          <img src="./hero.svg" alt="picture of a girl admiring flowers after doing cbt" className="hero-image" />
+          <img
+            src="./hero.svg"
+            alt="picture of a girl admiring flowers after doing cbt"
+            className="hero-image"
+          />
         </div>
 
         <motion.div
@@ -114,11 +119,17 @@ const Home: FunctionComponent<{}> = () => {
                 <p className="error-message">
                   {errors.password && touched.password && errors.password}
                 </p>
-                <Link className="link-button" to={appRoutes.forgotPassword} aria-label="Forgot password">Forgot password ?</Link>
+                <Link
+                  className="link-button"
+                  to={appRoutes.forgotPassword}
+                  aria-label="Forgot password"
+                >
+                  Forgot password ?
+                </Link>
                 <label>
                   <button className="normal-button" type="submit">
                     {isLoading ? (
-                      <i className="fa fa-circle-o-notch fa-spin"></i>
+                     <Loader/>
                     ) : (
                       "Login"
                     )}
@@ -127,7 +138,6 @@ const Home: FunctionComponent<{}> = () => {
               </form>
             )}
           </Formik>
-
 
           <p className="intro-text-light">
             New here?{" "}

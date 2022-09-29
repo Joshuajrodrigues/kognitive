@@ -13,6 +13,7 @@ import { appRoutes } from "../AppConstants";
 import { supabase } from "../helper/supabaseClient";
 import { useToast } from "../hooks/useToast";
 import useUser, { UserDataType } from "../hooks/useUser";
+import { Loader } from "./Loader";
 
 const Navbar: FunctionComponent<{}> = () => {
   const user = useUser((state) => state.user);
@@ -52,7 +53,7 @@ const Navbar: FunctionComponent<{}> = () => {
       {user.id && (
         <button className="outline-button" onClick={handleLogOut}>
           {
-            isLoading ? <i className="fa fa-circle-o-notch fa-spin"></i> : "Log Out"
+            isLoading ?   <Loader color="#805ad5"/> : "Log Out"
           }
         </button>
       )}

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { appRoutes } from "../AppConstants";
 import BackButton from "../components/BackButton";
+import { Loader } from "../components/Loader";
 import LottieCreator from "../components/LottieCreator";
 import { supabase } from "../helper/supabaseClient";
 import { useToast } from "../hooks/useToast";
@@ -116,7 +117,7 @@ const Signup: FunctionComponent<{}> = () => {
                 </p>
                 <button className="normal-button" type="submit">
                   {
-                    isLoading ? <i className="fa fa-circle-o-notch fa-spin"></i> : "Sign Up"
+                    isLoading ?<Loader/> : "Sign Up"
                   }
 
                 </button>

@@ -19,7 +19,7 @@ import {
 import { FunctionComponent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { appRoutes } from "../AppConstants";
-import LottieCreator from "../components/LottieCreator";
+import {CalendarBlank,Clock } from "phosphor-react";
 import useUser from "../hooks/useUser";
 import hellocat from "../lotties/hellocat.json";
 const Welcome: FunctionComponent<{}> = () => {
@@ -37,7 +37,7 @@ const Welcome: FunctionComponent<{}> = () => {
         <div className="welcome-main-box"
         >
           <Flex alignItems={"center"} pl={"4"} pr={4} pt={4}>
-            <CalendarIcon color={"purple.500"} mr={2} />
+          <CalendarBlank alt="Calender icon"  color={"#805ad5"} size={32} />
             <Text color={"purple.500"} mr={2}>
               {dateTime.toLocaleDateString("en-IN", {
                 day: "numeric",
@@ -46,7 +46,8 @@ const Welcome: FunctionComponent<{}> = () => {
               })}
             </Text>
 
-            <TimeIcon color={"purple.500"} mr={2} />
+            <Clock alt="clock icon" color={"#805ad5"}size={32} />
+            
             <Text color={"purple.500"}>
               {dateTime.toLocaleTimeString("en-IN", {
                 hour: "numeric",

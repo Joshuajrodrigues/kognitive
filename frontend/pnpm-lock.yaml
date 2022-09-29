@@ -13,6 +13,7 @@ specifiers:
   dayjs: ^1.11.5
   formik: ^2.2.9
   framer-motion: ^6.5.1
+  phosphor-react: ^1.4.1
   prop-types: ^15.8.1
   react: ^18.2.0
   react-dom: ^18.2.0
@@ -32,6 +33,7 @@ dependencies:
   dayjs: 1.11.5
   formik: 2.2.9_react@18.2.0
   framer-motion: 6.5.1_biqbaboplfbrettd7655fr4n2y
+  phosphor-react: 1.4.1_react@18.2.0
   prop-types: 15.8.1
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -2222,6 +2224,15 @@ packages:
   /path-type/4.0.0:
     resolution: {integrity: sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==}
     engines: {node: '>=8'}
+    dev: false
+
+  /phosphor-react/1.4.1_react@18.2.0:
+    resolution: {integrity: sha512-gO5j7U0xZrdglTAYDYPACU4xDOFBTJmptrrB/GeR+tHhCZF3nUMyGmV/0hnloKjuTrOmpSFlbfOY78H39rgjUQ==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: '>=16'
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /picocolors/1.0.0:
