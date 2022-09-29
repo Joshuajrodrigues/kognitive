@@ -33,13 +33,8 @@ const Welcome: FunctionComponent<{}> = () => {
   }, [user]);
   return (
     <>
-      <Center p={4}>
-        <Box
-          w={{ base: "md", md: "80%" }}
-          h={"100%"}
-          bg={"purple.50"}
-          borderWidth="1px"
-          borderRadius="md"
+      <div className="welcome-grid-container">
+        <div className="welcome-main-box"
         >
           <Flex alignItems={"center"} pl={"4"} pr={4} pt={4}>
             <CalendarIcon color={"purple.500"} mr={2} />
@@ -84,7 +79,7 @@ const Welcome: FunctionComponent<{}> = () => {
                 onClick={() => navigate(appRoutes.cbtForm)}
               >
                 <AddIcon w={3} mr={1} />
-                New entry
+               New entry
               </Button>
               <Button
                 m={2}
@@ -100,8 +95,8 @@ const Welcome: FunctionComponent<{}> = () => {
               </Button>
             </Flex>
           </SimpleGrid>
-        </Box>
-      </Center>
+        </div>
+      </div>
       <Divider />
     </>
   );

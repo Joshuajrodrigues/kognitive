@@ -221,3 +221,22 @@ label {
         grid-template-columns: 1fr;
     }
 }
+
+/* welcome screen */
+.welcome-grid-container{
+    display: grid;
+    grid-template-columns: 1fr 8fr 1fr;
+}
+.welcome-main-box{
+    grid-column: 2;
+    border: 2px solid var(--primary-color);
+    border-radius: 12px;
+    margin: auto;
+    padding: 12px;
+    width: 80%;
+}
+@media screen and (max-width: 720px) {
+    .welcome-main-box {
+        grid-column: 1/8;
+    }
+}
