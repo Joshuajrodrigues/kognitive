@@ -45,7 +45,7 @@ const Signup: FunctionComponent<{}> = () => {
         animate={{ "opacity": 1, "scale": 1 }}
       >
         <p className="intro-text">
-          Welcome to <span>Kognitive</span> , <br /> your cbt journal.🤍
+          Sign up to <span>Kognitive</span> 
         </p>
         <Formik
           validationSchema={SignupSchema}
