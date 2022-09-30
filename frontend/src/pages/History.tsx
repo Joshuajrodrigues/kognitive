@@ -50,11 +50,9 @@ const History = () => {
         fetchUserData()
     }, [])
     return (
-        <div style={{ "marginTop": "32px" }}>
+        <div className='history-page'>
+            <div className='history-table-container'>
 
-            <Link style={{ "margin": "12px" }} className="outline-button" to={appRoutes.root}>
-                Back
-            </Link>
             <TableContainer>
                 <Table variant={"striped"} colorScheme={"purple"}>
                     <Thead>
@@ -78,6 +76,10 @@ const History = () => {
                 </Table>
             </TableContainer>
 
+            </div>
+            <Link style={{ "margin": "12px" }} className="outline-button" to={appRoutes.root}>
+                Back
+            </Link>
 
         </div>
     )

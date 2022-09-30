@@ -273,3 +273,10 @@ label {
         align-items: center;
     }
 }
+/* history */
+
+.history-table-container {
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+}
