@@ -233,7 +233,7 @@ const Step3 = () => {
         value={stepValue}
         onChange={(e) => setCbtForm("elaboration", e.target.value)}
         color={"purple.600"}
-        height={"lg"}
+        height={"sm"}
       />
     </>
   );
@@ -335,7 +335,7 @@ const Step5 = () => {
             value={stepValue}
             onChange={(e) => setCbtForm("gratitudeThoughts", e.target.value)}
             color={"purple.600"}
-            height={"lg"}
+            height={"sm"}
           />
         </>
       ) : (
@@ -347,7 +347,7 @@ const Step5 = () => {
             value={stepValue}
             onChange={(e) => setCbtForm("negativeThoughts", e.target.value)}
             color={"purple.600"}
-            height={"lg"}
+            height={"sm"}
           />
         </>
       )}
@@ -395,7 +395,7 @@ const Step7 = () => {
         onChange={(e) => setCbtForm("challengeNegative", e.target.value)}
         color={"purple.600"}
         mt={4}
-        height={"lg"}
+        height={"sm"}
       />
     </>
   );
@@ -414,7 +414,7 @@ const Step8 = () => {
         onChange={(e) => setCbtForm("reinterpretNegative", e.target.value)}
         color={"purple.600"}
         mt={4}
-        height={"lg"}
+        height={"sm"}
       />
     </>
   );
