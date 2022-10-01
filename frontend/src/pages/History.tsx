@@ -29,7 +29,6 @@ const History = () => {
     await supabase
       .from("cbtForm")
       .select("*")
-      .range(0, 9)
       .eq("user_id", user.id)
       .then((response) => {
         console.log("user data", { data });
