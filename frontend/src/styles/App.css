@@ -280,3 +280,17 @@ label {
     display: flex;
     flex-direction: column;
 }
+td{
+    text-align: center;
+    padding: 10px;
+
+}
+thead{
+    border-bottom: 1px solid var(--primary-color);
+}
+tr:nth-child(even){
+    background-color: var(--primary-color-hover);
+}
+td a{
+    cursor: pointer;
+}
