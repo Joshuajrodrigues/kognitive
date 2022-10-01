@@ -147,6 +147,7 @@ label {
 /* navbar */
 .navbar {
     margin: 8px;
+    margin-bottom: 32px;
     min-width: max-content;
     align-items: center;
     display: flex;
@@ -249,11 +250,23 @@ label {
     padding-left: 10px;
     padding-top: 10px;
 }
-
+.flex-date-time .intro-text-light{
+    margin: 5px;
+}
 .welcome-main-box .intro-text {
     margin-left: 10px;
 }
+.capitalise{
+    display: inline-block !important;
+}
+.capitalise:first-letter{
 
+    text-transform: uppercase;
+}
+.intro-text.welcome-big-text{
+
+    font-size: x-large !important;
+}
 .welcome-button-container {
     display: flex;
     justify-content: center;

@@ -38,8 +38,8 @@ const Welcome: FunctionComponent<{}> = () => {
             </div>
           </div>
 
-          <div className="intro-text">
-            Welcome {user.user_metadata?.name}, how are you feeling ?
+          <div className="intro-text welcome-big-text">
+            Welcome <div className="capitalise">{user.user_metadata?.name +','}</div><br /> how are you feeling ?
           </div>
           <div>
             <div className="lottie-container">
