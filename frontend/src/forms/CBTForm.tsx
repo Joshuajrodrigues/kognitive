@@ -37,6 +37,8 @@ import useUser from "../hooks/useUser";
 import { Link, useNavigate } from "react-router-dom";
 import { useToast } from "../hooks/useToast";
 import BackButton from "../components/BackButton";
+import { SkipBack, SkipForward } from "phosphor-react";
+import { Loader } from "../components/Loader";
 const CBTForm = () => {
   const formType = useCbtForm((state) => state.cbtForm.formType);
   const { toast } = useToast();
@@ -74,7 +76,7 @@ const CBTForm = () => {
     }
   };
   return (
-    <div className="form-container" >
+    <div className="form-container">
       <div className="form-handler">
         {step === 1 ? (
           <Step1 />
@@ -107,29 +109,40 @@ const CBTForm = () => {
         >
           Back
         </Link>
-        <IconButton
-          disabled={step === 1}
+        <button
+          className="normal-button"
+          aria-label={"go to previous form step"}
           onClick={prevStep}
-          colorScheme={"purple"}
-          icon={<ArrowLeftIcon />}
-          aria-label={"go previous button"}
-        />
+          disabled={step === 1}
+        >
+          <SkipBack size={28} />
+        </button>
+
         {(formType === "Practise Gratitude" && step === 6) ||
         (formType === "Analyze Thoughts" && step === 9) ? (
-          <Button
-            isLoading={isLoading}
+          <button
+            className="normal-button"
             onClick={handleSubmit}
-            colorScheme={"purple"}
+           
           >
-            Submit
-          </Button>
+            {
+              isLoading?(
+                <Loader/>
+              ):(
+                "Submit"
+              )
+            }
+           
+          </button>
         ) : (
-          <IconButton
+          <button
             onClick={nextStep}
-            colorScheme={"purple"}
-            icon={<ArrowRightIcon />}
-            aria-label={"go next button"}
-          />
+            className={"normal-button"}
+           
+            aria-label={"go to next form step"}
+          >
+            <SkipForward size={28}/>
+          </button>
         )}
       </div>
     </div>
