@@ -309,18 +309,17 @@ td a {
 .form-handler {
   border: 2px solid var(--primary-color);
   border-radius: 12px;
-  margin: auto;
+  margin-bottom: 20%;
   padding: 12px;
   overflow: scroll;
 }
 .form-button-container{
     position: fixed;
     bottom: 0;
-    display: block;
     display: flex;
     align-items: center;
     margin-top: 25px;
-    width: 350px;
+    width:100%;
     justify-content: space-around;
     background-color: #fff;
     padding: 10px;
