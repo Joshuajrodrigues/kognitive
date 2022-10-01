@@ -16,7 +16,6 @@ import {
   Textarea,
   useCheckboxGroup,
   useRadioGroup,
-
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import CustomCheckbox from "../components/CustomCheckbox";
@@ -25,7 +24,14 @@ import LottieCreator from "../components/LottieCreator";
 import useCbtForm from "../hooks/useCbtForm";
 import gratitude from "../lotties/gradtitudeHero.json";
 import analyze from "../lotties/analyzeHero.json";
-import { appRoutes, feelNows, negative, options, positive, thoughtDistortions } from "../AppConstants";
+import {
+  appRoutes,
+  feelNows,
+  negative,
+  options,
+  positive,
+  thoughtDistortions,
+} from "../AppConstants";
 import { supabase } from "../helper/supabaseClient";
 import useUser from "../hooks/useUser";
 import { Link, useNavigate } from "react-router-dom";
@@ -34,11 +40,11 @@ import BackButton from "../components/BackButton";
 const CBTForm = () => {
   const formType = useCbtForm((state) => state.cbtForm.formType);
   const { toast } = useToast();
-  const [isLoading, setIsLoading] = useState(false)
-  const navigate = useNavigate()
-  const cbtForm = useCbtForm((state) => state.cbtForm)
-  const resetCbtForm = useCbtForm((state) => state.resetCbtForm)
-  const userId = useUser((state) => state.user.id)
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+  const cbtForm = useCbtForm((state) => state.cbtForm);
+  const resetCbtForm = useCbtForm((state) => state.resetCbtForm);
+  const userId = useUser((state) => state.user.id);
   const [step, setstep] = useState(1);
   const nextStep = () => {
     setstep(step + 1);
@@ -47,47 +53,29 @@ const CBTForm = () => {
     setstep(step - 1);
   };
   const handleSubmit = async () => {
-    setIsLoading(true)
-    cbtForm.user_id = userId
+    setIsLoading(true);
+    cbtForm.user_id = userId;
     try {
       await supabase
-        .from('cbtForm')
-        .insert([
-          cbtForm,
-        ])
+        .from("cbtForm")
+        .insert([cbtForm])
         .then((data) => {
-          resetCbtForm()
-          setstep(1)
-          toast.success("Entry created")
-          navigate(appRoutes.root)
-          setIsLoading(false)
-        })
-
+          resetCbtForm();
+          setstep(1);
+          toast.success("Entry created");
+          navigate(appRoutes.root);
+          setIsLoading(false);
+        });
     } catch (error) {
       console.log(error);
-      toast.error("Hmm something went wrong.")
+      toast.error("Hmm something went wrong.");
 
-      setIsLoading(false)
+      setIsLoading(false);
     }
-
-
-
-
-  }
+  };
   return (
-    <div >
-
-      <Box
-        bgColor={"purple.50"}
-        borderColor={"purple.500"}
-        h={"xl"}
-        p={4}
-        borderRadius={4}
-        m={8}
-        className="form"
-        overflow={"scroll"}
-      >
-
+    <div className="form-container" >
+      <div className="form-handler">
         {step === 1 ? (
           <Step1 />
         ) : step === 2 ? (
@@ -109,11 +97,14 @@ const CBTForm = () => {
         ) : (
           <Done />
         )}
+      </div>
 
-      </Box>
-
-      <Flex justifyContent={"space-around"} className="navigation">
-        <Link className="outline-button" onClick={resetCbtForm} to={appRoutes.root}>
+      <div className="form-button-container">
+        <Link
+          className="outline-button"
+          onClick={resetCbtForm}
+          to={appRoutes.root}
+        >
           Back
         </Link>
         <IconButton
@@ -123,19 +114,24 @@ const CBTForm = () => {
           icon={<ArrowLeftIcon />}
           aria-label={"go previous button"}
         />
-        {(formType === "Practise Gratitude" && step === 6 || formType === "Analyze Thoughts" && step === 9) ? (
-          <Button isLoading={isLoading} onClick={handleSubmit} colorScheme={"purple"}>Submit</Button>
-        ) :
-
-          (
-            <IconButton
-              onClick={nextStep}
-              colorScheme={"purple"}
-              icon={<ArrowRightIcon />}
-              aria-label={"go next button"}
-            />
-          )}
-      </Flex>
+        {(formType === "Practise Gratitude" && step === 6) ||
+        (formType === "Analyze Thoughts" && step === 9) ? (
+          <Button
+            isLoading={isLoading}
+            onClick={handleSubmit}
+            colorScheme={"purple"}
+          >
+            Submit
+          </Button>
+        ) : (
+          <IconButton
+            onClick={nextStep}
+            colorScheme={"purple"}
+            icon={<ArrowRightIcon />}
+            aria-label={"go next button"}
+          />
+        )}
+      </div>
     </div>
   );
 };
@@ -246,7 +242,7 @@ const Step3 = () => {
 const Step4 = () => {
   const feel = useCbtForm((state) => state.cbtForm.feelBefore);
   const stepValue = useCbtForm((state) => state.cbtForm.formType);
-  const clearFormTypes = useCbtForm((state) => state.clearFormTypes)
+  const clearFormTypes = useCbtForm((state) => state.clearFormTypes);
   const setCbtForm = useCbtForm((state) => state.setCbtForm);
   const forms = ["Analyze Thoughts", "Practise Gratitude"];
   const defaultForm: string = ["Meh", "Bad", "Terrible"].includes(feel)
@@ -256,11 +252,13 @@ const Step4 = () => {
     name: "choose form",
     value: stepValue || undefined,
     defaultValue: defaultForm,
-    onChange: (am) => { clearFormTypes(); setCbtForm("formType", am) },
+    onChange: (am) => {
+      clearFormTypes();
+      setCbtForm("formType", am);
+    },
   });
   useEffect(() => {
-    if (!stepValue)
-      setCbtForm("formType", defaultForm);
+    if (!stepValue) setCbtForm("formType", defaultForm);
   }, [defaultForm, stepValue]);
   const group = getRootProps();
   return (
@@ -320,7 +318,7 @@ const Step5 = () => {
   const stepValue = useCbtForm(
     (state) =>
       state.cbtForm[
-      form === "Practise Gratitude" ? "gratitudeThoughts" : "negativeThoughts"
+        form === "Practise Gratitude" ? "gratitudeThoughts" : "negativeThoughts"
       ]
   );
   const setCbtForm = useCbtForm((state) => state.setCbtForm);
@@ -423,7 +421,6 @@ const Step8 = () => {
 };
 
 const Done = () => {
-
   const setCbtForm = useCbtForm((state) => state.setCbtForm);
   const stepValue = useCbtForm((state) => state.cbtForm.feelAfter);
   const { getRootProps, getRadioProps } = useRadioGroup({
@@ -433,9 +430,8 @@ const Done = () => {
     onChange: (am) => setCbtForm("feelAfter", am),
   });
   useEffect(() => {
-    if (!stepValue)
-      setCbtForm("feelAfter", feelNows[0])
-  }, [stepValue])
+    if (!stepValue) setCbtForm("feelAfter", feelNows[0]);
+  }, [stepValue]);
   const group = getRootProps();
   return (
     <>
