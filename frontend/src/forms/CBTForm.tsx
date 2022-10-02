@@ -1,11 +1,5 @@
-import { ArrowLeftIcon, ArrowRightIcon } from "@chakra-ui/icons";
 import {
-  Box,
-  Button,
-  Divider,
-  Flex,
-  IconButton,
-  SimpleGrid,
+  Divider, SimpleGrid,
   Stack,
   Tab,
   TabList,
@@ -15,30 +9,29 @@ import {
   Text,
   Textarea,
   useCheckboxGroup,
-  useRadioGroup,
+  useRadioGroup
 } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
-import CustomCheckbox from "../components/CustomCheckbox";
-import RadioCard from "../components/RadioCard";
-import LottieCreator from "../components/LottieCreator";
-import useCbtForm from "../hooks/useCbtForm";
-import gratitude from "../lotties/gradtitudeHero.json";
-import analyze from "../lotties/analyzeHero.json";
+import { SkipBack, SkipForward } from "phosphor-react";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import {
   appRoutes,
   feelNows,
   negative,
   options,
   positive,
-  thoughtDistortions,
+  thoughtDistortions
 } from "../AppConstants";
-import { supabase } from "../helper/supabaseClient";
-import useUser from "../hooks/useUser";
-import { Link, useNavigate } from "react-router-dom";
-import { useToast } from "../hooks/useToast";
-import BackButton from "../components/BackButton";
-import { SkipBack, SkipForward } from "phosphor-react";
+import CustomCheckbox from "../components/CustomCheckbox";
 import { Loader } from "../components/Loader";
+import LottieCreator from "../components/LottieCreator";
+import RadioCard from "../components/RadioCard";
+import { supabase } from "../helper/supabaseClient";
+import useCbtForm from "../hooks/useCbtForm";
+import { useToast } from "../hooks/useToast";
+import useUser from "../hooks/useUser";
+import analyze from "../lotties/analyzeHero.json";
+import gratitude from "../lotties/gradtitudeHero.json";
 const CBTForm = () => {
   const formType = useCbtForm((state) => state.cbtForm.formType);
   const { toast } = useToast();
