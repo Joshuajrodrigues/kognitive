@@ -3,6 +3,7 @@
 
 :root {
   --primary-color: #805ad5;
+  --focus-color: #34127c;
   --primary-color-hover: #815ad520;
   --error-color: #d55a5a;
   --success-color: rgb(24, 193, 136);
@@ -74,6 +75,9 @@ html {
   cursor: pointer;
   background-color: var(--primary-color-hover);
 }
+.outline-button:focus{
+  border: 2px solid var(--focus-color)
+}
 
 .link-button {
   all: unset;
@@ -83,7 +87,7 @@ html {
   color: var(--primary-color);
 }
 .link-button:focus {
-  border: 1px dashed var(--primary-color);
+  border: 2px dashed var(--focus-color);
 }
 .normal-button {
   all: unset;
@@ -100,7 +104,7 @@ html {
   justify-content: center !important;
 }
 .normal-button:focus {
-  border: 3px dashed var(--primary-color);
+  border: 2px solid var(--focus-color);
 }
 .toast-button {
   padding: 2px;

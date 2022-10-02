@@ -120,28 +120,16 @@ const CBTForm = () => {
 
         {(formType === "Practise Gratitude" && step === 6) ||
         (formType === "Analyze Thoughts" && step === 9) ? (
-          <button
-            className="normal-button"
-            onClick={handleSubmit}
-           
-          >
-            {
-              isLoading?(
-                <Loader/>
-              ):(
-                "Submit"
-              )
-            }
-           
+          <button className="normal-button" onClick={handleSubmit}>
+            {isLoading ? <Loader /> : "Submit"}
           </button>
         ) : (
           <button
             onClick={nextStep}
             className={"normal-button"}
-           
             aria-label={"go to next form step"}
           >
-            <SkipForward size={28}/>
+            <SkipForward size={28} />
           </button>
         )}
       </div>
@@ -176,9 +164,11 @@ const Step1 = () => {
         {options.map((value) => {
           const radio = getRadioProps({ value });
           return (
-            <RadioCard key={value} {...radio}>
-              {value}
-            </RadioCard>
+            <div aria-roledescription={"do you feel"+value}>
+              <RadioCard key={value} {...radio}>
+                {value}
+              </RadioCard>
+            </div>
           );
         })}
       </Stack>

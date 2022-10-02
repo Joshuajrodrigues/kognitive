@@ -8,6 +8,7 @@ function CustomCheckbox(props) {
   return (
     <>
       <chakra.label
+      tabIndex={0}
         display="flex"
         flexDirection="row"
         alignItems="center"
@@ -23,7 +24,7 @@ function CustomCheckbox(props) {
         cursor="pointer"
         {...htmlProps}
       >
-        <input {...getInputProps()} hidden />
+        <input aria-label={props.value} {...getInputProps()} hidden />
         <Flex
           alignItems="center"
           justifyContent="center"

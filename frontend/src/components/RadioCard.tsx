@@ -9,8 +9,8 @@ const RadioCard = (props) => {
   const checkbox = getCheckboxProps();
 
   return (
-    <Box as="label">
-      <input {...input} />
+    <Box tabIndex={0} as="label">
+      <input aria-label={props.value} name={props.value} {...input} />
       <Box
         {...checkbox}
         cursor="pointer"
