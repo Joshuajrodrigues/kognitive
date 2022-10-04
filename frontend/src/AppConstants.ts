@@ -5,7 +5,9 @@ export const appRoutes ={
     about:'/about',
     cbtForm:'/cbtform',
     historicalSubmites: '/history',
-    forgotPassword: '/resetpassword'
+    forgotPassword: '/resetpassword',
+    miniFormActionPlan: '/actionplan',
+    miniFormSMARTForm: 'smartform'
 }
 
 export const options = ["Terrible", "Bad", "Meh", "Ok Ok", "Good", "Terrific!"];

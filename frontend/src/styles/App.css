@@ -17,7 +17,10 @@ html {
   padding: 0;
   font-family: "Quicksand";
 }
-
+caption {
+  font-weight: bolder;
+  font-size: larger;
+}
 /* svgs */
 .hero-image {
   width: 300px;
@@ -182,6 +185,7 @@ label {
   justify-content: center;
 }
 
+
 .login-container {
   border: 2px solid var(--primary-color);
   border-radius: 12px;
@@ -295,6 +299,9 @@ td {
   text-align: center;
   padding: 10px;
 }
+th {
+  color: var(--primary-color);
+}
 thead {
   border-bottom: 1px solid var(--primary-color);
 }
@@ -330,4 +337,40 @@ td a {
     padding: 10px;
     left: 0;
     box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+}
+/* other forms */
+
+.other-forms-container {
+  grid-column: 2/3;
+  display: grid;
+  justify-items: center;
+  grid-auto-flow: column;
+  margin-top: 20px;
+  gap: 5;
+}
+
+.mini-form {
+  border: 2px solid var(--primary-color);
+  border-radius: 12px;
+  width: 95%;
+  padding: 10px;
+  height: 200px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.mini-form .hero-image {
+  height: 100px;
+  width: 150px;
+}
+
+@media screen and (max-width: 720px) {
+  .mini-form .hero-image {
+    height: 90px;
+    width: 100px;
+  }
 }

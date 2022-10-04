@@ -22,6 +22,7 @@ import {
   positive,
   thoughtDistortions
 } from "../AppConstants";
+import BasicFormTextArea from "../components/BasicFormTextArea";
 import CustomCheckbox from "../components/CustomCheckbox";
 import { Loader } from "../components/Loader";
 import LottieCreator from "../components/LottieCreator";
@@ -112,7 +113,7 @@ const CBTForm = () => {
         </button>
 
         {(formType === "Practise Gratitude" && step === 6) ||
-        (formType === "Analyze Thoughts" && step === 9) ? (
+          (formType === "Analyze Thoughts" && step === 9) ? (
           <button className="normal-button" onClick={handleSubmit}>
             {isLoading ? <Loader /> : "Submit"}
           </button>
@@ -157,7 +158,7 @@ const Step1 = () => {
         {options.map((value) => {
           const radio = getRadioProps({ value });
           return (
-            <div aria-roledescription={"do you feel"+value}>
+            <div aria-roledescription={"do you feel" + value}>
               <RadioCard key={value} {...radio}>
                 {value}
               </RadioCard>
@@ -222,14 +223,11 @@ const Step3 = () => {
   const stepValue = useCbtForm((state) => state.cbtForm.elaboration);
   return (
     <>
-      <Text color={"purple.500"} fontWeight={"semibold"}>
-        Would you like to elaborate ?
-      </Text>
-      <Textarea
-        value={stepValue}
+      <BasicFormTextArea
+        title="Would you like to elaborate ?"
+        placeHolder="Detail out the situation"
+        fieldValue={stepValue}
         onChange={(e) => setCbtForm("elaboration", e.target.value)}
-        color={"purple.600"}
-        height={"sm"}
       />
     </>
   );
@@ -314,7 +312,7 @@ const Step5 = () => {
   const stepValue = useCbtForm(
     (state) =>
       state.cbtForm[
-        form === "Practise Gratitude" ? "gratitudeThoughts" : "negativeThoughts"
+      form === "Practise Gratitude" ? "gratitudeThoughts" : "negativeThoughts"
       ]
   );
   const setCbtForm = useCbtForm((state) => state.setCbtForm);
@@ -323,28 +321,22 @@ const Step5 = () => {
     <>
       {form === "Practise Gratitude" ? (
         <>
-          <Text color={"purple.500"} fontWeight={"semibold"}>
-            What are you grateful for ?
-          </Text>
-          <Textarea
-            mt={8}
-            value={stepValue}
+          <BasicFormTextArea
+            title="What are you grateful for ?"
+            placeHolder="It can range from your biggest victories to your smallest like resting, having a good rest."
             onChange={(e) => setCbtForm("gratitudeThoughts", e.target.value)}
-            color={"purple.600"}
-            height={"sm"}
+            fieldValue={stepValue}
           />
         </>
       ) : (
         <>
-          <Text color={"purple.500"} fontWeight={"semibold"}>
-            What negative thoughts do you have ?
-          </Text>
-          <Textarea
-            value={stepValue}
+            <BasicFormTextArea
+              title="What negative thoughts do you have ?"
+              placeHolder="Take your time to understand your thought and jot them down"
             onChange={(e) => setCbtForm("negativeThoughts", e.target.value)}
-            color={"purple.600"}
-            height={"sm"}
+              fieldValue={stepValue}
           />
+
         </>
       )}
     </>
@@ -383,16 +375,13 @@ const Step7 = () => {
   const stepValue = useCbtForm((state) => state.cbtForm.challengeNegative);
   return (
     <>
-      <Text color={"purple.500"} fontWeight={"semibold"}>
-        How can you challenge your negative thought/s ?
-      </Text>
-      <Textarea
-        value={stepValue}
+      <BasicFormTextArea
+        title="How can you challenge these thoughts ?"
+        placeHolder="What would you say to a dear friend/loved one who is going through the exact same problem and having the same thoughts ?"
         onChange={(e) => setCbtForm("challengeNegative", e.target.value)}
-        color={"purple.600"}
-        mt={4}
-        height={"sm"}
+        fieldValue={stepValue}
       />
+
     </>
   );
 };
@@ -402,16 +391,13 @@ const Step8 = () => {
   const stepValue = useCbtForm((state) => state.cbtForm.reinterpretNegative);
   return (
     <>
-      <Text color={"purple.500"} fontWeight={"semibold"}>
-        What is another way of interpreting the situation ?
-      </Text>
-      <Textarea
-        value={stepValue}
+      <BasicFormTextArea
+        title="What is another way of interpreting the situation ?"
+        placeHolder="Is the situation a proven fact ? Has it been debunked before ? Remember the brain is often your biggest enemey and can never really predict the future."
         onChange={(e) => setCbtForm("reinterpretNegative", e.target.value)}
-        color={"purple.600"}
-        mt={4}
-        height={"sm"}
+        fieldValue={stepValue}
       />
+
     </>
   );
 };

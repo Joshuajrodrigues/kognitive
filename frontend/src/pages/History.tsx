@@ -57,6 +57,7 @@ const History = () => {
     <div className="history-page">
       <div className="history-table-container">
         <table tabIndex={0}>
+          <caption>Daily Checkins</caption>
           <thead>
             <tr>
               <th>Mood</th>
