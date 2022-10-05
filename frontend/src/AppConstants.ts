@@ -6,7 +6,7 @@ export const appRoutes ={
     cbtForm:'/cbtform',
     historicalSubmites: '/history',
     forgotPassword: '/resetpassword',
-    miniFormActionPlan: '/actionplan',
+    miniFormStressPlan: '/stressmanagement',
     miniFormSMARTForm: 'smartform'
 }
 

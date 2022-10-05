@@ -78,8 +78,8 @@ caption {
   cursor: pointer;
   background-color: var(--primary-color-hover);
 }
-.outline-button:focus{
-  border: 2px solid var(--focus-color)
+.outline-button:focus {
+  border: 2px solid var(--focus-color);
 }
 
 .link-button {
@@ -184,7 +184,6 @@ label {
   align-items: center;
   justify-content: center;
 }
-
 
 .login-container {
   border: 2px solid var(--primary-color);
@@ -312,10 +311,8 @@ td a {
   cursor: pointer;
 }
 /* CBTFORM */
-.form-container{
-    padding: 10px 30px;
-
-
+.form-container {
+  padding: 10px 30px;
 }
 .form-handler {
   border: 2px solid var(--primary-color);
@@ -324,19 +321,20 @@ td a {
   padding: 12px;
   overflow: scroll;
 }
-.form-button-container{
-    position: fixed;
-    bottom: 0;
-    z-index: 11111;
-    display: flex;
-    align-items: center;
-    margin-top: 25px;
-    width:100%;
-    justify-content:space-evenly;
-    background-color: #fff;
-    padding: 10px;
-    left: 0;
-    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+.form-button-container {
+  position: fixed;
+  bottom: 0;
+  z-index: 11111;
+  display: flex;
+  align-items: center;
+  margin-top: 25px;
+  width: 100%;
+  justify-content: space-evenly;
+  background-color: #fff;
+  padding: 10px;
+  left: 0;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px,
+    rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
 }
 /* other forms */
 
@@ -373,4 +371,44 @@ td a {
     height: 90px;
     width: 100px;
   }
+}
+
+/* Drawer */
+
+.drawer {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: #fff;
+  border: 2px solid var(--primary-color);
+  border-right: none;
+  border-radius: 12px 0px 0px 12px;
+  min-height: 100vh;
+}
+.drawer .close-btn {
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  padding: 10px;
+}
+.drawer .drawer-content {
+  margin-top: 50px;
+  padding: 10px;
+  font-weight: bold;
+  overflow: scroll;
+  max-height: 100vh;
+}
+.drawer-content span {
+  background-color: var(--primary-color);
+  color: #fff;
+  margin: 5px;
+  border-radius: 12px;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.drawer-content div {
+  margin: 5px;
+  padding: 2px;
 }

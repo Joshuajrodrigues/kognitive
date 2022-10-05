@@ -68,7 +68,9 @@ const Welcome: FunctionComponent<{}> = () => {
         </div>
         <div className="other-forms-container">
           <MiniForms goto={appRoutes.miniFormSMARTForm} formName={"SMART Goal Builder"} svg={"./goal.svg"} />
-          {/* <MiniForms goto={appRoutes.miniFormActionPlan} formName={"Make Action Plan"} svg={"./plan.svg"} /> */}
+          <MiniForms goto={appRoutes.miniFormStressPlan} formName={"Manage your stress"} svg={"./plan.svg"} />
+          {/* <MiniForms goto={appRoutes.miniFormSMARTForm} formName={"SMART Goal Builder"} svg={"./goal.svg"} />
+          <MiniForms goto={appRoutes.miniFormStressPlan} formName={"Manage your stress"} svg={"./plan.svg"} /> */}
         </div>
       </div>
     </>

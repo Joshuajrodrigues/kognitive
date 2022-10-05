@@ -5,6 +5,7 @@ import { Loader } from "./components/Loader";
 import Navbar from "./components/Navbar";
 import Toast from "./components/Toast";
 import CBTForm from "./forms/CBTForm";
+import ManageStressForm from "./forms/ManageStressForm";
 import SmartGoalForm from "./forms/SmartGoalForm";
 import useUser from "./hooks/useUser";
 import Home from "./pages/Home";
@@ -28,6 +29,7 @@ function App() {
         <Route path={appRoutes.signup} element={!user.id ? <Signup /> : <Navigate to={appRoutes.root} />} />
         <Route path={appRoutes.cbtForm} element={!user.id ? <Home /> : <CBTForm />} />
         <Route path={appRoutes.miniFormSMARTForm} element={!user.id ? <Home /> : <SmartGoalForm />} />
+        <Route path={appRoutes.miniFormStressPlan} element={!user.id ? <Home /> : <ManageStressForm />} />
         <Route path={appRoutes.about} element={<Suspense fallback={<Loader />}><About /></Suspense>} />
         <Route path={appRoutes.root} element={!user.id ? <Navigate to={appRoutes.login} /> : <Welcome />} />
         <Route path={appRoutes.historicalSubmites} element={!user.id ? <Navigate to={appRoutes.login} /> : <Suspense fallback={<Loader />}><History /></Suspense>} />
