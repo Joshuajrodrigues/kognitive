@@ -17,6 +17,9 @@ html {
   padding: 0;
   font-family: "Quicksand";
 }
+textarea {
+  resize: none !important;
+}
 caption {
   font-weight: bolder;
   font-size: larger;
@@ -319,7 +322,7 @@ td a {
   border-radius: 12px;
   margin-bottom: 20%;
   padding: 12px;
-  overflow: scroll;
+  overflow: auto;
 }
 .form-button-container {
   position: fixed;
@@ -395,7 +398,7 @@ td a {
   margin-top: 50px;
   padding: 10px;
   font-weight: bold;
-  overflow: scroll;
+  overflow: auto;
   max-height: 100vh;
 }
 .drawer-content span {

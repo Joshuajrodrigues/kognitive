@@ -36,6 +36,7 @@ const History = () => {
       .from("cbtForm")
       .select("*")
       .eq("user_id", user.id)
+      .order("created_at",{ascending:false})
       .then((response) => {
         console.log("user data", { data });
         {/* @ts-ignore */}
@@ -71,7 +72,7 @@ const History = () => {
           </div>
           <div>
            <u> Emotions:</u>  {dataToView?.emotions?.map((emotion)=>(
-              <span>
+              <span className="tags">
                 {emotion + ' '}
               </span>
             ))}
@@ -95,7 +96,7 @@ const History = () => {
             dataToView?.thoughtDistortions&&dataToView?.thoughtDistortions?.length > 0 &&
             <div>
              <u>Thought distortions: </u>   {dataToView?.thoughtDistortions?.map((distortion)=>(
-                <span>
+                <span className="tags">
                   {distortion}
                 </span>
               ))}
