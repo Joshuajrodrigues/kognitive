@@ -238,12 +238,12 @@ label {
   grid-template-columns: 1fr 8fr 1fr;
 }
 .welcome-main-box {
-  grid-column: 2;
+  grid-column: 2/3;
   border: 2px solid var(--primary-color);
   border-radius: 12px;
-  margin: auto;
+  margin: 15px;
   padding: 12px;
-  width: 80%;
+
 }
 @media screen and (max-width: 720px) {
   .welcome-main-box {
