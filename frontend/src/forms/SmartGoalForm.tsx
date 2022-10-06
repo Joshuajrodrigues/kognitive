@@ -48,7 +48,7 @@ const SmartGoalForm = () => {
     }
     return (
         <div className="form-container">
-            <div className="form-handler">
+            <div className="form-handler" aria-live="assertive">
                 {step === 1 ? (
                     <Step1 />
                 ) : step === 2 ? (
