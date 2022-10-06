@@ -70,7 +70,7 @@ const CBTForm = () => {
     }
   };
   return (
-    <div className="form-container">
+    <div id="top" className="form-container">
       <div className="form-handler" aria-live="assertive">
         {step === 1 ? (
           <Step1 />
@@ -106,7 +106,7 @@ const CBTForm = () => {
         <button
           className="normal-button"
           aria-label={"go to previous form step"}
-          onClick={prevStep}
+          onClick={()=>{prevStep(); document.body.scrollIntoView(true)}}
           disabled={step === 1}
         >
           <SkipBack size={28} />
@@ -119,7 +119,7 @@ const CBTForm = () => {
           </button>
         ) : (
           <button
-            onClick={nextStep}
+            onClick={()=>{nextStep();document.body.scrollIntoView(true)}}
             className={"normal-button"}
             aria-label={"go to next form step"}
           >
