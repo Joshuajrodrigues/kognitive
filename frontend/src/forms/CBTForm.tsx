@@ -370,7 +370,7 @@ const Step6 = () => {
         Did you experiece any of the following thought distortions ?
       </Text>
       <div>
-        <b>Negative Thought:{" "}</b>
+        <span className="intro-text-light">Negative Thought:{" "}</span>
         {negativeThoughts}
       </div>
       <SimpleGrid mt={8} gap={2} columns={1}>
@@ -398,7 +398,7 @@ const Step7 = () => {
         extra={
           <>
             <div>
-              <b>Negative Thought:{" "}</b>
+              <span className="intro-text-light">Negative Thought:{" "}</span>
               {negativeThoughts}
             </div>
             <div className="tags-container">
