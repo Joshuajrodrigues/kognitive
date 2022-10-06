@@ -221,11 +221,23 @@ const Step2 = () => {
 const Step3 = () => {
   const setCbtForm = useCbtForm((state) => state.setCbtForm);
   const stepValue = useCbtForm((state) => state.cbtForm.elaboration);
+  const emotions = useCbtForm((state) => state.cbtForm.emotions)
   return (
     <>
+
       <BasicFormTextArea
+        extra={<div className="tags-container">
+          {
+            emotions?.map((emotion) => (
+              <span className="tags">
+                {emotion + ' '}
+              </span>
+            ))
+          }
+
+        </div>}
         title="Would you like to elaborate ?"
-        placeHolder="Detail out the situation"
+        placeHolder="Detail out the situation based on your above selections."
         fieldValue={stepValue}
         onChange={(e) => setCbtForm("elaboration", e.target.value)}
       />
@@ -346,6 +358,7 @@ const Step5 = () => {
 const Step6 = () => {
   const setCbtForm = useCbtForm((state) => state.setCbtForm);
   const stepValue = useCbtForm((state) => state.cbtForm.thoughtDistortions);
+  const negativeThoughts = useCbtForm((state) => state.cbtForm.negativeThoughts)
 
   const { value, getCheckboxProps } = useCheckboxGroup({
     onChange: (val) => setCbtForm("thoughtDistortions", val),
@@ -356,6 +369,10 @@ const Step6 = () => {
       <Text color={"purple.500"} fontWeight={"semibold"}>
         Did you experiece any of the following thought distortions ?
       </Text>
+      <div>
+        <b>Negative Thought:{" "}</b>
+        {negativeThoughts}
+      </div>
       <SimpleGrid mt={8} gap={2} columns={1}>
         {thoughtDistortions.map((value) => {
           return (
@@ -373,9 +390,27 @@ const Step6 = () => {
 const Step7 = () => {
   const setCbtForm = useCbtForm((state) => state.setCbtForm);
   const stepValue = useCbtForm((state) => state.cbtForm.challengeNegative);
+  const negativeThoughts = useCbtForm((state) => state.cbtForm.negativeThoughts)
+  const distortions = useCbtForm((state) => state.cbtForm.thoughtDistortions)
   return (
     <>
       <BasicFormTextArea
+        extra={
+          <>
+            <div>
+              <b>Negative Thought:{" "}</b>
+              {negativeThoughts}
+            </div>
+            <div className="tags-container">
+
+              {distortions?.map((emotion) => (
+                <span className="tags">
+                  {emotion + ' '}
+                </span>
+              ))}
+            </div>
+          </>
+        }
         title="How can you challenge these thoughts ?"
         placeHolder="What would you say to a dear friend/loved one who is going through the exact same problem and having the same thoughts ?"
         onChange={(e) => setCbtForm("challengeNegative", e.target.value)}
@@ -389,9 +424,26 @@ const Step7 = () => {
 const Step8 = () => {
   const setCbtForm = useCbtForm((state) => state.setCbtForm);
   const stepValue = useCbtForm((state) => state.cbtForm.reinterpretNegative);
+  const negativeThoughts = useCbtForm((state) => state.cbtForm.negativeThoughts)
+  const distortions = useCbtForm((state) => state.cbtForm.thoughtDistortions)
   return (
     <>
       <BasicFormTextArea
+        extra={
+          <>
+            <div>
+              <span className="intro-text-light">Negative Thought:{" "}</span>
+              {negativeThoughts}
+            </div>
+            <div className="tags-container">
+              {distortions?.map((emotion) => (
+                <span className="tags">
+                  {emotion + ' '}
+                </span>
+              ))}
+            </div>
+          </>
+        }
         title="What is another way of interpreting the situation ?"
         placeHolder="Is the situation a proven fact ? Has it been debunked before ? Remember the brain is often your biggest enemey and can never really predict the future."
         onChange={(e) => setCbtForm("reinterpretNegative", e.target.value)}
