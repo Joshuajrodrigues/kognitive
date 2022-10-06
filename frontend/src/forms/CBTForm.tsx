@@ -335,7 +335,7 @@ const Step5 = () => {
         <>
           <BasicFormTextArea
             title="What are you grateful for ?"
-            placeHolder="It can range from your biggest victories to your smallest like resting, having a good rest."
+            placeHolder="It can range from your biggest victories like overthowing an evil monarch to your smallest like having a good rest."
             onChange={(e) => setCbtForm("gratitudeThoughts", e.target.value)}
             fieldValue={stepValue}
           />
