@@ -36,8 +36,7 @@ function App() {
         <Route path={appRoutes.forgotPassword} element={<PasswordReset />} />
       </Routes>
       <footer className="intro-text">
-      <hr />
-      &#169; Kognitive, {dayjs().get('year')}. All rights reserved.
+      &#169; Kognitive, {new Date().getFullYear()} All rights reserved.
       </footer>
     </div>
   );
