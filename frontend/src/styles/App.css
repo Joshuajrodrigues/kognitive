@@ -439,8 +439,7 @@ td a {
 }
 
 footer {
-  position: fixed;
-  left: 0;
+  position: relative;
   bottom: 0;
   width: 100%;
 

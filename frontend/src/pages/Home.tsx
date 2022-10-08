@@ -11,6 +11,7 @@ import { useToast } from "../hooks/useToast";
 import useUser from "../hooks/useUser";
 import { CircleNotch } from "phosphor-react";
 import { Loader } from "../components/Loader";
+import Footer from "../components/Footer";
 
 const Home: FunctionComponent<{}> = () => {
   const { toast } = useToast();
@@ -159,6 +160,7 @@ const Home: FunctionComponent<{}> = () => {
           </Link>
         </motion.div>
       </div>
+      <Footer/>
     </>
   );
 };

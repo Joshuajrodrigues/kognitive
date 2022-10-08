@@ -5,6 +5,7 @@ import BackButton from "../components/BackButton";
 import Navbar from "../components/Navbar";
 import LottieCreator from "../components/LottieCreator";
 import lottieSrc from "../lotties/hero-about.json";
+import Footer from "../components/Footer";
 const About: FunctionComponent<{}> = () => {
   return (
     <div className="home-grid-container"
@@ -48,6 +49,7 @@ const About: FunctionComponent<{}> = () => {
         <br />
         <BackButton />
       </div>
+      <Footer/>
     </div>
   );
 };

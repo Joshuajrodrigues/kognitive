@@ -69,9 +69,7 @@ function App() {
         />
         <Route path={appRoutes.forgotPassword} element={<PasswordReset />} />
       </Routes>
-      {/* <footer className="intro-text">
-        &#169; Kognitive, {new Date().getFullYear()} All rights reserved.
-      </footer> */}
+         
     </div>
   );
 }

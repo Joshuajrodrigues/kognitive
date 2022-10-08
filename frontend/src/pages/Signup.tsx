@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { appRoutes } from "../AppConstants";
 import BackButton from "../components/BackButton";
+import Footer from "../components/Footer";
 import { Loader } from "../components/Loader";
 import LottieCreator from "../components/LottieCreator";
 import { supabase } from "../helper/supabaseClient";
@@ -129,6 +130,7 @@ const Signup: FunctionComponent<{}> = () => {
           <BackButton />
         </div>
       </motion.div>
+      <Footer/>
     </div>
   );
 };

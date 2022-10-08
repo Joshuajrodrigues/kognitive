@@ -2,7 +2,9 @@ import React from 'react'
 
 const Footer = () => {
     return (
-        <div style={{ "margin": "1em" }} >Copyright 1999-2022 by Kognitive.</div>
+        <footer className="intro-text">
+        &#169; Kognitive, {new Date().getFullYear()} All rights reserved.
+      </footer>
     )
 }
 

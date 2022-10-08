@@ -2,6 +2,7 @@ import { CalendarBlank, Clock, ClockCounterClockwise, NotePencil } from "phospho
 import { FunctionComponent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { appRoutes } from "../AppConstants";
+import Footer from "../components/Footer";
 import MiniForms from "../components/MiniForms";
 import useUser from "../hooks/useUser";
 const Welcome: FunctionComponent<{}> = () => {
@@ -73,6 +74,7 @@ const Welcome: FunctionComponent<{}> = () => {
           <MiniForms goto={appRoutes.miniFormStressPlan} formName={"Manage your stress"} svg={"./plan.svg"} /> */}
         </div>
       </div>
+      <Footer/>
     </>
   );
 };
