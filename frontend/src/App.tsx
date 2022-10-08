@@ -14,7 +14,7 @@ import Signup from "./pages/Signup";
 import Welcome from "./pages/Welcome";
 const History = lazy(() => import("./pages/History"));
 const About = lazy(() => import("./pages/About"));
-
+import * as dayjs from "dayjs";
 function App() {
   const user = useUser((state) => state.user);
 
@@ -35,6 +35,9 @@ function App() {
         <Route path={appRoutes.historicalSubmites} element={!user.id ? <Navigate to={appRoutes.login} /> : <Suspense fallback={<Loader />}><History /></Suspense>} />
         <Route path={appRoutes.forgotPassword} element={<PasswordReset />} />
       </Routes>
+      <footer className="intro-text">
+      &#169; Kognitive, {dayjs().get('year')}. All rights reserved.
+      </footer>
     </div>
   );
 }
