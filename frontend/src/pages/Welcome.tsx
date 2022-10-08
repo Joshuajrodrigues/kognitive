@@ -58,7 +58,7 @@ const Welcome: FunctionComponent<{}> = () => {
               </button>
               <button
                 className="normal-button"
-                aria-label="Make a cbt entry"
+                aria-label="View previous entries"
                 onClick={() => navigate(appRoutes.historicalSubmites)}
               >
                 <ClockCounterClockwise size={16} style={{"marginRight":"4px"}} />
