@@ -61,7 +61,7 @@ const Welcome: FunctionComponent<{}> = () => {
                 onClick={() => navigate(appRoutes.historicalSubmites)}
               >
                 <ClockCounterClockwise size={16} style={{"marginRight":"4px"}} />
-                View histroy
+                View history
               </button>
             </div>
           </div>
