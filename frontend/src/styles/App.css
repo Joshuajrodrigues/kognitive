@@ -439,10 +439,15 @@ td a {
 }
 
 footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+
+  text-align: center;
   margin-top: 4px;
   padding: 20px;
-  text-align: center;
-  width: 100%;
+
   background-color: #fff;
   z-index: -111;
 }

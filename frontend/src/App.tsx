@@ -18,26 +18,60 @@ const About = lazy(() => import("./pages/About"));
 function App() {
   const user = useUser((state) => state.user);
 
-
   return (
     <div className="app-container" tabIndex={0}>
-
-      <Navbar  />
+      <Navbar />
       <Toast />
       <Routes>
-        <Route path={appRoutes.login} element={!user.id ? <Home /> : <Navigate to={appRoutes.root} />} />
-        <Route path={appRoutes.signup} element={!user.id ? <Signup /> : <Navigate to={appRoutes.root} />} />
-        <Route path={appRoutes.cbtForm} element={!user.id ? <Home /> : <CBTForm />} />
-        <Route path={appRoutes.miniFormSMARTForm} element={!user.id ? <Home /> : <SmartGoalForm />} />
-        <Route path={appRoutes.miniFormStressPlan} element={!user.id ? <Home /> : <ManageStressForm />} />
-        <Route path={appRoutes.about} element={<Suspense fallback={<Loader />}><About /></Suspense>} />
-        <Route path={appRoutes.root} element={!user.id ? <Navigate to={appRoutes.login} /> : <Welcome />} />
-        <Route path={appRoutes.historicalSubmites} element={!user.id ? <Navigate to={appRoutes.login} /> : <Suspense fallback={<Loader />}><History /></Suspense>} />
+        <Route
+          path={appRoutes.login}
+          element={!user.id ? <Home /> : <Navigate to={appRoutes.root} />}
+        />
+        <Route
+          path={appRoutes.signup}
+          element={!user.id ? <Signup /> : <Navigate to={appRoutes.root} />}
+        />
+        <Route
+          path={appRoutes.cbtForm}
+          element={!user.id ? <Home /> : <CBTForm />}
+        />
+        <Route
+          path={appRoutes.miniFormSMARTForm}
+          element={!user.id ? <Home /> : <SmartGoalForm />}
+        />
+        <Route
+          path={appRoutes.miniFormStressPlan}
+          element={!user.id ? <Home /> : <ManageStressForm />}
+        />
+        <Route
+          path={appRoutes.about}
+          element={
+            <Suspense fallback={<Loader />}>
+              <About />
+            </Suspense>
+          }
+        />
+        <Route
+          path={appRoutes.root}
+          element={!user.id ? <Navigate to={appRoutes.login} /> : <Welcome />}
+        />
+        <Route
+          path={appRoutes.historicalSubmites}
+          element={
+            !user.id ? (
+              <Navigate to={appRoutes.login} />
+            ) : (
+              <Suspense fallback={<Loader />}>
+                <History />
+              </Suspense>
+            )
+          }
+        />
         <Route path={appRoutes.forgotPassword} element={<PasswordReset />} />
       </Routes>
-      <footer className="intro-text">
-      &#169; Kognitive, {new Date().getFullYear()} All rights reserved.
-      </footer>
+      {/* <footer className="intro-text">
+        &#169; Kognitive, {new Date().getFullYear()} All rights reserved.
+      </footer> */}
     </div>
   );
 }
