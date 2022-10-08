@@ -12,9 +12,9 @@ import Home from "./pages/Home";
 import PasswordReset from "./pages/PasswordReset";
 import Signup from "./pages/Signup";
 import Welcome from "./pages/Welcome";
+import * as dayjs from "dayjs";
 const History = lazy(() => import("./pages/History"));
 const About = lazy(() => import("./pages/About"));
-import * as dayjs from "dayjs";
 function App() {
   const user = useUser((state) => state.user);
 
