@@ -20,7 +20,7 @@ function App() {
 
 
   return (
-    <div tabIndex={0}>
+    <div className="app-container" tabIndex={0}>
 
       <Navbar  />
       <Toast />
@@ -36,6 +36,7 @@ function App() {
         <Route path={appRoutes.forgotPassword} element={<PasswordReset />} />
       </Routes>
       <footer className="intro-text">
+      <hr />
       &#169; Kognitive, {dayjs().get('year')}. All rights reserved.
       </footer>
     </div>

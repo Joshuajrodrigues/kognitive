@@ -8,9 +8,10 @@
   --error-color: #d55a5a;
   --success-color: rgb(24, 193, 136);
 }
-body{
+body #root .app-container {
   height: 100vh;
 }
+
 *,
 body,
 html {
@@ -246,7 +247,6 @@ label {
   border-radius: 12px;
   margin: 15px;
   padding: 12px;
-
 }
 @media screen and (max-width: 720px) {
   .welcome-main-box {
@@ -437,10 +437,12 @@ td a {
   flex-wrap: wrap;
 }
 
-footer{
-
+footer {
+  margin-top: 4px;
   padding: 20px;
   text-align: center;
   width: 100%;
   background-color: #fff;
+
+  z-index: -111;
 }
