@@ -112,6 +112,7 @@ caption {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
+  font-weight: bold;
 }
 .normal-button:focus {
   border: 2px solid var(--focus-color);
@@ -438,12 +439,10 @@ td a {
 }
 
 footer {
- 
   margin-top: 4px;
   padding: 20px;
   text-align: center;
   width: 100%;
   background-color: #fff;
-
   z-index: -111;
 }

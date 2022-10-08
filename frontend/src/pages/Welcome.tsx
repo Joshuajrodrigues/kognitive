@@ -52,7 +52,7 @@ const Welcome: FunctionComponent<{}> = () => {
                 aria-label="Make a cbt entry"
                 onClick={() => navigate(appRoutes.cbtForm)}
               >
-                <NotePencil size={16} />
+                <NotePencil size={16} style={{"marginRight":"4px"}}/>
                New entry
               </button>
               <button
@@ -60,7 +60,7 @@ const Welcome: FunctionComponent<{}> = () => {
                 aria-label="Make a cbt entry"
                 onClick={() => navigate(appRoutes.historicalSubmites)}
               >
-                <ClockCounterClockwise size={16} />
+                <ClockCounterClockwise size={16} style={{"marginRight":"4px"}} />
                 View histroy
               </button>
             </div>
