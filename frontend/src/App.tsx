@@ -13,6 +13,8 @@ import PasswordReset from "./pages/PasswordReset";
 import Signup from "./pages/Signup";
 import Welcome from "./pages/Welcome";
 import * as dayjs from "dayjs";
+import WorryForm from "./forms/WorryForm";
+import ArgumentForm from "./forms/ArgumentForm";
 const History = lazy(() => import("./pages/History"));
 const About = lazy(() => import("./pages/About"));
 function App() {
@@ -44,6 +46,14 @@ function App() {
           element={!user.id ? <Home /> : <ManageStressForm />}
         />
         <Route
+          path={appRoutes.miniFormWorry}
+          element={!user.id ? <Home /> : <WorryForm />}
+        />
+        <Route
+          path={appRoutes.miniFormArgument}
+          element={!user.id ? <Home /> : <ArgumentForm />}
+        />
+        <Route
           path={appRoutes.about}
           element={
             <Suspense fallback={<Loader />}>
@@ -69,7 +79,6 @@ function App() {
         />
         <Route path={appRoutes.forgotPassword} element={<PasswordReset />} />
       </Routes>
-         
     </div>
   );
 }

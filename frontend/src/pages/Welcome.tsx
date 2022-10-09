@@ -1,4 +1,9 @@
-import { CalendarBlank, Clock, ClockCounterClockwise, NotePencil } from "phosphor-react";
+import {
+  CalendarBlank,
+  Clock,
+  ClockCounterClockwise,
+  NotePencil,
+} from "phosphor-react";
 import { FunctionComponent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { appRoutes } from "../AppConstants";
@@ -17,20 +22,22 @@ const Welcome: FunctionComponent<{}> = () => {
   return (
     <>
       <div className="welcome-grid-container">
-        <div className="welcome-main-box"
-        >
+        <div className="welcome-main-box">
           <div className="flex-date-time">
-            <CalendarBlank alt="Calender icon" color={"#805ad5"} size={24} />{"  "}
+            <CalendarBlank alt="Calender icon" color={"#805ad5"} size={24} />
+            {"  "}
             <div className="intro-text-light">
               {dateTime.toLocaleDateString("en-IN", {
                 day: "numeric",
                 month: "short",
                 year: "numeric",
               })}
-            </div>{"  "}
+            </div>
+            {"  "}
 
-            <Clock alt="clock icon" color={"#805ad5"} size={24} />{"  "}
-            
+            <Clock alt="clock icon" color={"#805ad5"} size={24} />
+            {"  "}
+
             <div className="intro-text-light">
               {dateTime.toLocaleTimeString("en-IN", {
                 hour: "numeric",
@@ -41,7 +48,9 @@ const Welcome: FunctionComponent<{}> = () => {
           </div>
 
           <div className="intro-text welcome-big-text">
-            Welcome <div className="capitalise">{user.user_metadata?.name +','}</div><br /> how are you feeling ?
+            Welcome{" "}
+            <div className="capitalise">{user.user_metadata?.name + ","}</div>
+            <br /> how are you feeling ?
           </div>
           <div>
             <div className="lottie-container">
@@ -53,28 +62,47 @@ const Welcome: FunctionComponent<{}> = () => {
                 aria-label="Make a cbt entry"
                 onClick={() => navigate(appRoutes.cbtForm)}
               >
-                <NotePencil size={16} style={{"marginRight":"4px"}}/>
-               New entry
+                <NotePencil size={16} style={{ marginRight: "4px" }} />
+                New entry
               </button>
               <button
                 className="normal-button"
                 aria-label="View previous entries"
                 onClick={() => navigate(appRoutes.historicalSubmites)}
               >
-                <ClockCounterClockwise size={16} style={{"marginRight":"4px"}} />
+                <ClockCounterClockwise
+                  size={16}
+                  style={{ marginRight: "4px" }}
+                />
                 View history
               </button>
             </div>
           </div>
         </div>
         <div className="other-forms-container">
-          <MiniForms goto={appRoutes.miniFormSMARTForm} formName={"SMART Goal Builder"} svg={"./goal.svg"} />
-          <MiniForms goto={appRoutes.miniFormStressPlan} formName={"Manage your stress"} svg={"./plan.svg"} />
-          {/* <MiniForms goto={appRoutes.miniFormSMARTForm} formName={"SMART Goal Builder"} svg={"./goal.svg"} />
-          <MiniForms goto={appRoutes.miniFormStressPlan} formName={"Manage your stress"} svg={"./plan.svg"} /> */}
+          <MiniForms
+            goto={appRoutes.miniFormSMARTForm}
+            formName={"SMART Goal Builder"}
+            svg={"./goal.svg"}
+          />
+          <MiniForms
+            goto={appRoutes.miniFormStressPlan}
+            formName={"Manage your stress"}
+            svg={"./plan.svg"}
+          />
+          <MiniForms
+            goto={appRoutes.miniFormWorry}
+            formName={"Challenge worry thoughts"}
+            svg={"./worry.svg"}
+          />
+          <MiniForms
+            goto={appRoutes.miniFormArgument}
+            formName={"Break down an argument"}
+            svg={"./discuss.svg"}
+          />
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 };
