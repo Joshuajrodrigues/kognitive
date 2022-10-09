@@ -1,0 +1,16 @@
+{
+    "short_name":"Kognitive",
+    "name":"Kognitive",
+    "icons":[
+        {
+            "src":"/logo.png",
+            "type":"image/png",
+            "sizes":"889x889"
+        }
+
+    ],
+    "start_url":".",
+    "display":"standalone",
+    "theme_color":"#000000",
+    "background_color":"#ffffff"
+}

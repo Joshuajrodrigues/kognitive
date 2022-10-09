@@ -3,12 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <meta
+    name="Kognitive"
+    content="Your cbt journal"
+  />
+    <link rel="apple-touch-icon" href="/logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="manifest" href="/manifest.json" />
     <title>Kognitive</title>
   </head>
   <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-
+    <script>
+      if('serviceWorker' in navigator){
+        window.addEventListener('load',()=>{
+          navigator.serviceWorker.register('./serviceworker.js')
+            .then((reg)=> console.log('success',reg.scope))
+            .catch((err)=>console.log("failed",err))
+        })
+      }
+    </script>
   </body>
 </html>
