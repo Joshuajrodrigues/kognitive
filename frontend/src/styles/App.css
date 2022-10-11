@@ -466,3 +466,6 @@ footer {
 .mood-stats-container th {
   padding: 10px;
 }
+.mood-stats-container table {
+  width: 100px;
+}

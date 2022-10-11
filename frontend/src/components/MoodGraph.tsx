@@ -10,7 +10,10 @@ const MoodGraph: FunctionComponent<{
     return (
         <div className='mood-stats-container'>
             <table>
-                <caption>Your stats</caption>
+                {
+                    Object.getOwnPropertyNames(datasource)?.length > 0 &&
+                    <caption>Your stats</caption>
+                }
                 <thead>
                     <tr>
                         {
