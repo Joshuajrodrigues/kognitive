@@ -456,3 +456,13 @@ footer {
   background-color: #fff;
   z-index: -111;
 }
+/* moodgraph */
+.mood-stats-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mood-stats-container th {
+  padding: 10px;
+}

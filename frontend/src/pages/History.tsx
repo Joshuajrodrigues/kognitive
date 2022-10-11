@@ -21,11 +21,16 @@ import { appRoutes } from "../AppConstants";
 import { Link } from "react-router-dom";
 import { Eye, Trash } from "phosphor-react";
 import Drawer from "../components/Drawer";
+import MoodGraph from "../components/MoodGraph";
+interface MoodTableType {
+  [key: string]: number
+}
 dayjs.extend(utc);
 const History = () => {
   const user = useUser((state) => state.user);
   const [data, setData] = useState<CbtFormType[]>([]);
   const [dataToView, setDataToView] = useState<CbtFormType>();
+  const [graphData, setGraphData] = useState<MoodTableType>({})
   const { toast } = useToast();
   const [isDrawerVisible, setIsDrawerVisible] = useState(false);
   const handleViewDrawer = (bool: boolean) => {
@@ -59,9 +64,24 @@ const History = () => {
   };
   useEffect(() => {
     fetchUserData();
+
+
   }, []);
+
+  useEffect(() => {
+    const moodTableData = data?.map((item) => item.feelBefore); // [ "a","b","a"]
+    const graphData = moodTableData.reduce<MoodTableType>((total, value) => {  //[a:2,b:1]
+      total[value] = (total[value] || 0) + 1;
+      return total;
+    }, {})
+    setGraphData(graphData)
+    console.log("moodTableData", moodTableData, graphData);
+
+
+  }, [data])
   return (
     <>
+      <MoodGraph datasource={graphData} />
       <Drawer
         onClose={() => handleViewDrawer(false)}
         showDrawer={isDrawerVisible}
