@@ -139,6 +139,15 @@ const History = () => {
       </Drawer>
       <div className="history-page">
         <div className="history-table-container">
+          <div>
+
+            {/* <select title="Table Select" name="tableSelect" id="tableSelect">
+              <option value="checkIns">Check Ins</option>
+              <option value="goals">Goals</option>
+              <option value="argument">Arguments</option>
+              <option value="worry">Worries</option>
+            </select> */}
+          </div>
           <table tabIndex={0}>
             <caption>Daily Checkins</caption>
             <thead>
