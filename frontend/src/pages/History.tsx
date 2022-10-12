@@ -1,5 +1,6 @@
 import {
   IconButton,
+  Select,
   Table,
   TableContainer,
   Tbody,
@@ -24,6 +25,7 @@ import Drawer from "../components/Drawer";
 import MoodGraph from "../components/MoodGraph";
 
 
+
 interface MoodTableType {
   [key: string]: number
 }
@@ -35,18 +37,20 @@ const History = () => {
   const [graphData, setGraphData] = useState<MoodTableType>({})
   const { toast } = useToast();
   const [isDrawerVisible, setIsDrawerVisible] = useState(false);
+  const [currentTable, setCurrentTable] = useState("cbtForm")
+  const [tableTitle, setTableTitle] = useState("")
   const handleViewDrawer = (bool: boolean) => {
     setIsDrawerVisible(bool);
   };
   const fetchUserData = async () => {
     await supabase
-      .from("cbtForm")
+      .from(currentTable)
       .select("*")
       .eq("user_id", user.id)
-      .order("created_at",{ascending:false})
+      .order("created_at", { ascending: false })
       .then((response) => {
         console.log("user data", { data });
-        {/* @ts-ignore */}
+        {/* @ts-ignore */ }
         setData(response.data);
         const moodTableData = response.data?.map((item) => item.feelBefore); // [ "a","b","a"]
         {/* @ts-ignore */ }
@@ -74,8 +78,7 @@ const History = () => {
   useEffect(() => {
     fetchUserData();
 
-
-  }, []);
+  }, [currentTable]);
 
 
   return (
@@ -87,51 +90,51 @@ const History = () => {
       >
         <div>
           <div>
-           <u>Mood:</u>  {dataToView?.feelBefore}
+            <u>Mood:</u>  {dataToView?.feelBefore}
           </div>
           <div>
-           <u> Emotions:</u>  {dataToView?.emotions?.map((emotion)=>(
+            <u> Emotions:</u>  {dataToView?.emotions?.map((emotion) => (
               <span className="tags">
                 {emotion + ' '}
               </span>
             ))}
           </div>
           <div>
-           <u> Elaboration:</u>  {dataToView?.elaboration}
+            <u> Elaboration:</u>  {dataToView?.elaboration}
           </div>
           {
             dataToView?.gratitudeThoughts &&
             <div>
-            <u> Gratitude thoughts: </u>   {dataToView?.gratitudeThoughts}
+                <u> Gratitude thoughts: </u>   {dataToView?.gratitudeThoughts}
             </div>
           }
           {
             dataToView?.negativeThoughts &&
             <div>
-            <u> Negative thoughts:</u>  {dataToView?.negativeThoughts}
+                <u> Negative thoughts:</u>  {dataToView?.negativeThoughts}
             </div>
           }
           {
-            dataToView?.thoughtDistortions&&dataToView?.thoughtDistortions?.length > 0 &&
+            dataToView?.thoughtDistortions && dataToView?.thoughtDistortions?.length > 0 &&
             <div>
-             <u>Thought distortions: </u>   {dataToView?.thoughtDistortions?.map((distortion)=>(
+                <u>Thought distortions: </u>   {dataToView?.thoughtDistortions?.map((distortion) => (
                 <span className="tags">
                   {distortion}
                 </span>
               ))}
             </div>
           }
-          
+
           {
             dataToView?.challengeNegative &&
             <div>
-            <u> Challenge Negatives:</u> {dataToView?.challengeNegative}
+                <u> Challenge Negatives:</u> {dataToView?.challengeNegative}
             </div>
           }
           {
             dataToView?.reinterpretNegative &&
             <div>
-            <u> Reinterpreting Negative:</u>   {dataToView?.reinterpretNegative}
+                <u> Reinterpreting Negative:</u>   {dataToView?.reinterpretNegative}
             </div>
           }
         </div>
@@ -139,16 +142,26 @@ const History = () => {
       <div className="history-page">
         <div className="history-table-container">
           <div>
+            Showing your
 
-            {/* <select title="Table Select" name="tableSelect" id="tableSelect">
-              <option value="checkIns">Check Ins</option>
-              <option value="goals">Goals</option>
-              <option value="argument">Arguments</option>
-              <option value="worry">Worries</option>
-            </select> */}
           </div>
           <table tabIndex={0}>
-            <caption>Daily Checkins</caption>
+            <caption>
+              <select
+                value={currentTable}
+                onChange={(event) => setCurrentTable(event.target.value)
+                }
+                title="Table Select"
+                name="tableSelect"
+                id="tableSelect"
+              >
+                <option value="cbtForm">Daily Checkins</option>
+                <option value="SMARTGoals">Goals</option>
+                <option value="argument">Arguments</option>
+                <option value="worry">Worries</option>
+                <option value="stressManagement">Stress Management</option>
+              </select>
+            </caption>
             <thead>
               <tr>
                 <th>Mood</th>

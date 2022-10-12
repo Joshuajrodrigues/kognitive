@@ -28,6 +28,9 @@ caption {
   font-weight: bolder;
   font-size: larger;
 }
+select {
+  all: unset;
+}
 /* svgs */
 .hero-image {
   width: 300px;
