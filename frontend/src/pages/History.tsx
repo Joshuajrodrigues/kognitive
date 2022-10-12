@@ -23,22 +23,31 @@ import { Link } from "react-router-dom";
 import { Eye, Trash } from "phosphor-react";
 import Drawer from "../components/Drawer";
 import MoodGraph from "../components/MoodGraph";
+import { SmartGoalFormType } from "../hooks/useSMARTForm";
+import CbrDrawer from "../drawers/CbrDrawer";
+import GoalsDrawer from "../drawers/GoalsDrawer";
+import { WorryFormType } from "../hooks/useWorryForm";
+import WorriesDrawer from "../drawers/WorriesDrawer";
+import { StressFormType } from "../hooks/useManageStressForm";
+import StressDrawer from "../drawers/StressDrawer";
+import { ArgumentFormType } from "../hooks/useArgumentForm";
+import ArgumentDrawer from "../drawers/ArgumentDrawer";
 
 
 
 interface MoodTableType {
   [key: string]: number
 }
+export interface stateTypes extends CbtFormType, SmartGoalFormType, WorryFormType, StressFormType, ArgumentFormType { }
 dayjs.extend(utc);
 const History = () => {
   const user = useUser((state) => state.user);
-  const [data, setData] = useState<CbtFormType[]>([]);
-  const [dataToView, setDataToView] = useState<CbtFormType>();
+  const [data, setData] = useState<stateTypes[]>([]);
+  const [dataToView, setDataToView] = useState<stateTypes>();
   const [graphData, setGraphData] = useState<MoodTableType>({})
   const { toast } = useToast();
   const [isDrawerVisible, setIsDrawerVisible] = useState(false);
   const [currentTable, setCurrentTable] = useState("cbtForm")
-  const [tableTitle, setTableTitle] = useState("")
   const handleViewDrawer = (bool: boolean) => {
     setIsDrawerVisible(bool);
   };
@@ -83,68 +92,29 @@ const History = () => {
 
   return (
     <>
-      <MoodGraph datasource={graphData} />
+      {
+        currentTable === "cbtForm" &&
+        <MoodGraph datasource={graphData} />
+      }
       <Drawer
         onClose={() => handleViewDrawer(false)}
         showDrawer={isDrawerVisible}
       >
-        <div>
-          <div>
-            <u>Mood:</u>  {dataToView?.feelBefore}
-          </div>
-          <div>
-            <u> Emotions:</u>  {dataToView?.emotions?.map((emotion) => (
-              <span className="tags">
-                {emotion + ' '}
-              </span>
-            ))}
-          </div>
-          <div>
-            <u> Elaboration:</u>  {dataToView?.elaboration}
-          </div>
-          {
-            dataToView?.gratitudeThoughts &&
-            <div>
-                <u> Gratitude thoughts: </u>   {dataToView?.gratitudeThoughts}
-            </div>
-          }
-          {
-            dataToView?.negativeThoughts &&
-            <div>
-                <u> Negative thoughts:</u>  {dataToView?.negativeThoughts}
-            </div>
-          }
-          {
-            dataToView?.thoughtDistortions && dataToView?.thoughtDistortions?.length > 0 &&
-            <div>
-                <u>Thought distortions: </u>   {dataToView?.thoughtDistortions?.map((distortion) => (
-                <span className="tags">
-                  {distortion}
-                </span>
-              ))}
-            </div>
-          }
-
-          {
-            dataToView?.challengeNegative &&
-            <div>
-                <u> Challenge Negatives:</u> {dataToView?.challengeNegative}
-            </div>
-          }
-          {
-            dataToView?.reinterpretNegative &&
-            <div>
-                <u> Reinterpreting Negative:</u>   {dataToView?.reinterpretNegative}
-            </div>
-          }
-        </div>
+        {
+          currentTable === "cbtForm" ?
+            <CbrDrawer dataToView={dataToView} /> :
+            currentTable === "SMARTGoals" ?
+              <GoalsDrawer dataToView={dataToView} /> :
+              currentTable === "worry" ?
+                <WorriesDrawer dataToView={dataToView} /> :
+                currentTable === "stressManagement" ?
+                  <StressDrawer dataToView={dataToView} /> :
+                  currentTable === "argument" &&
+                  <ArgumentDrawer dataToView={dataToView} />
+        }
       </Drawer>
       <div className="history-page">
         <div className="history-table-container">
-          <div>
-            Showing your
-
-          </div>
           <table tabIndex={0}>
             <caption>
               <select
@@ -164,15 +134,15 @@ const History = () => {
             </caption>
             <thead>
               <tr>
-                <th>Mood</th>
+                <th>{currentTable === 'cbtForm' ? "Mood" : ""}</th>
                 <th></th>
-                <th>Created on</th>
+                <th>Date</th>
                 <th></th>
               </tr>
             </thead>
             {data?.map((item) => (
               <tr>
-                <td>{item.feelBefore}</td>
+                <td>{item?.feelBefore}</td>
                 <td>
                   <a
                     onClick={() => {
