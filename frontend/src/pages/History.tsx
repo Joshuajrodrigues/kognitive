@@ -22,6 +22,8 @@ import { Link } from "react-router-dom";
 import { Eye, Trash } from "phosphor-react";
 import Drawer from "../components/Drawer";
 import MoodGraph from "../components/MoodGraph";
+
+
 interface MoodTableType {
   [key: string]: number
 }
@@ -46,6 +48,13 @@ const History = () => {
         console.log("user data", { data });
         {/* @ts-ignore */}
         setData(response.data);
+        const moodTableData = response.data?.map((item) => item.feelBefore); // [ "a","b","a"]
+        {/* @ts-ignore */ }
+        const graphData = moodTableData.reduce<MoodTableType>((total, value) => {  //[a:2,b:1]
+          total[value] = (total[value] || 0) + 1;
+          return total;
+        }, {})
+        setGraphData(graphData)
       });
   };
   const handleDelete = async (id?: string) => {
@@ -68,17 +77,7 @@ const History = () => {
 
   }, []);
 
-  useEffect(() => {
-    const moodTableData = data?.map((item) => item.feelBefore); // [ "a","b","a"]
-    const graphData = moodTableData.reduce<MoodTableType>((total, value) => {  //[a:2,b:1]
-      total[value] = (total[value] || 0) + 1;
-      return total;
-    }, {})
-    setGraphData(graphData)
-    console.log("moodTableData", moodTableData, graphData);
 
-
-  }, [data])
   return (
     <>
       <MoodGraph datasource={graphData} />
