@@ -73,7 +73,7 @@ const History = () => {
   const handleDelete = async (id?: string) => {
     try {
       await supabase
-        .from("cbtForm")
+        .from(currentTable)
         .delete()
         .eq("id", id)
         .then(async () => {
