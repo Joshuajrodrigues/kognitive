@@ -28,9 +28,7 @@ caption {
   font-weight: bolder;
   font-size: larger;
 }
-select {
-  all: unset;
-}
+
 /* svgs */
 .hero-image {
   width: 300px;
@@ -471,4 +469,25 @@ footer {
 }
 .mood-stats-container table {
   width: 100px;
+}
+.custom-selector {
+  position: relative;
+}
+
+.custom-selector select {
+  padding: 0 10px;
+  appearance: none;
+}
+
+.custom-selector::after {
+  content: '';
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent;
+  border-top-color: var(--primary-color);
+  display: inline-block;
+  position: absolute;
+  right: 0px;
+  bottom: 3px;
+  border-radius: 2px;
 }

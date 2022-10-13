@@ -117,20 +117,23 @@ const History = () => {
         <div className="history-table-container">
           <table tabIndex={0}>
             <caption>
-              <select
-                value={currentTable}
-                onChange={(event) => setCurrentTable(event.target.value)
-                }
-                title="Table Select"
-                name="tableSelect"
-                id="tableSelect"
-              >
-                <option value="cbtForm">Daily Checkins</option>
-                <option value="SMARTGoals">Goals</option>
-                <option value="argument">Arguments</option>
-                <option value="worry">Worries</option>
-                <option value="stressManagement">Stress Management</option>
-              </select><CaretDown />
+              <label className="custom-selector">
+                Select to view table
+                <select
+                  value={currentTable}
+                  onChange={(event) => setCurrentTable(event.target.value)
+                  }
+                  title="Table Select"
+                  name="tableSelect"
+                  id="tableSelect"
+                >
+                  <option value="cbtForm">Daily Checkins</option>
+                  <option value="SMARTGoals">Goals</option>
+                  <option value="argument">Arguments</option>
+                  <option value="worry">Worries</option>
+                  <option value="stressManagement">Stress Management</option>
+                </select>
+              </label>
             </caption>
             <thead>
               <tr>
