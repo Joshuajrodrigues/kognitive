@@ -12,7 +12,7 @@ const MoodGraph: FunctionComponent<{
             <table>
                 {
                     Object.getOwnPropertyNames(datasource)?.length > 0 &&
-                    <caption>Your stats</caption>
+                    <caption className='intro-text-light'>Your stats</caption>
                 }
                 <thead>
                     <tr>
