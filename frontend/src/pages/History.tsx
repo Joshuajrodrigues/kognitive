@@ -20,7 +20,7 @@ import { useToast } from "../hooks/useToast";
 import BackButton from "../components/BackButton";
 import { appRoutes } from "../AppConstants";
 import { Link } from "react-router-dom";
-import { Eye, Trash } from "phosphor-react";
+import { CaretDown, CaretLeft, Eye, Trash } from "phosphor-react";
 import Drawer from "../components/Drawer";
 import MoodGraph from "../components/MoodGraph";
 import { SmartGoalFormType } from "../hooks/useSMARTForm";
@@ -130,7 +130,7 @@ const History = () => {
                 <option value="argument">Arguments</option>
                 <option value="worry">Worries</option>
                 <option value="stressManagement">Stress Management</option>
-              </select>
+              </select><CaretDown />
             </caption>
             <thead>
               <tr>
