@@ -1,8 +1,10 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@babel/core': 7.18.10
   '@chakra-ui/icons': ^2.0.9
   '@chakra-ui/react': ^2.2.8
+  '@chakra-ui/styled-system': ^2.2.7
   '@emotion/react': ^11
   '@emotion/styled': ^11
   '@lottiefiles/react-lottie-player': ^3.4.7
@@ -24,8 +26,10 @@ specifiers:
   zustand: ^4.1.1
 
 dependencies:
+  '@babel/core': 7.18.10
   '@chakra-ui/icons': 2.0.9_hsmxbru7kh4m4fkmapdkd6vvgu
   '@chakra-ui/react': 2.2.8_pfyigycnene34nz5tn5ypsuepi
+  '@chakra-ui/styled-system': 2.2.7
   '@emotion/react': 11.10.0_dekd3qhq25os2zmp2sxj6oaoou
   '@emotion/styled': 11.10.0_cvyjuqpqzsw2jroi6znapo3uiq
   '@lottiefiles/react-lottie-player': 3.4.7_react@18.2.0
