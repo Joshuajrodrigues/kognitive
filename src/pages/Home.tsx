@@ -143,10 +143,7 @@ const Home: FunctionComponent<{}> = () => {
               aria-label="Sign Up for Kognitive"
               className="link-button"
               onClick={async () => {
-                console.log({
-                  email: guestEmail,
-                  password:guestPass,
-                });
+ 
                 
                 setIsLoading(true);
                 let { data, error } = await supabase.auth.signInWithPassword({
