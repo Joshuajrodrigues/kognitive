@@ -120,6 +120,9 @@ const History = () => {
               <label className="custom-selector">
                 Select to view table
                 <select
+                  style={{
+                    marginLeft:"12px"
+                  }}
                   value={currentTable}
                   onChange={(event) => setCurrentTable(event.target.value)
                   }

@@ -19,68 +19,81 @@ const History = lazy(() => import("./pages/History"));
 const About = lazy(() => import("./pages/About"));
 function App() {
   const user = useUser((state) => state.user);
+  const auth = useUser((state) => state.authed);
 
-  return (
-    <div className="app-container" tabIndex={0}>
+  if(auth){
+    return (
+      <div className="app-container" tabIndex={0}>
+        <Navbar />
+        <Toast />
+        <Routes>
+          <Route
+            path={appRoutes.login}
+            element={!user.id ? <Home /> : <Navigate to={appRoutes.root} />}
+          />
+          <Route
+            path={appRoutes.signup}
+            element={!user.id ? <Signup /> : <Navigate to={appRoutes.root} />}
+          />
+          <Route
+            path={appRoutes.cbtForm}
+            element={!user.id ? <Home /> : <CBTForm />}
+          />
+          <Route
+            path={appRoutes.miniFormSMARTForm}
+            element={!user.id ? <Home /> : <SmartGoalForm />}
+          />
+          <Route
+            path={appRoutes.miniFormStressPlan}
+            element={!user.id ? <Home /> : <ManageStressForm />}
+          />
+          <Route
+            path={appRoutes.miniFormWorry}
+            element={!user.id ? <Home /> : <WorryForm />}
+          />
+          <Route
+            path={appRoutes.miniFormArgument}
+            element={!user.id ? <Home /> : <ArgumentForm />}
+          />
+          <Route
+            path={appRoutes.about}
+            element={
+              <Suspense fallback={<Loader />}>
+                <About />
+              </Suspense>
+            }
+          />
+          <Route
+            path={appRoutes.root}
+            element={!user.id ? <Navigate to={appRoutes.login} /> : <Welcome />}
+          />
+          <Route
+            path={appRoutes.historicalSubmites}
+            element={
+              !user.id ? (
+                <Navigate to={appRoutes.login} />
+              ) : (
+                <Suspense fallback={<Loader />}>
+                  <History />
+                </Suspense>
+              )
+            }
+          />
+          <Route path={appRoutes.forgotPassword} element={<PasswordReset />} />
+        </Routes>
+      </div>
+    );
+  }
+  else{
+    return(
+      <div className="app-container" tabIndex={0}>
       <Navbar />
       <Toast />
-      <Routes>
-        <Route
-          path={appRoutes.login}
-          element={!user.id ? <Home /> : <Navigate to={appRoutes.root} />}
-        />
-        <Route
-          path={appRoutes.signup}
-          element={!user.id ? <Signup /> : <Navigate to={appRoutes.root} />}
-        />
-        <Route
-          path={appRoutes.cbtForm}
-          element={!user.id ? <Home /> : <CBTForm />}
-        />
-        <Route
-          path={appRoutes.miniFormSMARTForm}
-          element={!user.id ? <Home /> : <SmartGoalForm />}
-        />
-        <Route
-          path={appRoutes.miniFormStressPlan}
-          element={!user.id ? <Home /> : <ManageStressForm />}
-        />
-        <Route
-          path={appRoutes.miniFormWorry}
-          element={!user.id ? <Home /> : <WorryForm />}
-        />
-        <Route
-          path={appRoutes.miniFormArgument}
-          element={!user.id ? <Home /> : <ArgumentForm />}
-        />
-        <Route
-          path={appRoutes.about}
-          element={
-            <Suspense fallback={<Loader />}>
-              <About />
-            </Suspense>
-          }
-        />
-        <Route
-          path={appRoutes.root}
-          element={!user.id ? <Navigate to={appRoutes.login} /> : <Welcome />}
-        />
-        <Route
-          path={appRoutes.historicalSubmites}
-          element={
-            !user.id ? (
-              <Navigate to={appRoutes.login} />
-            ) : (
-              <Suspense fallback={<Loader />}>
-                <History />
-              </Suspense>
-            )
-          }
-        />
-        <Route path={appRoutes.forgotPassword} element={<PasswordReset />} />
-      </Routes>
+   
     </div>
-  );
+    )
+  }
+ 
 }
 
 export default App;

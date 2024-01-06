@@ -19,15 +19,19 @@ const Navbar: FunctionComponent<{}> = () => {
   const user = useUser((state) => state.user);
   const [isLoading, setIsLoading] = useState(false)
   const addUser = useUser((state) => state.addUser);
+  const setAuthed = useUser((state) => state.setAuthed);
   const removeUser = useUser((state) => state.removeUser);
   let navigate = useNavigate();
   const { toast } = useToast()
   useEffect(() => {
-    console.log("bad boy ?");
+
 
     const user = supabase.auth.getUser()
     user.then((response) => {
       addUser({ id: response.data.user?.id, user_metadata: response.data.user?.user_metadata })
+    })
+    .finally(()=>{
+      setAuthed(true)
     })
   }, []);
   const handleLogOut = async () => {

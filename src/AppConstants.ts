@@ -9,7 +9,8 @@ export const appRoutes ={
     miniFormStressPlan: '/stressmanagement',
     miniFormSMARTForm: '/smartform',
     miniFormWorry:'/worry',
-    miniFormArgument:'/argument'
+    miniFormArgument:'/argument',
+    
 }
 
 export const options = ["Terrible", "Bad", "Meh", "Ok Ok", "Good", "Terrific!"];

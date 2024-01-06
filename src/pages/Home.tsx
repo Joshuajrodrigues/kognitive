@@ -12,7 +12,8 @@ import useUser from "../hooks/useUser";
 import { CircleNotch } from "phosphor-react";
 import { Loader } from "../components/Loader";
 import Footer from "../components/Footer";
-
+const guestEmail = import.meta.env.VITE_REACT_APP_GUEST_EMAIL
+const guestPass = import.meta.env.VITE_REACT_APP_GUEST_PASS
 const Home: FunctionComponent<{}> = () => {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
@@ -32,19 +33,20 @@ const Home: FunctionComponent<{}> = () => {
     <>
       <div className="home-grid-container" tabIndex={0}>
         <div className="lottie-container">
-          <img
+          <motion.img
+            initial={{ opacity: 0, scale: 0.5 }}
+            transition={{ ease: "easeIn", duration: 0.6 }}
+            animate={{ opacity: 1, scale: 1 }}
+            style={{
+              width: "50%",
+            }}
             src="./hero.svg"
             alt="picture of a girl admiring flowers after doing cbt"
             className="hero-image"
           />
         </div>
 
-        <motion.div
-          className="login-container"
-          initial={{ opacity: 0, scale: 0.5 }}
-          transition={{ ease: "easeIn", duration: 0.6 }}
-          animate={{ opacity: 1, scale: 1 }}
-        >
+        <div className="login-container">
           <p className="intro-text">
             Welcome to <span>Kognitive</span>, <br /> your cbt journal.
           </p>
@@ -129,17 +131,48 @@ const Home: FunctionComponent<{}> = () => {
                 </Link>
                 <label>
                   <button className="normal-button" type="submit">
-                    {isLoading ? (
-                     <Loader/>
-                    ) : (
-                      "Login"
-                    )}
+                    {isLoading ? <Loader /> : "Login"}
                   </button>
                 </label>
               </form>
             )}
           </Formik>
-
+          <p className="intro-text-light">
+            Take a tour without sign up ?{" "}
+            <button
+              aria-label="Sign Up for Kognitive"
+              className="link-button"
+              onClick={async () => {
+                console.log({
+                  email: guestEmail,
+                  password:guestPass,
+                });
+                
+                setIsLoading(true);
+                let { data, error } = await supabase.auth.signInWithPassword({
+                  email: guestEmail,
+                  password:guestPass,
+                });
+  
+                if (!error) {
+                  navigate(appRoutes.root);
+                  toast.success("Login Successfull");
+                  setIsLoading(false);
+                  addUser({
+                    id: data.user?.id,
+                    user_metadata: data.user?.user_metadata,
+                  });
+                  //sessionStorage.setItem("user", JSON.stringify(data));
+                } else {
+                  toast.error(error.message);
+                  setIsLoading(false);
+                }
+              }}
+            >
+              {" "}
+              Continue as Guest
+            </button>
+          </p>
           <p className="intro-text-light">
             New here?{" "}
             <Link
@@ -158,9 +191,9 @@ const Home: FunctionComponent<{}> = () => {
           >
             About
           </Link>
-        </motion.div>
+        </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 };

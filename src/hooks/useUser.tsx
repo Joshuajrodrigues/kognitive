@@ -22,7 +22,9 @@ export type RemoveUserType=()=>void
 interface UserInstanceType{
     user: UserType
     addUser:AddUserType;
-    removeUser:RemoveUserType
+    setAuthed:(val:boolean)=>void;
+    removeUser:RemoveUserType;
+    authed:boolean
 }
 
 const useUser =  create<UserInstanceType>((set) => ({
@@ -30,7 +32,9 @@ const useUser =  create<UserInstanceType>((set) => ({
 
     user: { id: undefined, user_metadata: undefined },
     addUser: (userData) => set(() => ({ user: userData })),
+    authed:false,
     removeUser: () => set({ user: { id: undefined, user_metadata: undefined } }),
+    setAuthed:(val)=>set(()=>({authed:val}))
   }))
 
 export default useUser

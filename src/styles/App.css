@@ -275,7 +275,7 @@ label {
   text-transform: uppercase;
 }
 .intro-text.welcome-big-text {
-  font-size: x-large !important;
+  font-size: 200% !important;
 }
 .welcome-button-container {
   display: flex;
