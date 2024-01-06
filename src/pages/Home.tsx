@@ -144,7 +144,7 @@ const Home: FunctionComponent<{}> = () => {
               className="link-button"
               onClick={async () => {
  
-                
+                // contact rodrigues.joshr@gmail.com for em
                 setIsLoading(true);
                 let { data, error } = await supabase.auth.signInWithPassword({
                   email: guestEmail,
