@@ -1,17 +1,15 @@
 //@ts-ignore
 import { Formik } from "formik";
-import { motion } from "framer-motion";
 import { FunctionComponent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
+import familyHeroImage from '../../public/DrawKit Vector Illustration Mental Health & Psychology/SVG/DrawKit Vector Illustration Mental Health & Psychology (10).svg';
 import { appRoutes } from "../AppConstants";
-import LottieCreator from "../components/LottieCreator";
+import Footer from "../components/Footer";
+import { Loader } from "../components/Loader";
 import { supabase } from "../helper/supabaseClient";
 import { useToast } from "../hooks/useToast";
 import useUser from "../hooks/useUser";
-import { CircleNotch } from "phosphor-react";
-import { Loader } from "../components/Loader";
-import Footer from "../components/Footer";
 const guestEmail = import.meta.env.VITE_REACT_APP_GUEST_EMAIL
 const guestPass = import.meta.env.VITE_REACT_APP_GUEST_PASS
 const Home: FunctionComponent<{}> = () => {
@@ -35,9 +33,9 @@ const Home: FunctionComponent<{}> = () => {
         <div className="lottie-container">
           <img
             style={{
-              width: "50%",
+              maxWidth: "100%",
             }}
-            src="./hero.svg"
+            src={familyHeroImage}
             alt="picture of a girl admiring flowers after doing cbt"
             className="hero-image"
           />
