@@ -33,10 +33,7 @@ const Home: FunctionComponent<{}> = () => {
     <>
       <div className="home-grid-container" tabIndex={0}>
         <div className="lottie-container">
-          <motion.img
-            initial={{ opacity: 0, scale: 0.5 }}
-            transition={{ ease: "easeIn", duration: 0.6 }}
-            animate={{ opacity: 1, scale: 1 }}
+          <img
             style={{
               width: "50%",
             }}
@@ -93,7 +90,7 @@ const Home: FunctionComponent<{}> = () => {
                   id="email"
                   title="email"
                   aria-label="Email"
-                  placeholder="Email"
+                  placeholder="example@mail.com"
                   className={"normal-input"}
                   value={values.email}
                   onChange={handleChange}
@@ -110,7 +107,7 @@ const Home: FunctionComponent<{}> = () => {
                 <input
                   id="password"
                   title="password"
-                  placeholder="Password"
+                  placeholder="********"
                   className={"normal-input"}
                   value={values.password}
                   onChange={handleChange}
@@ -143,14 +140,14 @@ const Home: FunctionComponent<{}> = () => {
               aria-label="Sign Up for Kognitive"
               className="link-button"
               onClick={async () => {
- 
+
                 // contact rodrigues.joshr@gmail.com for em
                 setIsLoading(true);
                 let { data, error } = await supabase.auth.signInWithPassword({
                   email: guestEmail,
-                  password:guestPass,
+                  password: guestPass,
                 });
-  
+
                 if (!error) {
                   navigate(appRoutes.root);
                   toast.success("Login Successfull");

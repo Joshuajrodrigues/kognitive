@@ -12,7 +12,6 @@ import Home from "./pages/Home";
 import PasswordReset from "./pages/PasswordReset";
 import Signup from "./pages/Signup";
 import Welcome from "./pages/Welcome";
-import * as dayjs from "dayjs";
 import WorryForm from "./forms/WorryForm";
 import ArgumentForm from "./forms/ArgumentForm";
 const History = lazy(() => import("./pages/History"));
@@ -21,7 +20,7 @@ function App() {
   const user = useUser((state) => state.user);
   const auth = useUser((state) => state.authed);
 
-  if(auth){
+  if (auth) {
     return (
       <div className="app-container" tabIndex={0}>
         <Navbar />
@@ -84,16 +83,16 @@ function App() {
       </div>
     );
   }
-  else{
-    return(
+  else {
+    return (
       <div className="app-container" tabIndex={0}>
-      <Navbar />
-      <Toast />
-   
-    </div>
+        <Navbar />
+        <Toast />
+
+      </div>
     )
   }
- 
+
 }
 
 export default App;
