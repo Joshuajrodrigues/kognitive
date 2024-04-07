@@ -7,12 +7,10 @@ import { appRoutes } from "../AppConstants";
 import BackButton from "../components/BackButton";
 import Footer from "../components/Footer";
 import { Loader } from "../components/Loader";
-import LottieCreator from "../components/LottieCreator";
 import { supabase } from "../helper/supabaseClient";
 import { useToast } from "../hooks/useToast";
 import useUser from "../hooks/useUser";
-import lottieSrc from "../lotties/hero-signup.json";
-
+import signUpImg from '/DrawKit Vector Illustration Mental Health & Psychology/SVG/DrawKit Vector Illustration Mental Health & Psychology (10).svg'
 const Signup: FunctionComponent<{}> = () => {
   const { toast } = useToast();
   const addUser = useUser((state) => state.addUser)
@@ -35,7 +33,7 @@ const Signup: FunctionComponent<{}> = () => {
     <div style={{ "marginTop": "48px" }} className="home-grid-container"
     >
       <div className="lottie-container">
-      <img src="./signup.svg" alt="" className="hero-image" />
+        <img src={signUpImg} alt="" className="hero-image" />
 
       </div>
       <motion.div
@@ -46,7 +44,7 @@ const Signup: FunctionComponent<{}> = () => {
         animate={{ "opacity": 1, "scale": 1 }}
       >
         <p className="intro-text">
-          Sign up to <span>Kognitive</span> 
+          Sign up to <span>Kognitive</span>
         </p>
         <Formik
           validationSchema={SignupSchema}
@@ -118,7 +116,7 @@ const Signup: FunctionComponent<{}> = () => {
                 </p>
                 <button className="normal-button" type="submit">
                   {
-                    isLoading ?<Loader/> : "Sign Up"
+                    isLoading ? <Loader /> : "Sign Up"
                   }
 
                 </button>
@@ -130,7 +128,7 @@ const Signup: FunctionComponent<{}> = () => {
           <BackButton />
         </div>
       </motion.div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };

@@ -3,7 +3,7 @@ import { Formik } from "formik";
 import { FunctionComponent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import familyHeroImage from '../../public/DrawKit Vector Illustration Mental Health & Psychology/SVG/DrawKit Vector Illustration Mental Health & Psychology (6).svg';
+import familyHeroImage from '/DrawKit Vector Illustration Mental Health & Psychology/SVG/DrawKit Vector Illustration Mental Health & Psychology (6).svg';
 import { appRoutes } from "../AppConstants";
 import Footer from "../components/Footer";
 import { Loader } from "../components/Loader";

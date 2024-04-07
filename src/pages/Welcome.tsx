@@ -10,7 +10,7 @@ import { appRoutes } from "../AppConstants";
 import Footer from "../components/Footer";
 import MiniForms from "../components/MiniForms";
 import useUser from "../hooks/useUser";
-import welcomeImage from '../../public/DrawKit Vector Illustration Mental Health & Psychology/SVG/DrawKit Vector Illustration Mental Health & Psychology (3).svg'
+import welcomeImage from '/DrawKit Vector Illustration Mental Health & Psychology/SVG/DrawKit Vector Illustration Mental Health & Psychology (3).svg'
 
 const Welcome: FunctionComponent<{}> = () => {
   const user = useUser((state) => state.user);
