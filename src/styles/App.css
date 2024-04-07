@@ -8,6 +8,7 @@
   --error-color: #d55a5a;
   --success-color: rgb(24, 193, 136);
 }
+
 body #root .app-container {
   height: 100vh;
 }
@@ -21,9 +22,11 @@ html {
   font-family: "Quicksand";
   scroll-behavior: smooth;
 }
+
 textarea {
   resize: none !important;
 }
+
 caption {
   font-weight: bolder;
   font-size: larger;
@@ -86,6 +89,7 @@ caption {
   cursor: pointer;
   background-color: var(--primary-color-hover);
 }
+
 .outline-button:focus {
   border: 2px solid var(--focus-color);
 }
@@ -97,9 +101,11 @@ caption {
   font-weight: bold;
   color: var(--primary-color);
 }
+
 .link-button:focus {
   border: 2px dashed var(--focus-color);
 }
+
 .normal-button {
   all: unset;
   cursor: pointer;
@@ -115,9 +121,11 @@ caption {
   justify-content: center !important;
   font-weight: bold;
 }
+
 .normal-button:focus {
   border: 2px solid var(--focus-color);
 }
+
 .toast-button {
   padding: 2px;
   margin-left: 5px;
@@ -195,8 +203,6 @@ label {
 }
 
 .login-container {
-  border: 2px solid var(--primary-color);
-  border-radius: 12px;
   margin: auto;
   padding: 12px;
   width: 80%;
@@ -243,40 +249,49 @@ label {
   display: grid;
   grid-template-columns: 1fr 8fr 1fr;
 }
+
 .welcome-main-box {
   grid-column: 2/3;
-  border: 2px solid var(--primary-color);
-  border-radius: 12px;
-  margin: 15px;
-  padding: 12px;
+  /* border: 2px solid var(--primary-color);
+  border-radius: 12px; */
+
+
 }
+
 @media screen and (max-width: 720px) {
   .welcome-main-box {
     grid-column: 2/3;
-    margin: 5px;
+
   }
 }
+
 .flex-date-time {
   display: flex;
   align-items: center;
   padding-left: 10px;
   padding-top: 10px;
 }
+
 .flex-date-time .intro-text-light {
   margin: 5px;
 }
+
 .welcome-main-box .intro-text {
   margin-left: 10px;
 }
+
 .capitalise {
   display: inline-block !important;
 }
+
 .capitalise:first-letter {
   text-transform: uppercase;
 }
+
 .intro-text.welcome-big-text {
   font-size: 200% !important;
 }
+
 .welcome-button-container {
   display: flex;
   justify-content: center;
@@ -295,8 +310,9 @@ label {
     flex-direction: column;
     align-items: center;
   }
-  
+
 }
+
 /* history */
 
 .history-table-container {
@@ -304,27 +320,34 @@ label {
   display: flex;
   flex-direction: column;
 }
+
 td {
   text-align: center;
   padding: 10px;
 }
+
 th {
   color: var(--primary-color);
   text-align: center;
 }
+
 thead {
   border-bottom: 1px solid var(--primary-color);
 }
+
 tr:nth-child(even) {
   background-color: var(--primary-color-hover);
 }
+
 td a {
   cursor: pointer;
 }
+
 /* CBTFORM */
 .form-container {
   padding: 10px 30px;
 }
+
 .form-handler {
   border: 2px solid var(--primary-color);
   border-radius: 12px;
@@ -332,6 +355,7 @@ td a {
   padding: 12px;
   overflow: auto;
 }
+
 .form-button-container {
   position: fixed;
   bottom: 0;
@@ -347,6 +371,7 @@ td a {
   box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px,
     rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
 }
+
 /* other forms */
 
 .other-forms-container {
@@ -357,12 +382,14 @@ td a {
   margin-top: 20px;
   gap: 5;
 }
+
 @media screen and (max-width: 650px) {
   .other-forms-container {
     grid-template-columns: 1fr;
   }
-  
+
 }
+
 .mini-form {
   border: 2px solid var(--primary-color);
   border-radius: 12px;
@@ -402,12 +429,14 @@ td a {
   border-radius: 12px 0px 0px 12px;
   min-height: 100vh;
 }
+
 .drawer .close-btn {
   cursor: pointer;
   position: absolute;
   right: 0;
   padding: 10px;
 }
+
 .drawer .drawer-content {
   margin-top: 50px;
   padding: 10px;
@@ -415,6 +444,7 @@ td a {
   overflow: auto;
   max-height: 100vh;
 }
+
 .drawer-content span {
   background-color: var(--primary-color);
   color: #fff;
@@ -425,10 +455,12 @@ td a {
   align-items: center;
   flex-wrap: wrap;
 }
+
 .drawer-content div {
   margin: 5px;
   padding: 2px;
 }
+
 /* tags */
 .tags {
   background-color: var(--primary-color);
@@ -459,6 +491,7 @@ footer {
   background-color: #fff;
   z-index: -111;
 }
+
 /* moodgraph */
 .mood-stats-container {
   display: flex;
@@ -469,9 +502,11 @@ footer {
 .mood-stats-container th {
   padding: 0;
 }
+
 .mood-stats-container table {
   width: 300px;
 }
+
 .custom-selector {
   position: relative;
 }
@@ -480,7 +515,7 @@ footer {
   padding: 0 10px;
   appearance: none;
   width: 300px;
-    height: 40px;
+  height: 40px;
 }
 
 .custom-selector::after {

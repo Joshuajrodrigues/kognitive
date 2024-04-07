@@ -91,7 +91,7 @@ const History = () => {
 
 
   return (
-    <>
+    <div onFocus={() => handleViewDrawer(false)} >
       {
         currentTable === "cbtForm" &&
         <MoodGraph datasource={graphData} />
@@ -121,7 +121,7 @@ const History = () => {
                 Select to view table
                 <select
                   style={{
-                    marginLeft:"12px"
+                    marginLeft: "12px"
                   }}
                   value={currentTable}
                   onChange={(event) => setCurrentTable(event.target.value)
@@ -179,7 +179,7 @@ const History = () => {
           </Link>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -9,41 +9,42 @@ const spring = {
   duration: 0.2,
 };
 const Drawer: FunctionComponent<{
-    children:ReactNode;
+  children: ReactNode;
   showDrawer: boolean;
   onClose: () => void;
 
-}> = ({ showDrawer, onClose,children }) => {
+}> = ({ showDrawer, onClose, children }) => {
   return (
     <>
       <AnimatePresence>
         {showDrawer && (
           <motion.aside
+
             initial={{ width: 0 }}
             animate={{
-              width: 300,
+              width: "50%",
             }}
             exit={{
               width: 0,
-              transition: { delay: 0.2, duration: 0.3 },
+              transition: { delay: 0, duration: 0 },
             }}
             className="drawer"
           >
             <motion.a
-             initial={{ width: 0 }}
-             animate={{
-               width: 300,
-             }}
-             exit={{
-               width: 0,
-               transition: { delay: 0.2, duration: 0.3 },
-             }}
-            className="close-btn" onClick={onClose}>
+              initial={{ width: 0 }}
+              animate={{
+                width: 50,
+              }}
+              exit={{
+                width: 0,
+                transition: { delay: 0, duration: 0 },
+              }}
+              className="close-btn" onClick={onClose}>
               <X color="red" size={32} />
             </motion.a>
 
             <div className="drawer-content">
-                {children}
+              {children}
             </div>
           </motion.aside>
         )}

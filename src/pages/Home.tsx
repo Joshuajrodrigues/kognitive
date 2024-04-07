@@ -1,17 +1,15 @@
 //@ts-ignore
 import { Formik } from "formik";
-import { motion } from "framer-motion";
 import { FunctionComponent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
+import familyHeroImage from '../../public/DrawKit Vector Illustration Mental Health & Psychology/SVG/DrawKit Vector Illustration Mental Health & Psychology (6).svg';
 import { appRoutes } from "../AppConstants";
-import LottieCreator from "../components/LottieCreator";
+import Footer from "../components/Footer";
+import { Loader } from "../components/Loader";
 import { supabase } from "../helper/supabaseClient";
 import { useToast } from "../hooks/useToast";
 import useUser from "../hooks/useUser";
-import { CircleNotch } from "phosphor-react";
-import { Loader } from "../components/Loader";
-import Footer from "../components/Footer";
 const guestEmail = import.meta.env.VITE_REACT_APP_GUEST_EMAIL
 const guestPass = import.meta.env.VITE_REACT_APP_GUEST_PASS
 const Home: FunctionComponent<{}> = () => {
@@ -33,14 +31,11 @@ const Home: FunctionComponent<{}> = () => {
     <>
       <div className="home-grid-container" tabIndex={0}>
         <div className="lottie-container">
-          <motion.img
-            initial={{ opacity: 0, scale: 0.5 }}
-            transition={{ ease: "easeIn", duration: 0.6 }}
-            animate={{ opacity: 1, scale: 1 }}
+          <img
             style={{
-              width: "50%",
+              maxWidth: "100%",
             }}
-            src="./hero.svg"
+            src={familyHeroImage}
             alt="picture of a girl admiring flowers after doing cbt"
             className="hero-image"
           />
@@ -93,7 +88,7 @@ const Home: FunctionComponent<{}> = () => {
                   id="email"
                   title="email"
                   aria-label="Email"
-                  placeholder="Email"
+                  placeholder="example@mail.com"
                   className={"normal-input"}
                   value={values.email}
                   onChange={handleChange}
@@ -110,7 +105,7 @@ const Home: FunctionComponent<{}> = () => {
                 <input
                   id="password"
                   title="password"
-                  placeholder="Password"
+                  placeholder="********"
                   className={"normal-input"}
                   value={values.password}
                   onChange={handleChange}
@@ -143,14 +138,13 @@ const Home: FunctionComponent<{}> = () => {
               aria-label="Sign Up for Kognitive"
               className="link-button"
               onClick={async () => {
- 
                 // contact rodrigues.joshr@gmail.com for em
                 setIsLoading(true);
                 let { data, error } = await supabase.auth.signInWithPassword({
                   email: guestEmail,
-                  password:guestPass,
+                  password: guestPass,
                 });
-  
+
                 if (!error) {
                   navigate(appRoutes.root);
                   toast.success("Login Successfull");
