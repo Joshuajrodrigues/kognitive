@@ -3,7 +3,7 @@ import { Formik } from "formik";
 import { FunctionComponent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import familyHeroImage from '../../public/DrawKit Vector Illustration Mental Health & Psychology/SVG/DrawKit Vector Illustration Mental Health & Psychology (10).svg';
+import familyHeroImage from '../../public/DrawKit Vector Illustration Mental Health & Psychology/SVG/DrawKit Vector Illustration Mental Health & Psychology (6).svg';
 import { appRoutes } from "../AppConstants";
 import Footer from "../components/Footer";
 import { Loader } from "../components/Loader";
@@ -138,7 +138,6 @@ const Home: FunctionComponent<{}> = () => {
               aria-label="Sign Up for Kognitive"
               className="link-button"
               onClick={async () => {
-
                 // contact rodrigues.joshr@gmail.com for em
                 setIsLoading(true);
                 let { data, error } = await supabase.auth.signInWithPassword({

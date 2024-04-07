@@ -1,12 +1,4 @@
-import {
-  Box,
-  Button,
-  ButtonGroup,
-  Flex,
-  Heading,
-  SimpleGrid,
-  Spacer,
-} from "@chakra-ui/react";
+
 import { FunctionComponent, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { appRoutes } from "../AppConstants";
@@ -14,6 +6,7 @@ import { supabase } from "../helper/supabaseClient";
 import { useToast } from "../hooks/useToast";
 import useUser, { UserDataType } from "../hooks/useUser";
 import { Loader } from "./Loader";
+import { SignOut } from "phosphor-react";
 
 const Navbar: FunctionComponent<{}> = () => {
   const user = useUser((state) => state.user);
@@ -30,9 +23,9 @@ const Navbar: FunctionComponent<{}> = () => {
     user.then((response) => {
       addUser({ id: response.data.user?.id, user_metadata: response.data.user?.user_metadata })
     })
-    .finally(()=>{
-      setAuthed(true)
-    })
+      .finally(() => {
+        setAuthed(true)
+      })
   }, []);
   const handleLogOut = async () => {
     setIsLoading(true)
@@ -57,7 +50,7 @@ const Navbar: FunctionComponent<{}> = () => {
       {user.id && (
         <button className="outline-button" onClick={handleLogOut}>
           {
-            isLoading ?   <Loader color="#805ad5"/> : "Log Out"
+            isLoading ? <Loader color="#805ad5" /> : <SignOut />
           }
         </button>
       )}

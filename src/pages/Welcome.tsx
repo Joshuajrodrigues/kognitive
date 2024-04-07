@@ -10,6 +10,8 @@ import { appRoutes } from "../AppConstants";
 import Footer from "../components/Footer";
 import MiniForms from "../components/MiniForms";
 import useUser from "../hooks/useUser";
+import welcomeImage from '../../public/DrawKit Vector Illustration Mental Health & Psychology/SVG/DrawKit Vector Illustration Mental Health & Psychology (3).svg'
+
 const Welcome: FunctionComponent<{}> = () => {
   const user = useUser((state) => state.user);
   const [dateTime, setDateTime] = useState(new Date());
@@ -50,11 +52,11 @@ const Welcome: FunctionComponent<{}> = () => {
           <div className="intro-text welcome-big-text">
             Welcome{" "}
             <div className="capitalise">{user.user_metadata?.name + ","}</div>
-            <br /> how are you feeling ?
+            <br /> lets reflect on your thoughts.
           </div>
           <div>
             <div className="lottie-container">
-              <img src="./checkin.svg" alt="" className="hero-image" />
+              <img src={welcomeImage} alt="" className="hero-image" />
             </div>
             <div className="welcome-button-container">
               <button
